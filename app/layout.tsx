@@ -4,20 +4,10 @@ import "@fontsource/jost/500.css";
 import "@fontsource/jost/700.css";
 import { AppRouterCacheProvider } from "@mui/material-nextjs/v15-appRouter";
 import { ThemeProvider } from "@mui/material/styles";
-import { Inter, Jost } from "next/font/google";
 import Link from "next/link";
 import type { Metadata } from "next/types";
 import { PropsWithChildren } from "react";
 import theme from "../src/theme";
-
-const inter = Inter({ subsets: ["latin"] });
-
-const jost = Jost({
-  weight: ["300", "400", "500", "700"],
-  subsets: ["latin"],
-  display: "swap",
-  variable: "--font-jost",
-});
 
 /* Beskriv din hemsida för sökmotorerna */
 export const metadata: Metadata = {
@@ -28,7 +18,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: PropsWithChildren) {
   return (
     <html lang="en">
-      <body className={`${inter.className} ${jost.variable}`}>
+      <body style={{ fontFamily: "Jost" }}>
         <AppRouterCacheProvider>
           <ThemeProvider theme={theme}>
             <header>
