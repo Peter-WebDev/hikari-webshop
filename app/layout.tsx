@@ -2,6 +2,7 @@ import "@fontsource/jost/300.css";
 import "@fontsource/jost/400.css";
 import "@fontsource/jost/500.css";
 import "@fontsource/jost/700.css";
+import { CssBaseline } from "@mui/material";
 import { AppRouterCacheProvider } from "@mui/material-nextjs/v15-appRouter";
 import { ThemeProvider } from "@mui/material/styles";
 import { Jost } from "next/font/google";
@@ -24,6 +25,7 @@ export default function RootLayout({ children }: PropsWithChildren) {
       <body className={jost.className}>
         <AppRouterCacheProvider>
           <ThemeProvider theme={theme}>
+            <CssBaseline />
             <header>
               <Link href="/">
                 <h1>NextJS webbshop</h1>
