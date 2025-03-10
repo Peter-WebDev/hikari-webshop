@@ -1,6 +1,13 @@
 import AdminPanelSettingsOutlinedIcon from "@mui/icons-material/AdminPanelSettingsOutlined";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
-import { AppBar, Box, IconButton, Toolbar, Typography } from "@mui/material";
+import {
+  AppBar,
+  Box,
+  IconButton,
+  Link,
+  Toolbar,
+  Typography,
+} from "@mui/material";
 import React from "react";
 
 const Header: React.FC = () => {
@@ -32,9 +39,14 @@ const Header: React.FC = () => {
 
         {/* Menyikoner till höger */}
         <Box sx={{ display: "flex", gap: 1 }}>
-          <IconButton color="inherit">
-            <AdminPanelSettingsOutlinedIcon style={{ fontSize: "3rem" }} />
-          </IconButton>
+          <Link href="/admin">
+            <IconButton color="inherit">
+              <AdminPanelSettingsOutlinedIcon
+                data-cy="admin-link"
+                style={{ fontSize: "3rem" }}
+              />
+            </IconButton>
+          </Link>
           <IconButton color="inherit">
             <ShoppingCartOutlinedIcon style={{ fontSize: "3rem" }} />
           </IconButton>
