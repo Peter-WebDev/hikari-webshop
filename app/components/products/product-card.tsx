@@ -13,7 +13,7 @@ export default function ProductCard({ product }: { product: Product }) {
   return (
     <Link href="#" sx={{ textDecoration: "none" }}>
       <Card>
-        <CardMedia component="img" height="200" image="" alt="" />
+        <CardMedia component="img" height="200" image={product.image} alt="" />
         <CardContent>
           <Box
             sx={{
