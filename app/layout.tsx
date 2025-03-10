@@ -27,7 +27,7 @@ export default function RootLayout({ children }: PropsWithChildren) {
           <ThemeProvider theme={theme}>
             <CssBaseline />
             <header>
-              <Link href="/">
+              <Link href="/" >
                 <h1>NextJS webbshop</h1>
               </Link>
             </header>

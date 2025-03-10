@@ -1,5 +1,7 @@
+import ProductCard from "./components/products/product-card";
+
 export default function Home() {
   return (
-      <p>Det här är startsidan. Här ska alla produkterna visas.</p>
+    <ProductCard />
   );
 }
