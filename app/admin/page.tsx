@@ -5,6 +5,7 @@ import {
   Box,
   Button,
   IconButton,
+  Link,
   Paper,
   Table,
   TableBody,
@@ -37,9 +38,11 @@ export default function AdminPage() {
         <Typography variant="h4" fontWeight="bold">
           Admin Panel
         </Typography>
-        <Button variant="contained" color="primary" startIcon={<AddIcon />}>
-          Add new product
-        </Button>
+        <Link data-cy="admin-add-product" href="/admin/add-product">
+          <Button variant="contained" color="primary" startIcon={<AddIcon />}>
+            Add new product
+          </Button>
+        </Link>
       </Box>
 
       {/* Tillfällig Tabell för produkter */}
@@ -69,12 +72,19 @@ export default function AdminPage() {
                 </TableCell>
                 <TableCell>{product.name}</TableCell>
                 <TableCell align="right">
-                  <IconButton color="primary">
-                    <EditIcon />
-                  </IconButton>
-                  <IconButton color="error">
-                    <DeleteIcon />
-                  </IconButton>
+                  <Link
+                    data-cy="admin-edit-product"
+                    href={`/admin/edit-product/${product.id}`}
+                  >
+                    <IconButton color="primary">
+                      <EditIcon />
+                    </IconButton>
+                  </Link>
+                  <Link data-cy="admin-remove-product">
+                    <IconButton color="error">
+                      <DeleteIcon />
+                    </IconButton>
+                  </Link>
                 </TableCell>
               </TableRow>
             ))}
