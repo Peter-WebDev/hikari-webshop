@@ -22,17 +22,17 @@ export default function ProductCard({ product }: { product: Product }) {
               alignItems: "center",
             }}
           >
-            <Typography component="h3" sx={{ fontSize: "1.5rem" }}>
+            <Typography component="h3" sx={{ fontSize: "1.8rem", fontWeight: "600" }}>
               {product.title}
             </Typography>
             <Link href="#">
               <IconButton aria-label="add to cart">
-                <LocalMallIcon sx={{ fontSize: "2rem" }} />
+                <LocalMallIcon sx={{ fontSize: "2rem", color: "#040404" }} />
               </IconButton>
             </Link>
           </Box>
-            <Typography component="p" sx={{ fontSize: "1.2rem" }}>
-              {product.price}
+            <Typography component="p" sx={{ fontSize: "1rem" }}>
+              {product.price} SEK
             </Typography>
         </CardContent>
       </Card>
