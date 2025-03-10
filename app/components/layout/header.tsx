@@ -14,6 +14,8 @@ const Header: React.FC = () => {
   return (
     <AppBar position="static" color="primary" sx={{ boxShadow: 2 }}>
       <Toolbar sx={{ display: "flex", justifyContent: "space-between" }}>
+        <Box sx={{ flex: 1 }} />
+
         {/* Logotypen i mitten */}
         <Box
           sx={{
@@ -38,17 +40,19 @@ const Header: React.FC = () => {
         </Box>
 
         {/* Menyikoner till höger */}
-        <Box sx={{ display: "flex", gap: 1 }}>
+        <Box
+          sx={{ display: "flex", gap: 1, flex: 1, justifyContent: "flex-end" }}
+        >
           <Link href="/admin">
-            <IconButton color="inherit">
+            <IconButton>
               <AdminPanelSettingsOutlinedIcon
                 data-cy="admin-link"
                 style={{ fontSize: "3rem" }}
               />
             </IconButton>
           </Link>
-          <Link>
-            <IconButton color="inherit">
+          <Link color="inherit" href="/cart">
+            <IconButton>
               <ShoppingCartOutlinedIcon style={{ fontSize: "3rem" }} />
             </IconButton>
           </Link>
