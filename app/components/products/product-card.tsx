@@ -29,11 +29,10 @@ export default function ProductCard({ product }: { product: Product }) {
             >
               {product.title}
             </Typography>
-            <Link href="#">
-              <IconButton data-cy="product-buy-button" aria-label="add to cart">
-                <LocalMallIcon sx={{ fontSize: "2rem", color: "#040404" }} />
-              </IconButton>
-            </Link>
+            {/* Add onClick to add product to cart */}
+            <IconButton data-cy="product-buy-button" aria-label="add to cart">
+              <LocalMallIcon sx={{ fontSize: "2rem", color: "#040404" }} />
+            </IconButton>
           </Box>
           <Typography
             data-cy="product-price"
