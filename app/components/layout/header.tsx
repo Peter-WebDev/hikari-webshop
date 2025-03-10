@@ -47,9 +47,11 @@ const Header: React.FC = () => {
               />
             </IconButton>
           </Link>
-          <IconButton color="inherit">
-            <ShoppingCartOutlinedIcon style={{ fontSize: "3rem" }} />
-          </IconButton>
+          <Link>
+            <IconButton color="inherit">
+              <ShoppingCartOutlinedIcon style={{ fontSize: "3rem" }} />
+            </IconButton>
+          </Link>
         </Box>
       </Toolbar>
     </AppBar>
