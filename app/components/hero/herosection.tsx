@@ -4,6 +4,9 @@ import { useEffect, useState } from "react";
 const videos: string[] = [
     "/assets/herovideos/redflower-video.mp4",
     "/assets/herovideos/spring-video.mp4",
+    "/assets/herovideos/orange-video.mp4",
+    "/assets/herovideos/whiteandblue-video.mp4",
+
 ];
 
 const HeroSection = () => {
