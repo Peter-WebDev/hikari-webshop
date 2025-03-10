@@ -10,6 +10,7 @@ import Link from "next/link";
 import type { Metadata } from "next/types";
 import { PropsWithChildren } from "react";
 import theme from "../src/theme";
+import Footer from "./components/layout/footer";
 
 const jost = Jost({ subsets: ["latin"] });
 
@@ -32,9 +33,7 @@ export default function RootLayout({ children }: PropsWithChildren) {
               </Link>
             </header>
             {children}
-            <footer>
-              <p>© 2024</p>
-            </footer>
+            <Footer />
           </ThemeProvider>
         </AppRouterCacheProvider>
       </body>
