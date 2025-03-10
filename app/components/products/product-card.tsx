@@ -21,7 +21,7 @@ export default function ProductCard() {
               alignItems: "center",
             }}
           >
-            <Typography variant="h3" sx={{ fontSize: "1.5rem" }}>
+            <Typography component="h3" sx={{ fontSize: "1.5rem" }}>
               {" "}
               Product title
             </Typography>
@@ -31,7 +31,7 @@ export default function ProductCard() {
               </IconButton>
             </Link>
           </Box>
-          <Typography variant="body1" sx={{ fontSize: "1.2rem" }}>
+          <Typography component="body" sx={{ fontSize: "1.2rem" }}>
             Product price
           </Typography>
         </CardContent>
