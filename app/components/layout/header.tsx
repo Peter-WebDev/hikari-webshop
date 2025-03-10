@@ -1,4 +1,4 @@
-import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import AdminPanelSettingsOutlinedIcon from "@mui/icons-material/AdminPanelSettingsOutlined";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import { AppBar, Box, IconButton, Toolbar, Typography } from "@mui/material";
 import React from "react";
@@ -8,19 +8,35 @@ const Header: React.FC = () => {
     <AppBar position="static" color="primary" sx={{ boxShadow: 2 }}>
       <Toolbar sx={{ display: "flex", justifyContent: "space-between" }}>
         {/* Logotypen i mitten */}
-        <Box sx={{ flex: 1, display: "flex", justifyContent: "center" }}>
-          <Typography variant="h1" sx={{ fontSize: "2rem" }}>
-            HIKARI
+        <Box
+          sx={{
+            flex: 1,
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <Typography
+            variant="h1"
+            sx={{
+              lineHeight: 1,
+              display: "flex",
+              flexDirection: "column",
+              textAlign: "center",
+            }}
+          >
+            <span style={{ fontSize: "4rem", fontWeight: "300" }}>HIKARI</span>
+            <span style={{ fontSize: "2rem", fontWeight: "400" }}>ヒカリ</span>
           </Typography>
         </Box>
 
         {/* Menyikoner till höger */}
         <Box sx={{ display: "flex", gap: 1 }}>
           <IconButton color="inherit">
-            <AccountCircleIcon />
+            <AdminPanelSettingsOutlinedIcon style={{ fontSize: "3rem" }} />
           </IconButton>
           <IconButton color="inherit">
-            <ShoppingCartOutlinedIcon />
+            <ShoppingCartOutlinedIcon style={{ fontSize: "3rem" }} />
           </IconButton>
         </Box>
       </Toolbar>
