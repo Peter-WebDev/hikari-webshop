@@ -10,6 +10,7 @@ import Link from "next/link";
 import type { Metadata } from "next/types";
 import { PropsWithChildren } from "react";
 import theme from "../src/theme";
+import Header from "./components/layout/header";
 
 const jost = Jost({ subsets: ["latin"] });
 
@@ -26,11 +27,8 @@ export default function RootLayout({ children }: PropsWithChildren) {
         <AppRouterCacheProvider>
           <ThemeProvider theme={theme}>
             <CssBaseline />
-            <header>
-              <Link href="/" >
-                <h1>NextJS webbshop</h1>
-              </Link>
-            </header>
+            <Header />
+            <Link href="/"></Link>
             {children}
             <footer>
               <p>© 2024</p>
