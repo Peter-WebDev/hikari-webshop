@@ -8,7 +8,7 @@ export default function ProductList({ products }: { products: Product[] }) {
       sx={{
         display: "grid",
         gridTemplateColumns: "repeat(auto-fit, minmax(345px, 1fr))",
-        gap: 2,
+        gap: 5,
         justifyContent: "center",
       }}
     >
