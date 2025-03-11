@@ -19,8 +19,9 @@ import {
 import React from "react";
 
 const Header: React.FC = () => {
-  const theme = useTheme();
-  const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
+  const theme = useTheme(); // Hämtar temat från Mui
+  const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm")); // För en liten iPhone, sm står för 600px
+  const isExtraSmallScreen = useMediaQuery("(max-width:375px)"); // För en liten liten gullig iPhone
 
   return (
     <AppBar position="static" color="primary" sx={{ boxShadow: 2 }}>
@@ -43,13 +44,21 @@ const Header: React.FC = () => {
               display: "flex",
               flexDirection: "column",
               textAlign: "center",
-              fontSize: isSmallScreen ? "2rem" : "4rem",
+              fontSize: isExtraSmallScreen
+                ? "1.5rem"
+                : isSmallScreen
+                ? "2rem"
+                : "4rem",
               fontWeight: "300",
             }}
           >
             <span
               style={{
-                fontSize: isSmallScreen ? "1.5rem" : "2rem",
+                fontSize: isExtraSmallScreen
+                  ? "1.2rem"
+                  : isSmallScreen
+                  ? "1.5rem"
+                  : "2rem",
                 fontWeight: "400",
               }}
             >
@@ -57,7 +66,11 @@ const Header: React.FC = () => {
             </span>
             <span
               style={{
-                fontSize: isSmallScreen ? "1rem" : "2rem",
+                fontSize: isExtraSmallScreen
+                  ? "0.8rem"
+                  : isSmallScreen
+                  ? "1rem"
+                  : "2rem",
                 fontWeight: "400",
               }}
             >
@@ -79,14 +92,26 @@ const Header: React.FC = () => {
             <IconButton>
               <AdminPanelSettingsOutlinedIcon
                 data-cy="admin-link"
-                sx={{ fontSize: isSmallScreen ? "2rem" : "2.5rem" }}
+                sx={{
+                  fontSize: isExtraSmallScreen
+                    ? "1.8rem"
+                    : isSmallScreen
+                    ? "2rem"
+                    : "2.5rem",
+                }}
               />
             </IconButton>
           </Link>
           <Link color="inherit" href="/cart">
             <IconButton>
               <ShoppingCartOutlinedIcon
-                sx={{ fontSize: isSmallScreen ? "2rem" : "2.5rem" }}
+                sx={{
+                  fontSize: isExtraSmallScreen
+                    ? "1.8rem"
+                    : isSmallScreen
+                    ? "2rem"
+                    : "2.5rem",
+                }}
               />
             </IconButton>
           </Link>
