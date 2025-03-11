@@ -11,10 +11,15 @@ datasource db {
 }
 
 model Product {
-  id            String @id @default(cuid())
-  articleNumber String @unique @default(cuid())
+  id            String  @id @default(cuid())
+  articleNumber String  @unique @default(cuid())
+  image         String
+  imageDark     String?
   title         String
   description   String
-  image         String
   price         Float
+  weight        String?
+  brand         String?
+  height        String?
+  diameter      String?
 }
