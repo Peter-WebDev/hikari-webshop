@@ -28,22 +28,22 @@ const CheckoutForm = () => {
           Shipping address
         </Typography>
 
-        <Box component="form" sx={{ display: "flex", flexDirection: "column", gap: 2, mt: 2 }}>
-          <TextField label="First name *" variant="outlined" fullWidth />
+        <Box data-cy="customer-form" component="form" sx={{ display: "flex", flexDirection: "column", gap: 2, mt: 2 }}>
+          <TextField data-cy="customer-name" label="First name *" variant="outlined" fullWidth />
 
           <TextField label="Last name *" variant="outlined" fullWidth />
 
-          <TextField label="Address *" variant="outlined" fullWidth />
+          <TextField data-cy="customer-address" label="Address *" variant="outlined" fullWidth />
 
-          <TextField label="Zip code *" variant="outlined" fullWidth />
+          <TextField data-cy="customer-zipcode" label="Zip code *" variant="outlined" fullWidth />
 
-          <TextField label="City *" variant="outlined" fullWidth />
+          <TextField data-cy="customer-city" label="City *" variant="outlined" fullWidth />
 
           <TextField label="Country *" variant="outlined" fullWidth />
 
-          <TextField label="Email *" variant="outlined" fullWidth />
-          
-          <TextField label="Phone *" variant="outlined" fullWidth />
+          <TextField data-cy="customer-email" label="Email *" variant="outlined" fullWidth />
+
+          <TextField data-cy="customer-phone" label="Phone *" variant="outlined" fullWidth />
 
           {/* Checkbox för betalningsadress */}
           <FormControlLabel control={<Checkbox color="primary" />} label="Use this address for payment details" />
