@@ -1,3 +1,9 @@
+"use client";
+{
+  /* Use client används för att säga till Next.js att hela denna komponent ska renderas i webbläsaren.
+  Lades in så vi kan använda useMediaQuery! */
+}
+
 import AdminPanelSettingsOutlinedIcon from "@mui/icons-material/AdminPanelSettingsOutlined";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import {
@@ -7,10 +13,15 @@ import {
   Link,
   Toolbar,
   Typography,
+  useMediaQuery,
+  useTheme,
 } from "@mui/material";
 import React from "react";
 
 const Header: React.FC = () => {
+  const theme = useTheme();
+  const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
+
   return (
     <AppBar position="static" color="primary" sx={{ boxShadow: 2 }}>
       <Toolbar sx={{ display: "flex", justifyContent: "space-between" }}>
@@ -32,28 +43,51 @@ const Header: React.FC = () => {
               display: "flex",
               flexDirection: "column",
               textAlign: "center",
+              fontSize: isSmallScreen ? "2rem" : "4rem",
+              fontWeight: "300",
             }}
           >
-            <span style={{ fontSize: "4rem", fontWeight: "300" }}>HIKARI</span>
-            <span style={{ fontSize: "2rem", fontWeight: "400" }}>ヒカリ</span>
+            <span
+              style={{
+                fontSize: isSmallScreen ? "1.5rem" : "2rem",
+                fontWeight: "400",
+              }}
+            >
+              HIKARI
+            </span>
+            <span
+              style={{
+                fontSize: isSmallScreen ? "1rem" : "2rem",
+                fontWeight: "400",
+              }}
+            >
+              ヒカリ
+            </span>
           </Typography>
         </Box>
 
         {/* Menyikoner till höger */}
         <Box
-          sx={{ display: "flex", gap: 1, flex: 1, justifyContent: "flex-end" }}
+          sx={{
+            display: "flex",
+            gap: 1,
+            flex: 1,
+            justifyContent: "flex-end",
+          }}
         >
           <Link href="/admin">
             <IconButton>
               <AdminPanelSettingsOutlinedIcon
                 data-cy="admin-link"
-                style={{ fontSize: "3rem" }}
+                sx={{ fontSize: isSmallScreen ? "2rem" : "2.5rem" }}
               />
             </IconButton>
           </Link>
           <Link color="inherit" href="/cart">
             <IconButton>
-              <ShoppingCartOutlinedIcon style={{ fontSize: "3rem" }} />
+              <ShoppingCartOutlinedIcon
+                sx={{ fontSize: isSmallScreen ? "2rem" : "2.5rem" }}
+              />
             </IconButton>
           </Link>
         </Box>
