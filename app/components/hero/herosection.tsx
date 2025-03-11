@@ -10,6 +10,9 @@ const videos: string[] = [
   "/assets/herovideos/orange2-video.mp4",
   "/assets/herovideos/purple-video2.mp4",
   "/assets/herovideos/turqoise-video.mp4",
+  "/assets/herovideos/redflower2-video.mp4",
+  "/assets/herovideos/redflower3-video.mp4",
+  
 ];
 
 const HeroSection = () => {
