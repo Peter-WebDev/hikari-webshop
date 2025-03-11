@@ -1,5 +1,5 @@
 import { products } from "@/data";
-import { Typography } from "@mui/material";
+import { Container, Typography } from "@mui/material";
 import HeroSection from "./components/hero/herosection";
 import ProductList from "./components/products/product-list";
 
@@ -7,14 +7,16 @@ export default function Home() {
   return (
     <main>
       <HeroSection />
-      <Typography
-        component="h2"
-        variant="h2"
-        sx={{ textAlign: "center", padding: "2rem" }}
-      >
-        Products
-      </Typography>
-      <ProductList products={products} />
+      <Container>
+        <Typography
+          component="h2"
+          variant="h3"
+          sx={{ paddingBlock: "2rem", fontWeight: "300" }}
+        >
+          Products
+        </Typography>
+        <ProductList products={products} />
+      </Container>
     </main>
   );
 }
