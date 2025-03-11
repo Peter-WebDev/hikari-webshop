@@ -1,5 +1,5 @@
 "use client";
-import { Box } from "@mui/material"; // Importera Box från MUI
+import { Box, Typography } from "@mui/material"; // Importera Box från MUI
 import { useEffect, useState } from "react";
 
 const videos: string[] = [
@@ -12,7 +12,6 @@ const videos: string[] = [
   "/assets/herovideos/turqoise-video.mp4",
   "/assets/herovideos/redflower2-video.mp4",
   "/assets/herovideos/redflower3-video.mp4",
-  
 ];
 
 const HeroSection = () => {
@@ -51,6 +50,40 @@ const HeroSection = () => {
           }}
         />
       )}
+      <Box
+        sx={{
+          position: "absolute",
+          top: 0,
+          left: 0,
+          width: "100%",
+          height: "100%",
+          background:
+            "linear-gradient(to top, rgba(0,0,0,0.3), rgba(0,0,0,0) 200px), linear-gradient(to top, rgba(0,0,0,0.5), rgba(0,0,0,0) 120px)",
+        }}
+      />
+
+      {/* Text längst ner */}
+      <Box
+        sx={{
+          position: "absolute",
+          bottom: 0,
+          width: "100%",
+          display: "flex",
+          paddingBottom: "1rem",
+        }}
+      >
+        <Typography
+          component="h2"
+          variant="h4"
+          sx={{
+            color: "#fff",
+            paddingLeft: "8.7rem",
+            fontWeight: "300"
+          }}
+        >
+          HIKARI - THE ESSENCE OF NATURE
+        </Typography>
+      </Box>
     </Box>
   );
 };
