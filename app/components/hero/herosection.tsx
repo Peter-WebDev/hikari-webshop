@@ -78,8 +78,6 @@ const HeroSection = () => {
           variant="h4"
           sx={{
             color: "#fff",
-            paddingLeft: "8.7rem",
-            fontWeight: "300",
             paddingLeft: { xs: "0.5rem", sm: "4rem", md: "8.7rem" },
             fontSize: { xs: "1.5rem", sm: "1.8rem", md: "2.125rem" }, // Anpassa efter behov
             fontWeight: "300",
