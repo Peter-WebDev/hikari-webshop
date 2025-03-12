@@ -81,7 +81,7 @@ export const products: Product[] = [
     articleNumber: "123454",
     image: "URL",
     imageDark: "URL",
-    title: "Kaigan 海岸",
+    title: "Kaigan",
     titleSign: "海岸",
     titleDescription: "The Essence of Coast",
     titleWithDescription: "Kaigan 海岸 – The Essence of Coast",
