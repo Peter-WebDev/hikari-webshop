@@ -36,7 +36,7 @@ export default function ProductCard({ product }: { product: Product }) {
               alignItems: "center",
             }}
           >
-            <Box sx={{display: "flex", alignItems: "center" }}>
+            <Box sx={{ display: "flex", alignItems: "center" }}>
               <Typography
                 data-cy="product-title"
                 component="h3"
@@ -44,7 +44,15 @@ export default function ProductCard({ product }: { product: Product }) {
               >
                 {product.title}
               </Typography>
-              <Typography component="h3" sx={{ paddingLeft: "0.5rem", fontSize: "1.8rem", fontWeight: "600", color: titleSignColorForProduct }}>
+              <Typography
+                component="h3"
+                sx={{
+                  paddingLeft: "0.5rem",
+                  fontSize: "1.8rem",
+                  fontWeight: "600",
+                  color: titleSignColorForProduct,
+                }}
+              >
                 {product.titleSign}
               </Typography>
             </Box>
@@ -54,9 +62,15 @@ export default function ProductCard({ product }: { product: Product }) {
             </IconButton>
           </Box>
           <Typography
+            component="p"
+            sx={{ fontSize: "1.3rem", fontWeight: "500" }}
+          >
+            {product.titleDescription}
+          </Typography>
+          <Typography
             data-cy="product-price"
             component="p"
-            sx={{ fontSize: "1rem", paddingTop:"0.5rem" }}
+            sx={{ fontSize: "1rem", paddingTop: "0.5rem" }}
           >
             {product.price} SEK
           </Typography>
