@@ -77,7 +77,7 @@ const HeroSection = () => {
           variant="h4"
           sx={{
             color: "#fff",
-            paddingLeft: { xs: "", sm: "4rem", md: "8.7rem" },
+            paddingLeft: { xs: "0.5rem", sm: "4rem", md: "8.7rem" },
             fontSize: { xs: "1.5rem", sm: "1.8rem", md: "2.125rem" }, // Anpassa efter behov
             fontWeight: "300",
             textAlign: { xs: "center", sm: "left" }, // Centrerad text på små skärmar
