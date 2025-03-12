@@ -1,4 +1,3 @@
-import { products } from "@/data";
 import { Container, Typography } from "@mui/material";
 import HeroSection from "./components/hero/herosection";
 import ProductList from "./components/products/product-list";
@@ -15,7 +14,7 @@ export default function Home() {
         >
           Products
         </Typography>
-        <ProductList products={products} />
+        <ProductList />
       </Container>
     </main>
   );
