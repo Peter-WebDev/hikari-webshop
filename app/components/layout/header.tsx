@@ -70,7 +70,7 @@ const Header: React.FC = () => {
                   ? "0.8rem"
                   : isSmallScreen
                   ? "1rem"
-                  : "2rem",
+                  : "1.5rem",
                 fontWeight: "400",
               }}
             >
