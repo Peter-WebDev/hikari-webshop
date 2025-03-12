@@ -9,6 +9,7 @@ import {
   Typography,
 } from "@mui/material";
 import Card from "@mui/material/Card";
+
 export default function ProductCard({ product }: { product: Product }) {
   return (
     <Link href="#" sx={{ textDecoration: "none" }}>

@@ -6,17 +6,17 @@ export interface Product {
   id: string;
   articleNumber: string;
   image: string;
-  imageDark?: string;
+  imageDark?: string | null;
   title: string;
-  titleSign?: string;
-  titleDescription?: string;
-  titleWithDescription?: string;
+  titleSign?: string | null;
+  titleDescription?: string | null;
+  titleWithDescription?: string | null;
   description: string;
   price: number;
-  weight?: string;
-  brand?: string;
-  height?: string;
-  diameter?: string;
+  weight?: string | null;
+  brand?: string | null;
+  height?: string | null;
+  diameter?: string | null;
 }
 
 export interface CartItem extends Product {

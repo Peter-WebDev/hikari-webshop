@@ -1,8 +1,10 @@
-import { Product } from "@/data";
+import { db } from "@/prisma/db";
 import { Box } from "@mui/material";
 import ProductCard from "./product-card";
 
-export default function ProductList({ products }: { products: Product[] }) {
+export default async function ProductList() {
+  const products = await db.product.findMany();
+
   return (
     <Box
       sx={{
