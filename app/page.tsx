@@ -10,7 +10,7 @@ export default function Home() {
         <Typography
           component="h2"
           variant="h3"
-          sx={{ paddingBlock: "2rem", fontWeight: "300" }}
+          sx={{ paddingBlock: {md: "2rem", sm: "2rem", xs: "1.5rem"}, fontWeight: "300", fontSize: {sm: "3rem", xs: "2.5rem"} }}
         >
           Products
         </Typography>
