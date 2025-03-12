@@ -77,8 +77,11 @@ const HeroSection = () => {
           variant="h4"
           sx={{
             color: "#fff",
-            paddingLeft: "8.7rem",
-            fontWeight: "300"
+            paddingLeft: { xs: "", sm: "4rem", md: "8.7rem" },
+            fontSize: { xs: "1.5rem", sm: "1.8rem", md: "2.125rem" }, // Anpassa efter behov
+            fontWeight: "300",
+            textAlign: { xs: "center", sm: "left" }, // Centrerad text på små skärmar
+            width: "100%", // Säkerställer att den är centrerad korrekt på små skärmar
           }}
         >
           HIKARI - THE ESSENCE OF NATURE
