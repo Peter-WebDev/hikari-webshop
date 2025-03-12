@@ -3,15 +3,16 @@ import { Box, Typography } from "@mui/material"; // Importera Box från MUI
 import { useEffect, useState } from "react";
 
 const videos: string[] = [
-  "/assets/herovideos/redflower-video.mp4",
-  "/assets/herovideos/spring-video.mp4",
-  "/assets/herovideos/orange-video.mp4",
-  "/assets/herovideos/whiteandblue-video.mp4",
-  "/assets/herovideos/orange2-video.mp4",
-  "/assets/herovideos/purple-video2.mp4",
-  "/assets/herovideos/turqoise-video.mp4",
-  "/assets/herovideos/redflower2-video.mp4",
-  "/assets/herovideos/redflower3-video.mp4",
+  "assets/herovideos/aka.mp4",
+  "assets/herovideos/blossom.mp4",
+  "assets/herovideos/cherry.mp4",
+  "assets/herovideos/haru.mp4",
+  "assets/herovideos/kaigan.mp4",
+  "assets/herovideos/kaze.mp4",
+  "assets/herovideos/mori.mp4",
+  "assets/herovideos/spring.mp4",
+  "assets/herovideos/suna.mp4",
+  "assets/herovideos/wind.mp4",
 ];
 
 const HeroSection = () => {
@@ -77,8 +78,11 @@ const HeroSection = () => {
           variant="h4"
           sx={{
             color: "#fff",
-            paddingLeft: "8.7rem",
-            fontWeight: "300"
+            paddingLeft: { xs: "0.5rem", sm: "4rem", md: "8.7rem" },
+            fontSize: { xs: "1.5rem", sm: "1.8rem", md: "2.125rem" }, // Anpassa efter behov
+            fontWeight: "300",
+            textAlign: { xs: "center", sm: "left" }, // Centrerad text på små skärmar
+            width: "100%", // Säkerställer att den är centrerad korrekt på små skärmar
           }}
         >
           HIKARI - THE ESSENCE OF NATURE

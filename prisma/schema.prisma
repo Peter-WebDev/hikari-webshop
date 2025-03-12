@@ -16,6 +16,9 @@ model Product {
   image         String
   imageDark     String?
   title         String
+  titleSign     String?
+  titleDescription String?
+  titleWithDescription String?
   description   String
   price         Float
   weight        String?
