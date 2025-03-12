@@ -41,7 +41,7 @@ export default function ProductCard({ product }: { product: Product }) {
                 data-cy="product-title"
                 component="h3"
                 sx={{
-                  fontSize: { md: "1.8rem", sm: "1.5rem", xs: "1.3rem"},
+                  fontSize: { md: "1.8rem", sm: "1.5rem", xs: "1.3rem" },
                   fontWeight: "600",
                 }}
               >
@@ -61,19 +61,30 @@ export default function ProductCard({ product }: { product: Product }) {
             </Box>
             {/* Add onClick to add product to cart */}
             <IconButton data-cy="product-buy-button" aria-label="add to cart">
-              <LocalMallIcon sx={{ fontSize: {md: "2rem", sm: "1.6rem", xs: "1.4rem"}, color: "#040404" }} />
+              <LocalMallIcon
+                sx={{
+                  fontSize: { md: "2rem", sm: "1.6rem", xs: "1.4rem" },
+                  color: "#040404",
+                }}
+              />
             </IconButton>
           </Box>
           <Typography
             component="p"
-            sx={{ fontSize: {md: "1.3rem", sm: "1.2rem", xs: "1rem"}, fontWeight: "500" }}
+            sx={{
+              fontSize: { md: "1.3rem", sm: "1.2rem", xs: "1rem" },
+              fontWeight: "500",
+            }}
           >
             {product.titleDescription}
           </Typography>
           <Typography
             data-cy="product-price"
             component="p"
-            sx={{ fontSize: {sm: "1rem", xs: "0.9rem"}, paddingTop: "0.5rem" }}
+            sx={{
+              fontSize: { sm: "1rem", xs: "0.9rem" },
+              paddingTop: "0.5rem",
+            }}
           >
             {product.price} SEK
           </Typography>
