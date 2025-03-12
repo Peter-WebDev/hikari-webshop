@@ -29,55 +29,57 @@ const Header: React.FC = () => {
         <Box sx={{ flex: 1 }} />
 
         {/* Logotypen i mitten */}
-        <Box
-          sx={{
-            flex: 1,
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
-          <Typography
-            variant="h1"
+        <Link href="/" color="black" underline="none">
+          <Box
             sx={{
-              lineHeight: 1,
+              flex: 1,
               display: "flex",
-              flexDirection: "column",
-              textAlign: "center",
-              fontSize: isExtraSmallScreen
-                ? "1.5rem"
-                : isSmallScreen
-                ? "2rem"
-                : "4rem",
-              fontWeight: "300",
+              justifyContent: "center",
+              alignItems: "center",
             }}
           >
-            <span
-              style={{
+            <Typography
+              variant="h1"
+              sx={{
+                lineHeight: 1,
+                display: "flex",
+                flexDirection: "column",
+                textAlign: "center",
                 fontSize: isExtraSmallScreen
-                  ? "1.2rem"
-                  : isSmallScreen
                   ? "1.5rem"
-                  : "2rem",
-                fontWeight: "400",
-              }}
-            >
-              HIKARI
-            </span>
-            <span
-              style={{
-                fontSize: isExtraSmallScreen
-                  ? "0.8rem"
                   : isSmallScreen
-                  ? "1rem"
-                  : "1.5rem",
-                fontWeight: "400",
+                  ? "2rem"
+                  : "4rem",
+                fontWeight: "300",
               }}
             >
-              ヒカリ
-            </span>
-          </Typography>
-        </Box>
+              <span
+                style={{
+                  fontSize: isExtraSmallScreen
+                    ? "1.2rem"
+                    : isSmallScreen
+                    ? "1.5rem"
+                    : "2rem",
+                  fontWeight: "400",
+                }}
+              >
+                HIKARI
+              </span>
+              <span
+                style={{
+                  fontSize: isExtraSmallScreen
+                    ? "0.8rem"
+                    : isSmallScreen
+                    ? "1rem"
+                    : "1.5rem",
+                  fontWeight: "400",
+                }}
+              >
+                ヒカリ
+              </span>
+            </Typography>
+          </Box>
+        </Link>
 
         {/* Menyikoner till höger */}
         <Box
