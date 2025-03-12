@@ -1,4 +1,4 @@
-import { Box, Card, Container, Typography } from "@mui/material";
+import { Box, Card, CardMedia, Container, Typography } from "@mui/material";
 
 export default async function ProductPage() {
   return (
@@ -9,19 +9,16 @@ export default async function ProductPage() {
           sx={{
             display: "grid",
             gridTemplateColumns: "repeat(auto-fit, minmax(350px, 1fr))",
-            gap: "1rem",
+            gap: "3rem",
           }}
         >
-          <Card>
-            <img
-              src="https://images.unsplash.com/photo-1502657877623-f66bf489d236?auto=format&fit=crop&w=800"
-              srcSet="https://images.unsplash.com/photo-1502657877623-f66bf489d236?auto=format&fit=crop&w=800&dpr=2 2x"
-              alt=""
-            />
+          <Card sx={{ border: "none", borderRadius: "0", objectFit: "cover", objectPosition: "center" }}>
+            <CardMedia component="img" image="https://picsum.photos/id/16/500" alt="" src="https://picsum.photos/id/16/900">
+            </CardMedia>
           </Card>
           <Box>
-            <Typography component="h2" variant="h3">
-              Haru 春
+            <Typography component="h2" sx={{ display: "flex", flexDirection: "column" }}>
+              <Typography component="span" variant="h3">Haru 春</Typography>
               <Typography component="span" variant="h4">"The Essence of Spring"</Typography>
             </Typography>
             <Typography component="p">Fresh, floral, and full of life, Haru captures the awakening of springtime. The scent of dewy grass, wildflowers in bloom, and delicate morning mist creates a light and uplifting atmosphere.</Typography>
@@ -35,6 +32,6 @@ export default async function ProductPage() {
           </Box>
         </Box>
       </Container>
-    </main>
+    </main >
   )
 }
