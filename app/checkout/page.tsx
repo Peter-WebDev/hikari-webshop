@@ -6,17 +6,17 @@ import { Box, Button, Checkbox, Container, FormControlLabel, IconButton, Paper, 
 // Steg i checkout-processen
 const steps = ["Shipping address", "Payment details", "Review your order"];
 
-// Exempel på varukorgsdata, här ska db datan in sen
+// TEST-varukorgsdata, här ska vi lägga in db datan sen
 const cartItems = [
-  { id: 1, name: "Productname", price: 790, quantity: 1, image: "/placeholder.png" },
-  { id: 2, name: "Productname", price: 790, quantity: 1, image: "/placeholder.png" }
+  { id: 1, name: "Productname", price: 790, quantity: 1, image: "/assets/herovideos/display-images/Aka - Display.png" },
+  { id: 2, name: "Productname", price: 790, quantity: 1, image: "/assets/herovideos/display-images/Haru - Display.png" }
 ];
 
 const CheckoutForm = () => {
   return (
     <Container maxWidth="sm">
       <Paper elevation={3} sx={{ padding: 3, mt: 4, backgroundColor: "#f7f7f7" }}>
-        {/* Checkout-rubrik */}
+        {/* Checkout-rubriken */}
         <Typography variant="h4" fontWeight="bold" gutterBottom>
           Checkout
         </Typography>
@@ -30,18 +30,19 @@ const CheckoutForm = () => {
               justifyContent: "space-between",
               borderBottom: "1px solid #ddd",
               paddingBottom: 2,
+              paddingRight: 2,
               mb: 2
             }}
           >
             {/* Produktbild */}
             <Box component="img" src={item.image} alt={item.name} sx={{ width: 50, height: 50, mr: 2 }} />
 
-            {/* Produktnamn */}
-            <Typography variant="body1" sx={{ flexGrow: 1 }}>
+            {/* Produktnamn, OBS ska data-cyn vara placerad här??? */}
+            <Typography data-cy="cart-item" variant="body1" sx={{ flexGrow: 1 }}>
               {item.name}
             </Typography>
 
-            {/* Antal justering */}
+            {/* Justering av antal items */}
             <Box sx={{ display: "flex", alignItems: "center" }}>
               <IconButton size="small">
                 <Remove />
@@ -57,8 +58,8 @@ const CheckoutForm = () => {
               </IconButton>
             </Box>
 
-            {/* Ta bort-knapp */}
-            <IconButton size="small" color="error">
+            {/* Trashbin-knapp-ikon */}
+            <IconButton size="small" color="primary">
               <Delete />
             </IconButton>
 
@@ -69,8 +70,8 @@ const CheckoutForm = () => {
           </Box>
         ))}
 
-        {/* Totalsammanställning */}
-        <Box sx={{ mt: 2, borderTop: "1px solid #ddd", pt: 2 }}>
+        {/* Subtotal, Shipping fee och Total-sammanställning */}
+        <Box sx={{ mt: 2, borderTop: "1px solid #ddd", pt: 2, textAlign: "right", paddingRight: 2 }}>
           <Typography variant="body1">
             <strong>Subtotal:</strong> 1580:-
           </Typography>
@@ -82,7 +83,7 @@ const CheckoutForm = () => {
           </Typography>
         </Box>
 
-        {/* Stegvis checkout-navigation */}
+        {/* Stegvis checkout-navigation 1-2-3 */}
         <Box sx={{ mt: 2, borderTop: "1px solid #ddd", pt: 2 }}>
         <Stepper activeStep={0} alternativeLabel>
           {steps.map((label) => (
@@ -93,7 +94,7 @@ const CheckoutForm = () => {
         </Stepper>
         </Box>
 
-        {/* Fraktadress-formulär */}
+        {/* Checkout-formulär */}
         <Typography variant="h6" sx={{ mt: 4 }}>
           Shipping address
         </Typography>
