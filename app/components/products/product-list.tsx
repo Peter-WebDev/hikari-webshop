@@ -17,7 +17,7 @@ export default async function ProductList() {
         gap: { md: 5, xs: 3 },
         justifyContent: { md: "center" },
         flexDirection: { xs: "row" },
-        overflowX: { xs: "auto" },
+        overflowX: { sm: "visible", xs: "auto" },
         whiteSpace: { xs: "nowrap" },
       }}
     >
