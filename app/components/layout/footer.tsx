@@ -47,6 +47,7 @@ export default function Footer() {
                         component="h2"
                         variant="h5"
                         id="contact-us"
+                        align="center"
                     >
                         Contact us
                     </Typography>
@@ -54,7 +55,7 @@ export default function Footer() {
                         <address>
                             Hikari Corporation<br />
                             42 Shard Street<br />
-                            London, CA 90210<br />
+                            London, CA 90210
                         </address>
                     </Box>
                 </Box>
