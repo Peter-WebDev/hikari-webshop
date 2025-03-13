@@ -119,13 +119,19 @@ export default async function ProductPage({
             >
               <Box sx={{ display: "flex", alignItems: "center", gap: "1rem" }}>
                 <IconButton aria-label="remove" sx={{ padding: "0" }}>
-                  <RemoveCircleOutlineIcon fontSize="large" color="secondary" />
+                  <RemoveCircleOutlineIcon
+                    color="secondary"
+                    sx={{ fontSize: { sm: "2.2rem", xs: "2rem" } }}
+                  />
                 </IconButton>
                 <Typography component="span" variant="h4">
                   1
                 </Typography>
                 <IconButton aria-label="add" sx={{ padding: "0" }}>
-                  <AddCircleOutlineIcon fontSize="large" color="secondary" />
+                  <AddCircleOutlineIcon
+                    color="secondary"
+                    sx={{ fontSize: { sm: "2.2rem", xs: "2rem" } }}
+                  />
                 </IconButton>
               </Box>
               <Button
