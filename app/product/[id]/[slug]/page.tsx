@@ -138,8 +138,9 @@ export default async function ProductPage({
                 data-cy="product-buy-button"
                 color="secondary"
                 variant="contained"
-                size="large"
                 endIcon={<LocalMallIcon />}
+                // size="large"
+                sx={{ py: "0.5rem", px: "1.5rem"}}
               >
                 Add to cart
               </Button>
