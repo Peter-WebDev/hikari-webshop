@@ -37,7 +37,7 @@ export default function ProductCard({ product }: { product: Product }) {
                 data-cy="product-title"
                 component="h3"
                 sx={{
-                  fontSize: { md: "1.8rem", sm: "1.5rem", xs: "1.3rem" },
+                  fontSize: { md: "1.8rem", xs: "1.5rem" },
                   fontWeight: "600",
                 }}
               >
@@ -47,7 +47,7 @@ export default function ProductCard({ product }: { product: Product }) {
                 component="h3"
                 sx={{
                   paddingLeft: "0.5rem",
-                  fontSize: { md: "1.8rem", sm: "1.5rem", xs: "1.3rem" },
+                  fontSize: { md: "1.8rem", xs: "1.5rem" },
                   fontWeight: "600",
                   color: product.titleSignColor || "#000",
                 }}
@@ -59,7 +59,7 @@ export default function ProductCard({ product }: { product: Product }) {
             <IconButton data-cy="product-buy-button" aria-label="add to cart">
               <LocalMallIcon
                 sx={{
-                  fontSize: { md: "2rem", sm: "1.6rem", xs: "1.4rem" },
+                  fontSize: { md: "2rem", xs: "1.8rem" },
                   color: "#040404",
                 }}
               />
@@ -68,7 +68,7 @@ export default function ProductCard({ product }: { product: Product }) {
           <Typography
             component="p"
             sx={{
-              fontSize: { md: "1.3rem", sm: "1.2rem", xs: "1rem" },
+              fontSize: { md: "1.3rem", xs: "1.2rem" },
               fontWeight: "500",
             }}
           >
@@ -78,7 +78,7 @@ export default function ProductCard({ product }: { product: Product }) {
             data-cy="product-price"
             component="p"
             sx={{
-              fontSize: { sm: "1rem", xs: "0.9rem" },
+              fontSize: { xs: "1rem" },
               paddingTop: "0.5rem",
             }}
           >
