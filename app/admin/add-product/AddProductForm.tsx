@@ -3,7 +3,6 @@
 import { createProduct } from "@/app/actions";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Box, Button, Container, Paper, TextField, Typography } from "@mui/material";
-import { register } from "module";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
@@ -11,7 +10,7 @@ const productSchema = z.object({
     id: z.string().min(3, "Product id must be at least 3 strings"),
     articleNumber: z.string().min(3, "Product id must be at least 3 strings"),
     title: z.string().min(3, "Product title must be at least 3 characters"),
-    price: z.coerce.number().min(3, "Price must be at least 3 numbers"),
+    price: z.coerce.number().min(1, "Price must be at least 1"),
     description: z.string().min(3, "Product description must be at least 3 characters"),
     image: z.string().min(3, "Product image must be at least 3 characters"),
 });
@@ -33,7 +32,6 @@ export default function AddProductForm () {
         reset(); 
     };
 
-    }
     return (
       <Container maxWidth="sm">
         <Paper elevation={3} sx={{ padding: 3, mt: 4, backgroundColor: "#f7f7f7" }}>
