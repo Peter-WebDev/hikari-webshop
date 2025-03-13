@@ -107,7 +107,7 @@ export default async function ProductPage({
             sx={{
               display: "flex",
               alignItems: "center",
-              gap: "2rem",
+              gap: "0.5rem",
               flexWrap: "wrap",
               justifyContent: "space-between",
             }}
