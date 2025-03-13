@@ -57,7 +57,7 @@ export default async function AdminPage() {
                 <TableCell>
                   <img
                     src={product.image}
-                    alt={product.name}
+                    alt={product.title}
                     style={{
                       width: 50,
                       height: 50,
@@ -66,7 +66,7 @@ export default async function AdminPage() {
                     }}
                   />
                 </TableCell>
-                <TableCell>{product.name}</TableCell>
+                <TableCell>{product.title}</TableCell>
                 <TableCell align="right">
                   <Link
                     data-cy="admin-edit-product"
