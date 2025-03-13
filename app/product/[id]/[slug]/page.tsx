@@ -59,7 +59,7 @@ export default async function ProductPage({
           >
             <CardMedia
               component="img"
-              image="https://images.pexels.com/photos/27372369/pexels-photo-27372369/free-photo-of-natur-hand-sommar-tradgard.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+              image={product.image}
               alt=""
             ></CardMedia>
           </Card>
