@@ -1,3 +1,4 @@
+import { db } from "@/prisma/db";
 import AddIcon from "@mui/icons-material/Add";
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
@@ -16,13 +17,8 @@ import {
   Typography,
 } from "@mui/material";
 
-export default function AdminPage() {
-  // Tillfällig data för produkter
-  const products = [
-    { id: 1, name: "Produkt 1", image: "/product1.jpg" },
-    { id: 2, name: "Produkt 2", image: "/product2.jpg" },
-    { id: 3, name: "Produkt 3", image: "/product3.jpg" },
-  ];
+export default async function AdminPage() {
+  const products = await db.product.findMany();
 
   return (
     <Box sx={{ maxWidth: "800px", margin: "auto", padding: 3 }}>
