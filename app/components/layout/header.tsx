@@ -1,9 +1,3 @@
-"use client";
-{
-  /* Use client används för att säga till Next.js att hela denna komponent ska renderas i webbläsaren.
-  Lades in så vi kan använda useMediaQuery! */
-}
-
 import AdminPanelSettingsOutlinedIcon from "@mui/icons-material/AdminPanelSettingsOutlined";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import {
@@ -13,16 +7,10 @@ import {
   Link,
   Toolbar,
   Typography,
-  useMediaQuery,
-  useTheme,
 } from "@mui/material";
 import React from "react";
 
 const Header: React.FC = () => {
-  const theme = useTheme(); // Hämtar temat från Mui
-  const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm")); // För en liten iPhone, sm står för 600px
-  const isExtraSmallScreen = useMediaQuery("(max-width:375px)"); // För en liten liten gullig iPhone
-
   return (
     <AppBar position="static" color="primary" sx={{ boxShadow: 2 }}>
       <Toolbar sx={{ display: "flex", justifyContent: "space-between" }}>
@@ -44,38 +32,12 @@ const Header: React.FC = () => {
               display: "flex",
               flexDirection: "column",
               textAlign: "center",
-              fontSize: isExtraSmallScreen
-                ? "1.5rem"
-                : isSmallScreen
-                ? "2rem"
-                : "4rem",
+              fontSize: { md: "2rem", sm: "2rem", xs: "1.5rem" },
               fontWeight: "300",
             }}
           >
-            <span
-              style={{
-                fontSize: isExtraSmallScreen
-                  ? "1.2rem"
-                  : isSmallScreen
-                  ? "1.5rem"
-                  : "2rem",
-                fontWeight: "400",
-              }}
-            >
-              HIKARI
-            </span>
-            <span
-              style={{
-                fontSize: isExtraSmallScreen
-                  ? "0.8rem"
-                  : isSmallScreen
-                  ? "1rem"
-                  : "1.5rem",
-                fontWeight: "400",
-              }}
-            >
-              ヒカリ
-            </span>
+            <span>HIKARI</span>
+            <span>ヒカリ</span>
           </Typography>
         </Box>
 
@@ -93,11 +55,7 @@ const Header: React.FC = () => {
               <AdminPanelSettingsOutlinedIcon
                 data-cy="admin-link"
                 sx={{
-                  fontSize: isExtraSmallScreen
-                    ? "1.8rem"
-                    : isSmallScreen
-                    ? "2rem"
-                    : "2.5rem",
+                  fontSize: { md: "2.5rem", sm: "2rem", xs: "1.8rem" },
                 }}
               />
             </IconButton>
@@ -106,11 +64,7 @@ const Header: React.FC = () => {
             <IconButton>
               <ShoppingCartOutlinedIcon
                 sx={{
-                  fontSize: isExtraSmallScreen
-                    ? "1.8rem"
-                    : isSmallScreen
-                    ? "2rem"
-                    : "2.5rem",
+                  fontSize: { md: "2.5rem", sm: "2rem", xs: "1.8rem" },
                 }}
               />
             </IconButton>
