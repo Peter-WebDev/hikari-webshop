@@ -124,7 +124,7 @@ export default async function ProductPage({
                     sx={{ fontSize: { sm: "2.2rem", xs: "2rem" } }}
                   />
                 </IconButton>
-                <Typography component="span" variant="h4">
+                <Typography component="span" variant="h4" sx={{fontSize: {md: "2rem", sm: "1.9rem", xs: "1.7rem"}}}>
                   1
                 </Typography>
                 <IconButton aria-label="add" sx={{ padding: "0" }}>
