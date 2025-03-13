@@ -12,7 +12,14 @@ import Card from "@mui/material/Card";
 
 export default function ProductCard({ product }: { product: Product }) {
   return (
-    <Link href="#" sx={{ textDecoration: "none" }}>
+    <Link href={`/product/${product.articleNumber}/${product.titleWithDescription
+      ?.toLowerCase()
+      .replace(/[^\w\s-]/g, '') // Remove special characters
+      .trim()
+      .replace(/^\w/, c => c.toUpperCase()) // Capitalize first letter
+      .replace(/\s+/g, '-') // Replace spaces with hyphens
+      }`}
+      sx={{ textDecoration: "none" }}>
       <Card
         data-cy="product"
         sx={{
