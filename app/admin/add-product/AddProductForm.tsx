@@ -2,6 +2,15 @@
 
 import { Box, Button, Container, Paper, TextField, Typography } from "@mui/material";
 
+const productSchema = z.object({
+    productId: z.string().min(3, "Product id must be at least 3 numbers")
+    productName: z.string().min(3, "Product name must be at least 3 characters"),
+    price: z.string().min(3, "Price must be at least 3"),
+    productDescription: z.string().min(3, "Product description must be at least 3 characters"),
+    imageUrl: z.string().min("Must be a valid URL"),
+});
+
+
 const AddProductForm = () => {
     return (
       <Container maxWidth="sm">
