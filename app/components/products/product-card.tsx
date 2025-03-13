@@ -82,7 +82,7 @@ export default function ProductCard({ product }: { product: Product }) {
               paddingTop: "0.5rem",
             }}
           >
-            {product.price} SEK
+            {product.price}&nbsp;SEK
           </Typography>
         </CardContent>
       </Card>
