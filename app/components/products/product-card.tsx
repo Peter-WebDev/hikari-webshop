@@ -26,7 +26,16 @@ export default function ProductCard({ product }: { product: Product }) {
 
   return (
     <Link href="#" sx={{ textDecoration: "none" }}>
-      <Card data-cy="product">
+      <Card
+        data-cy="product"
+        sx={{
+          boxShadow: 3,
+          transition: "box-shadow 0.3s ease",
+          "&:hover": {
+            boxShadow: 6,
+          },
+        }}
+      >
         <CardMedia component="img" height="200" image={product.image} alt="" />
         <CardContent>
           <Box
