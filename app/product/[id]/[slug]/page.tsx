@@ -104,7 +104,7 @@ export default async function ProductPage({
             <Typography
               component="span"
               variant="h5"
-              sx={{ fontSize: { sm: "1.5rem", xs: "1.3rem" } }}
+              sx={{ fontSize: { md: "1.5rem", xs: "1.3rem" } }}
             >
               Price:&nbsp;{product.price}&nbsp;SEK
             </Typography>
