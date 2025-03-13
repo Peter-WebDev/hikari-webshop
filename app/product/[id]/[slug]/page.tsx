@@ -90,11 +90,11 @@ export default async function ProductPage({
                 </Typography>
               </Box>
               <Typography
-                component="span"
+                component="q"
                 variant="h4"
                 sx={{ fontSize: { md: "2rem", sm: "1.7rem", xs: "1.5rem" } }}
               >
-                "The Essence of Spring"
+                {product.titleDescription}
               </Typography>
             </Typography>
             <Typography component="p" data-cy="product-description">
