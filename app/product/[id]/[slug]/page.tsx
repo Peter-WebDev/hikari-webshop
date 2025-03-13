@@ -32,13 +32,13 @@ export default async function ProductPage({
   }
 
   return (
-    <Container maxWidth="md" sx={{ mt: 8, mb: 8 }}>
+    <Container maxWidth="md" sx={{ mt: { md: 8, sm: 6, xs: 4 }, mb: 8 }}>
       <Box
         component="article"
         sx={{
           display: "grid",
           gridTemplateColumns: "repeat(auto-fit, minmax(350px, 1fr))",
-          gap: "3rem",
+          gap: { md: "3rem", sm: "2rem", xs: "1.5rem" },
         }}
         data-cy="product"
       >
@@ -65,7 +65,11 @@ export default async function ProductPage({
             data-cy="product-title"
           >
             <Box>
-              <Typography component="span" variant="h3">
+              <Typography
+                component="span"
+                variant="h3"
+                sx={{ fontSize: { md: "3rem", sm: "2.5rem", xs: "2rem" } }}
+              >
                 {product.title}
               </Typography>
               <Typography
@@ -74,12 +78,17 @@ export default async function ProductPage({
                 sx={{
                   color: product.titleSignColor || "#000",
                   marginLeft: "0.5rem",
+                  fontSize: { md: "3rem", sm: "2rem", xs: "2rem" },
                 }}
               >
                 {product.titleSign}
               </Typography>
             </Box>
-            <Typography component="span" variant="h4">
+            <Typography
+              component="span"
+              variant="h4"
+              sx={{ fontSize: { md: "2rem", sm: "1.7rem", xs: "1.5rem" } }}
+            >
               "The Essence of Spring"
             </Typography>
           </Typography>
@@ -87,12 +96,12 @@ export default async function ProductPage({
             {product.description}
           </Typography>
           <Typography component="p">{product.slogan}</Typography>
-          <Typography component="div" variant="h5">
-            Price:&nbsp;
-            <Typography component="span" variant="h5" data-cy="product-price">
-              {product.price}
-            </Typography>
-            &nbsp;SEK
+          <Typography
+            component="p"
+            variant="h5"
+            sx={{ fontSize: { sm: "1.5rem", xs: "1.3rem" } }}
+          >
+            Price:&nbsp;{product.price}&nbsp;SEK
           </Typography>
           <Box
             sx={{
