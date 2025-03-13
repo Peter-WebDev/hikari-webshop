@@ -21,7 +21,7 @@ export default async function AdminPage() {
   const products = await db.product.findMany();
 
   return (
-    <Box sx={{ maxWidth: "800px", margin: "auto", padding: 3 }}>
+    <Box sx={{ maxWidth: "900px", margin: "auto", padding: {md: 8, xs: 4} }}>
       {/* Rubrik och Lägg till-knapp */}
       <Box
         sx={{
