@@ -33,7 +33,10 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
         </Card>
         <Box sx={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
           <Typography component="h2" sx={{ display: "flex", flexDirection: "column" }} data-cy="product-title">
-            <Typography component="span" variant="h3">{product.title}{product.titleSign}</Typography>
+            <Box>
+            <Typography component="span" variant="h3">{product.title}</Typography>
+            <Typography component="span" variant="h3" sx={{ color: product.titleSignColor, marginLeft: "0.5rem"}}>{product.titleSign}</Typography>
+            </Box>
             <Typography component="span" variant="h4">"The Essence of Spring"</Typography>
           </Typography>
           <Typography component="p" data-cy="product-description">{product.description}</Typography>
