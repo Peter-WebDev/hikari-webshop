@@ -97,7 +97,7 @@ export default async function ProductPage({
           </Typography>
           <Typography component="p">{product.slogan}</Typography>
           <Typography
-            component="p"
+            component="span"
             variant="h5"
             sx={{ fontSize: { sm: "1.5rem", xs: "1.3rem" } }}
           >
