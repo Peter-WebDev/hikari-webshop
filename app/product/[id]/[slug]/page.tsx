@@ -52,7 +52,7 @@ export default async function ProductPage({
             boxShadow: "none",
           }}
         >
-          <CardMedia component="img" image={product.image} alt=""></CardMedia>
+          <CardMedia component="img" image="https://images.pexels.com/photos/27372369/pexels-photo-27372369/free-photo-of-natur-hand-sommar-tradgard.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt=""></CardMedia>
         </Card>
         <Box sx={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
           <Typography
@@ -105,7 +105,7 @@ export default async function ProductPage({
               <Typography component="span" variant="h4">
                 1
               </Typography>
-              <IconButton aria-label="add">
+              <IconButton aria-label="add" sx={{ padding: "0" }}>
                 <AddCircleOutlineIcon fontSize="large" color="secondary" />
               </IconButton>
             </Box>
