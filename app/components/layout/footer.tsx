@@ -47,7 +47,10 @@ export default function Footer() {
                         component="h2"
                         variant="h5"
                         id="contact-us"
-                        align="center"
+                        textAlign={{
+                            xs: "center",
+                            sm: "left"
+                        }}
                     >
                         Contact us
                     </Typography>
