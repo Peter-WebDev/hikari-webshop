@@ -11,19 +11,6 @@ import {
 import Card from "@mui/material/Card";
 
 export default function ProductCard({ product }: { product: Product }) {
-  const titleSignColor: Record<string, string> = {
-    砂: "#b6b47b",
-    赤: "#ff0000",
-    風: "#23d7ff",
-    海岸: "#1d41ff",
-    春: "#ff8900",
-    森: "#62895c",
-  };
-
-  const titleSignColorForProduct = product.titleSign
-    ? titleSignColor[product.titleSign] || "#3d3d3d"
-    : "#3d3d3d"; // Standardfärg om titleSign saknas
-
   return (
     <Link href="#" sx={{ textDecoration: "none" }}>
       <Card
@@ -62,7 +49,7 @@ export default function ProductCard({ product }: { product: Product }) {
                   paddingLeft: "0.5rem",
                   fontSize: { md: "1.8rem", sm: "1.5rem", xs: "1.3rem" },
                   fontWeight: "600",
-                  color: titleSignColorForProduct,
+                  color: product.titleSignColor,
                 }}
               >
                 {product.titleSign}
