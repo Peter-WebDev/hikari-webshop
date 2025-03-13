@@ -28,19 +28,19 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
         data-cy="product"
       >
         <Card sx={{ border: "none", borderRadius: "0", objectFit: "cover", objectPosition: "center", backgroundColor: "transparent", boxShadow: "none" }}>
-          <CardMedia component="img" image="https://picsum.photos/id/16/500" alt="">
+          <CardMedia component="img" image={product.image} alt="">
           </CardMedia>
         </Card>
         <Box sx={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
           <Typography component="h2" sx={{ display: "flex", flexDirection: "column" }} data-cy="product-title">
-            <Typography component="span" variant="h3">Haru 春</Typography>
+            <Typography component="span" variant="h3">{product.title}{product.titleSign}</Typography>
             <Typography component="span" variant="h4">"The Essence of Spring"</Typography>
           </Typography>
-          <Typography component="p" data-cy="product-description">Fresh, floral, and full of life, Haru captures the awakening of springtime. The scent of dewy grass, wildflowers in bloom, and delicate morning mist creates a light and uplifting atmosphere.</Typography>
+          <Typography component="p" data-cy="product-description">{product.description}</Typography>
           <Typography component="div" variant="h5">
             Price:&nbsp;
             <Typography component="span" variant="h5" data-cy="product-price">
-              790
+              {product.price}
             </Typography>
             &nbsp;SEK
           </Typography>
@@ -65,12 +65,14 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
             >
               <Typography component="span">More information</Typography>
             </AccordionSummary>
-            <AccordionDetails>
-              Details:<br />Top/Middle/Base note: Pine/Moss/Sandalwood<br />
-              Height & diameter: 10.7 cm & 8 cm
+            <AccordionDetails sx={{ backgroundColor: "#D6CCC2" }}>
+              Top/Middle/Base note: Pine/Moss/Sandalwood<br />
+              Weight: {product.weight}<br />
+              Height: {product.height}<br />
+              Diameter: {product.diameter}
             </AccordionDetails>
           </Accordion>
-          <Typography component="p">Article number: <span data-cy="product-id">100687983</span></Typography>
+          <Typography component="p">Article number: <span data-cy="product-id">{product.articleNumber}</span></Typography>
         </Box>
       </Box>
     </Container>
