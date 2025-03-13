@@ -49,7 +49,7 @@ export default function ProductCard({ product }: { product: Product }) {
                   paddingLeft: "0.5rem",
                   fontSize: { md: "1.8rem", sm: "1.5rem", xs: "1.3rem" },
                   fontWeight: "600",
-                  color: product.titleSignColor,
+                  color: product.titleSignColor || "#000",
                 }}
               >
                 {product.titleSign}
