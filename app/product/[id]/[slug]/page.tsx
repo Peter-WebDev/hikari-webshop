@@ -66,7 +66,7 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
               <Typography component="span">More information</Typography>
             </AccordionSummary>
             <AccordionDetails sx={{ backgroundColor: "#D6CCC2" }}>
-              Top/Middle/Base note: Pine/Moss/Sandalwood<br />
+              Brand: {product.brand}<br />
               Weight: {product.weight}<br />
               Height: {product.height}<br />
               Diameter: {product.diameter}
