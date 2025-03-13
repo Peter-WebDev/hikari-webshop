@@ -37,7 +37,7 @@ export default async function ProductPage({
         component="article"
         sx={{
           display: "grid",
-          gridTemplateColumns: "repeat(auto-fit, minmax(350px, 1fr))",
+          gridTemplateColumns: {md: "repeat(auto-fit, minmax(350px, 1fr))", sm: "repeat(auto-fit, minmax(315px, 1fr))", xs: "repeat(auto-fit, minmax(275px, 1fr))"},
           gap: { md: "3rem", sm: "2rem", xs: "1.5rem" },
         }}
         data-cy="product"
