@@ -52,7 +52,11 @@ export default async function ProductPage({
             boxShadow: "none",
           }}
         >
-          <CardMedia component="img" image="https://images.pexels.com/photos/27372369/pexels-photo-27372369/free-photo-of-natur-hand-sommar-tradgard.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt=""></CardMedia>
+          <CardMedia
+            component="img"
+            image="https://images.pexels.com/photos/27372369/pexels-photo-27372369/free-photo-of-natur-hand-sommar-tradgard.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+            alt=""
+          ></CardMedia>
         </Card>
         <Box sx={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
           <Typography
@@ -82,6 +86,7 @@ export default async function ProductPage({
           <Typography component="p" data-cy="product-description">
             {product.description}
           </Typography>
+          <Typography component="p">{product.slogan}</Typography>
           <Typography component="div" variant="h5">
             Price:&nbsp;
             <Typography component="span" variant="h5" data-cy="product-price">
@@ -136,6 +141,8 @@ export default async function ProductPage({
             </AccordionSummary>
             <AccordionDetails sx={{ backgroundColor: "#D6CCC2" }}>
               Brand: {product.brand}
+              <br />
+              Note: {product.note}
               <br />
               Weight: {product.weight}
               <br />
