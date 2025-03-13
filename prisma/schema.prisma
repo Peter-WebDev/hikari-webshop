@@ -17,10 +17,13 @@ model Product {
   imageDark     String?
   title         String
   titleSign     String?
+  titleSignColor String?
   titleDescription String?
   titleWithDescription String?
   description   String
   price         Float
+  slogan        String?
+  note          String?
   weight        String?
   brand         String?
   height        String?
