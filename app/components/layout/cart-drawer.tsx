@@ -5,7 +5,6 @@ import {
   Button,
   Drawer,
   IconButton,
-  List,
   ListItem,
   Paper,
   Table,
@@ -16,6 +15,7 @@ import {
   TableRow,
   Typography,
 } from "@mui/material";
+import Link from "next/link";
 
 interface Product {
   id: string;
@@ -127,13 +127,13 @@ const Sidebar = ({
           paddingTop: 2,
         }}
       >
-        <List>
-          <ListItem data-cy="cart-link">
+        <Link data-cy="cart-link" href={"/checkout"}>
+          <ListItem>
             <Button variant="contained" onClick={handleCheckoutClick}>
               CHECK OUT
             </Button>
           </ListItem>
-        </List>
+        </Link>
       </Box>
     </Drawer>
   );
