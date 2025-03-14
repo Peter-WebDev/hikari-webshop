@@ -1,3 +1,4 @@
+import { db } from "@/prisma/db";
 import AddIcon from "@mui/icons-material/Add";
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
@@ -16,81 +17,97 @@ import {
   Typography,
 } from "@mui/material";
 
-export default function AdminPage() {
-  // Tillfällig data för produkter
-  const products = [
-    { id: 1, name: "Produkt 1", image: "/product1.jpg" },
-    { id: 2, name: "Produkt 2", image: "/product2.jpg" },
-    { id: 3, name: "Produkt 3", image: "/product3.jpg" },
-  ];
+export default async function AdminPage() {
+  const products = await db.product.findMany();
 
   return (
-    <Box sx={{ maxWidth: "800px", margin: "auto", padding: 3 }}>
-      {/* Rubrik och Lägg till-knapp */}
+    <main>
       <Box
-        sx={{
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-          mb: 3,
-        }}
+        sx={{ maxWidth: "900px", margin: "auto", padding: { md: 8, xs: 4 } }}
       >
-        <Typography variant="h4" fontWeight="bold">
-          Admin Panel
-        </Typography>
-        <Link data-cy="admin-add-product" href="/admin/add-product">
-          <Button variant="contained" color="primary" startIcon={<AddIcon />}>
-            Add new product
-          </Button>
-        </Link>
-      </Box>
+        {/* Rubrik och Lägg till-knapp */}
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+            mb: 3,
+            flexWrap: "wrap",
+            gap: 2,
+          }}
+        >
+          <Typography component="h2" variant="h4" fontWeight="bold">
+            Admin
+          </Typography>
+          <Link data-cy="admin-add-product" href="/admin/add-product">
+            <Button
+              variant="contained"
+              color="secondary"
+              startIcon={<AddIcon />}
+            >
+              Add product
+            </Button>
+          </Link>
+        </Box>
 
-      {/* Tillfällig Tabell för produkter */}
-      <TableContainer component={Paper} sx={{ boxShadow: 2 }}>
-        <Table>
-          <TableHead>
-            <TableRow>
-              <TableCell>Image</TableCell>
-              <TableCell>Product name</TableCell>
-              <TableCell align="right">Actions</TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {products.map((product) => (
-              <TableRow key={product.id}>
-                <TableCell>
-                  <img
-                    src={product.image}
-                    alt={product.name}
-                    style={{
-                      width: 50,
-                      height: 50,
-                      objectFit: "cover",
-                      borderRadius: 4,
-                    }}
-                  />
+        {/* Tillfällig Tabell för produkter */}
+        <TableContainer component={Paper} sx={{ boxShadow: 2 }}>
+          <Table>
+            <TableHead>
+              <TableRow>
+                <TableCell sx={{ fontSize: { sm: "1.3rem", xs: "1.1rem" } }}>
+                  Image
                 </TableCell>
-                <TableCell>{product.name}</TableCell>
-                <TableCell align="right">
-                  <Link
-                    data-cy="admin-edit-product"
-                    href={`/admin/edit-product/${product.id}`}
-                  >
-                    <IconButton color="primary">
-                      <EditIcon />
-                    </IconButton>
-                  </Link>
-                  <Link data-cy="admin-remove-product">
-                    <IconButton color="error">
-                      <DeleteIcon />
-                    </IconButton>
-                  </Link>
+                <TableCell sx={{ fontSize: { sm: "1.3rem", xs: "1.1rem" } }}>
+                  Product name
+                </TableCell>
+                <TableCell
+                  align="right"
+                  sx={{ fontSize: { sm: "1.3rem", xs: "1.1rem" } }}
+                >
+                  Actions
                 </TableCell>
               </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
-    </Box>
+            </TableHead>
+            <TableBody>
+              {products.map((product) => (
+                <TableRow key={product.id}>
+                  <TableCell>
+                    <img
+                      src={product.image}
+                      alt={product.title}
+                      style={{
+                        width: 50,
+                        height: 50,
+                        objectFit: "cover",
+                        borderRadius: 4,
+                      }}
+                    />
+                  </TableCell>
+                  <TableCell sx={{ fontSize: { sm: "1.1rem", xs: "1rem" } }}>
+                    {product.title}
+                  </TableCell>
+                  <TableCell align="right">
+                    <Link
+                      data-cy="admin-edit-product"
+                      href={`/admin/edit-product/${product.id}`}
+                    >
+                      <IconButton color="secondary">
+                        <EditIcon />
+                      </IconButton>
+                    </Link>
+                    <Link data-cy="admin-remove-product">
+                      <IconButton color="error">
+                        <DeleteIcon />
+                      </IconButton>
+                    </Link>
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
+      </Box>
+    </main>
   );
 }
