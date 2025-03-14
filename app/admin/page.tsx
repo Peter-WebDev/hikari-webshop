@@ -25,72 +25,74 @@ export default function AdminPage() {
   ];
 
   return (
-    <Box sx={{ maxWidth: "800px", margin: "auto", padding: 3 }}>
-      {/* Rubrik och Lägg till-knapp */}
-      <Box
-        sx={{
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-          mb: 3,
-        }}
-      >
-        <Typography variant="h4" fontWeight="bold">
-          Admin Panel
-        </Typography>
-        <Link data-cy="admin-add-product" href="/admin/add-product">
-          <Button variant="contained" color="primary" startIcon={<AddIcon />}>
-            Add new product
-          </Button>
-        </Link>
-      </Box>
+    <main>
+      <Box sx={{ maxWidth: "800px", margin: "auto", padding: 3 }}>
+        {/* Rubrik och Lägg till-knapp */}
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+            mb: 3,
+          }}
+        >
+          <Typography variant="h4" fontWeight="bold">
+            Admin Panel
+          </Typography>
+          <Link data-cy="admin-add-product" href="/admin/add-product">
+            <Button variant="contained" color="primary" startIcon={<AddIcon />}>
+              Add new product
+            </Button>
+          </Link>
+        </Box>
 
-      {/* Tillfällig Tabell för produkter */}
-      <TableContainer component={Paper} sx={{ boxShadow: 2 }}>
-        <Table>
-          <TableHead>
-            <TableRow>
-              <TableCell>Image</TableCell>
-              <TableCell>Product name</TableCell>
-              <TableCell align="right">Actions</TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {products.map((product) => (
-              <TableRow key={product.id}>
-                <TableCell>
-                  <img
-                    src={product.image}
-                    alt={product.name}
-                    style={{
-                      width: 50,
-                      height: 50,
-                      objectFit: "cover",
-                      borderRadius: 4,
-                    }}
-                  />
-                </TableCell>
-                <TableCell>{product.name}</TableCell>
-                <TableCell align="right">
-                  <Link
-                    data-cy="admin-edit-product"
-                    href={`/admin/edit-product/${product.id}`}
-                  >
-                    <IconButton color="primary">
-                      <EditIcon />
-                    </IconButton>
-                  </Link>
-                  <Link data-cy="admin-remove-product">
-                    <IconButton color="error">
-                      <DeleteIcon />
-                    </IconButton>
-                  </Link>
-                </TableCell>
+        {/* Tillfällig Tabell för produkter */}
+        <TableContainer component={Paper} sx={{ boxShadow: 2 }}>
+          <Table>
+            <TableHead>
+              <TableRow>
+                <TableCell>Image</TableCell>
+                <TableCell>Product name</TableCell>
+                <TableCell align="right">Actions</TableCell>
               </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
-    </Box>
+            </TableHead>
+            <TableBody>
+              {products.map((product) => (
+                <TableRow key={product.id}>
+                  <TableCell>
+                    <img
+                      src={product.image}
+                      alt={product.name}
+                      style={{
+                        width: 50,
+                        height: 50,
+                        objectFit: "cover",
+                        borderRadius: 4,
+                      }}
+                    />
+                  </TableCell>
+                  <TableCell>{product.name}</TableCell>
+                  <TableCell align="right">
+                    <Link
+                      data-cy="admin-edit-product"
+                      href={`/admin/edit-product/${product.id}`}
+                    >
+                      <IconButton color="primary">
+                        <EditIcon />
+                      </IconButton>
+                    </Link>
+                    <Link data-cy="admin-remove-product">
+                      <IconButton color="error">
+                        <DeleteIcon />
+                      </IconButton>
+                    </Link>
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
+      </Box>
+    </main>
   );
 }
