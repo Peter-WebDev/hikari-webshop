@@ -24,7 +24,7 @@ export default async function ProductPage({
 }) {
   const { id } = await params;
   const product = await db.product.findUnique({
-    where: { id: id },
+    where: { articleNumber: id },
   });
 
   if (!product) {
@@ -76,7 +76,7 @@ export default async function ProductPage({
               </Typography>
             </Box>
             <Typography component="span" variant="h4">
-              "The Essence of Spring"
+              <q>{product.titleDescription}</q>
             </Typography>
           </Typography>
           <Typography component="p" data-cy="product-description">
