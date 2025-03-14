@@ -1,3 +1,5 @@
+"use client";
+
 import AdminPanelSettingsOutlinedIcon from "@mui/icons-material/AdminPanelSettingsOutlined";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import {
@@ -8,70 +10,103 @@ import {
   Toolbar,
   Typography,
 } from "@mui/material";
-import React from "react";
+import { useRouter } from "next/navigation";
+import React, { useState } from "react";
+import CartDrawer from "./cart-drawer"; // Importera den nya komponenten
 
 const Header: React.FC = () => {
-  return (
-    <AppBar position="static" color="primary" sx={{ boxShadow: 2 }}>
-      <Toolbar sx={{ display: "flex", justifyContent: "space-between" }}>
-        <Box sx={{ flex: 1 }} />
+  const [openSidebar, setOpenSidebar] = useState(false);
+  const toggleSidebar = () => setOpenSidebar(!openSidebar);
+  const router = useRouter();
 
-        {/* Logotypen i mitten */}
-        <Box
-          sx={{
-            flex: 1,
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
-          <Typography
-            variant="h1"
+  const handleCheckoutClick = () => {
+    router.push("/checkout");
+    setOpenSidebar(false);
+  };
+
+  // Exempel på produkter
+  const products = [
+    {
+      id: "1",
+      title: "Aka",
+      image: "URL",
+      price: 790,
+    },
+    {
+      id: "2",
+      title: "Suna",
+      image: "URL",
+      price: 790,
+    },
+  ];
+
+  return (
+    <>
+      <AppBar position="static" color="primary" sx={{ boxShadow: 2 }}>
+        <Toolbar sx={{ display: "flex", justifyContent: "space-between" }}>
+          <Box sx={{ flex: 1 }} />
+
+          <Box
             sx={{
-              lineHeight: 1,
+              flex: 1,
               display: "flex",
-              flexDirection: "column",
-              textAlign: "center",
-              fontSize: { md: "2rem", sm: "2rem", xs: "1.5rem" },
-              fontWeight: "300",
+              justifyContent: "center",
+              alignItems: "center",
             }}
           >
-            <span>HIKARI</span>
-            <span>ヒカリ</span>
-          </Typography>
-        </Box>
+            <Typography
+              variant="h1"
+              sx={{
+                lineHeight: 1,
+                display: "flex",
+                flexDirection: "column",
+                textAlign: "center",
+                fontSize: { md: "2rem", sm: "2rem", xs: "1.5rem" },
+                fontWeight: "300",
+              }}
+            >
+              <span>HIKARI</span>
+              <span>ヒカリ</span>
+            </Typography>
+          </Box>
 
-        {/* Menyikoner till höger */}
-        <Box
-          sx={{
-            display: "flex",
-            gap: 1,
-            flex: 1,
-            justifyContent: "flex-end",
-          }}
-        >
-          <Link href="/admin">
-            <IconButton>
-              <AdminPanelSettingsOutlinedIcon
-                data-cy="admin-link"
-                sx={{
-                  fontSize: { md: "2.5rem", sm: "2rem", xs: "1.8rem" },
-                }}
-              />
-            </IconButton>
-          </Link>
-          <Link color="inherit" href="/cart">
-            <IconButton>
+          <Box
+            sx={{
+              display: "flex",
+              gap: 1,
+              flex: 1,
+              justifyContent: "flex-end",
+            }}
+          >
+            <Link href="/admin">
+              <IconButton>
+                <AdminPanelSettingsOutlinedIcon
+                  data-cy="admin-link"
+                  sx={{
+                    fontSize: { md: "2.5rem", sm: "2rem", xs: "1.8rem" },
+                  }}
+                />
+              </IconButton>
+            </Link>
+
+            <IconButton onClick={toggleSidebar}>
               <ShoppingCartOutlinedIcon
                 sx={{
                   fontSize: { md: "2.5rem", sm: "2rem", xs: "1.8rem" },
                 }}
               />
             </IconButton>
-          </Link>
-        </Box>
-      </Toolbar>
-    </AppBar>
+          </Box>
+        </Toolbar>
+      </AppBar>
+
+      <CartDrawer
+        openSidebar={openSidebar}
+        toggleSidebar={toggleSidebar}
+        products={products}
+        handleCheckoutClick={handleCheckoutClick}
+      />
+    </>
   );
 };
 
