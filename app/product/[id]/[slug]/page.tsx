@@ -57,23 +57,19 @@ export default async function ProductPage({
               boxShadow: "none",
             }}
           >
-            <CardMedia
-              component="img"
-              image={product.image}
-              alt=""
-            ></CardMedia>
+            <CardMedia component="img" image={product.image} alt=""></CardMedia>
           </Card>
           <Box sx={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
             <Typography
               component="h2"
               sx={{ display: "flex", flexDirection: "column" }}
-              data-cy="product-title"
             >
               <Box>
                 <Typography
                   component="span"
                   variant="h3"
                   sx={{ fontSize: { md: "3rem", sm: "2.5rem", xs: "2rem" } }}
+                  data-cy="product-title"
                 >
                   {product.title}
                 </Typography>
@@ -102,6 +98,7 @@ export default async function ProductPage({
             </Typography>
             <Typography component="p">{product.slogan}</Typography>
             <Typography
+              data-cy="product-price"
               component="span"
               variant="h5"
               sx={{ fontSize: { md: "1.5rem", xs: "1.3rem" } }}
@@ -124,7 +121,11 @@ export default async function ProductPage({
                     sx={{ fontSize: { sm: "2.2rem", xs: "2rem" } }}
                   />
                 </IconButton>
-                <Typography component="span" variant="h4" sx={{fontSize: {md: "2rem", sm: "1.9rem", xs: "1.7rem"}}}>
+                <Typography
+                  component="span"
+                  variant="h4"
+                  sx={{ fontSize: { md: "2rem", sm: "1.9rem", xs: "1.7rem" } }}
+                >
                   1
                 </Typography>
                 <IconButton aria-label="add" sx={{ padding: "0" }}>
@@ -140,7 +141,7 @@ export default async function ProductPage({
                 variant="contained"
                 endIcon={<LocalMallIcon />}
                 // size="large"
-                sx={{ py: "0.5rem", px: "1.5rem"}}
+                sx={{ py: "0.5rem", px: "1.5rem" }}
               >
                 Add to cart
               </Button>
