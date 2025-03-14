@@ -67,7 +67,6 @@ export default async function ProductPage({
               <Box>
                 <Typography
                   component="span"
-                  variant="h3"
                   sx={{ fontSize: { md: "3rem", sm: "2.5rem", xs: "2rem" } }}
                   data-cy="product-title"
                 >
@@ -75,7 +74,6 @@ export default async function ProductPage({
                 </Typography>
                 <Typography
                   component="span"
-                  variant="h3"
                   sx={{
                     color: product.titleSignColor || "#000",
                     marginLeft: "0.5rem",
@@ -87,7 +85,6 @@ export default async function ProductPage({
               </Box>
               <Typography
                 component="q"
-                variant="h4"
                 sx={{ fontSize: { md: "2rem", sm: "1.7rem", xs: "1.5rem" } }}
               >
                 {product.titleDescription}
@@ -100,7 +97,6 @@ export default async function ProductPage({
             <Typography
               data-cy="product-price"
               component="span"
-              variant="h5"
               sx={{ fontSize: { md: "1.5rem", xs: "1.3rem" } }}
             >
               Price:&nbsp;{product.price}&nbsp;SEK
@@ -123,7 +119,6 @@ export default async function ProductPage({
                 </IconButton>
                 <Typography
                   component="span"
-                  variant="h4"
                   sx={{ fontSize: { md: "2rem", sm: "1.9rem", xs: "1.7rem" } }}
                 >
                   1
