@@ -29,14 +29,16 @@ export default async function AdminPage() {
           justifyContent: "space-between",
           alignItems: "center",
           mb: 3,
+          flexWrap: "wrap",
+          gap: 2
         }}
       >
-        <Typography variant="h4" fontWeight="bold">
-          Admin Panel
+        <Typography component="h2" variant="h4" fontWeight="bold">
+          Admin
         </Typography>
         <Link data-cy="admin-add-product" href="/admin/add-product">
-          <Button variant="contained" color="primary" startIcon={<AddIcon />}>
-            Add new product
+          <Button variant="contained" color="secondary" startIcon={<AddIcon />}>
+            Add product
           </Button>
         </Link>
       </Box>
