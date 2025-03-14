@@ -84,8 +84,8 @@ export default function AddProductForm() {
             helperText={errors.image?.message}
           />
 
-          <Button type="submit" variant="contained" color="primary">
-            Add Product
+          <Button type="submit" variant="contained" color="primary" data-cy="admin-add-product">
+            Add New Product
           </Button>
         </Box>
       </Paper>
