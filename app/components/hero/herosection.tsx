@@ -28,7 +28,7 @@ const HeroSection = () => {
       component="section"
       sx={{
         position: "relative",
-        width: "100vw",
+        width: "100%",
         height: "50vh",
         overflow: "hidden",
       }}

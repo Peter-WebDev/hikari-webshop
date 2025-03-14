@@ -24,7 +24,7 @@ export default async function ProductPage({
 }) {
   const { id } = await params;
   const product = await db.product.findUnique({
-    where: { id: id },
+    where: { articleNumber: id },
   });
 
   if (!product) {
