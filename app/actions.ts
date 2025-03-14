@@ -25,6 +25,25 @@ export async function createProduct(data: any) {
   redirect("/admin/add-product");
 }
 
+//Uppdatera editerad produkt i databasen
+export async function updateEditedProduct(id: string, data: z.infer<typeof productSchema>) {
+  try {
+      const validatedData = productSchema.parse(data);
+
+      await db.product.update({
+          where: { id },
+          data: validatedData, 
+      });
+
+      revalidatePath("/admin/edit-product");
+      redirect("/admin/edit-product");
+  }
+}
+
+//Ta bort deleted produkt i databasen
+
+
+
 //KOMMENTAR TILL KOD:
 //serverfunktionen createProduct: tar emot formulärdatan, validerar den med zod, sparar produkten i db via Prisma och uppdaterar sen sidan och omdirigerar tillbaka till /admin/add-product via
 //  revalidatePath("/admin/add-product"); och redirect("/admin/add-product");
