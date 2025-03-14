@@ -92,7 +92,7 @@ export default async function AdminPage() {
                       data-cy="admin-edit-product"
                       href={`/admin/edit-product/${product.id}`}
                     >
-                      <IconButton color="primary">
+                      <IconButton color="secondary">
                         <EditIcon />
                       </IconButton>
                     </Link>
