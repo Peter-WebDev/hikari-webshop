@@ -48,9 +48,9 @@ export default async function AdminPage() {
         <Table>
           <TableHead>
             <TableRow>
-              <TableCell>Image</TableCell>
-              <TableCell>Product name</TableCell>
-              <TableCell align="right">Actions</TableCell>
+              <TableCell sx={{ fontSize: {sm: "1.3rem", xs: "1.1rem"}}}>Image</TableCell>
+              <TableCell sx={{ fontSize: {sm: "1.3rem", xs: "1.1rem"}}}>Product name</TableCell>
+              <TableCell align="right" sx={{ fontSize: {sm: "1.3rem", xs: "1.1rem"}}}>Actions</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -68,7 +68,7 @@ export default async function AdminPage() {
                     }}
                   />
                 </TableCell>
-                <TableCell>{product.title}</TableCell>
+                <TableCell sx={{fontSize: {sm:"1.1rem", xs:"1rem" }}}>{product.title}</TableCell>
                 <TableCell align="right">
                   <Link
                     data-cy="admin-edit-product"
