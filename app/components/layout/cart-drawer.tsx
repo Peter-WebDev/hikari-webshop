@@ -54,56 +54,68 @@ const Sidebar = ({ openSidebar, toggleSidebar }: SidebarProps) => {
             <TableBody>
               {cartItems.map((item) => (
                 <TableRow key={item.id}>
-                  <TableCell>
+                  <TableCell sx={{ padding: "1rem 0.5rem" }}>
                     <img
                       src={item.image}
-                      alt={item.title}
+                      // alt={item.title}
                       style={{
-                        width: 50,
-                        height: 50,
+                        width: 40,
+                        height: 40,
                         objectFit: "cover",
                         borderRadius: 4,
                       }}
                     />
                   </TableCell>
-                  <TableCell>
-                    <Typography variant="body2" sx={{ fontSize: "1rem" }}>
+                  <TableCell sx={{ padding: "1rem 0.5rem" }}>
+                    <Typography variant="body2" fontSize="medium">
                       {item.title}
                     </Typography>
                   </TableCell>
-                  <TableCell
-                    sx={{
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      gap: 1,
-                    }}
-                  >
-                    <IconButton
-                      aria-label="remove"
-                      sx={{ padding: "0" }}
-                      onClick={() => updateQuantity(item.id, item.quantity - 1)}
+                  <TableCell sx={{ padding: "1rem 0.5rem" }}>
+                    <Box
+                      sx={{
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        gap: 1,
+                      }}
                     >
-                      <RemoveCircleOutlineIcon
-                        fontSize="small"
-                        color="secondary"
-                      />
-                    </IconButton>
-                    <Typography component="span" fontSize="small">
-                      {item.quantity}
-                    </Typography>
-                    <IconButton
-                      aria-label="add"
-                      onClick={() => updateQuantity(item.id, item.quantity + 1)}
-                    >
-                      <AddCircleOutlineIcon
-                        fontSize="small"
-                        color="secondary"
-                      />
-                    </IconButton>
+                      <IconButton
+                        aria-label="remove"
+                        sx={{ padding: "0" }}
+                        onClick={() =>
+                          updateQuantity(item.id, item.quantity - 1)
+                        }
+                      >
+                        <RemoveCircleOutlineIcon
+                          fontSize="medium"
+                          color="secondary"
+                        />
+                      </IconButton>
+                      <Typography component="span" fontSize="medium">
+                        {item.quantity}
+                      </Typography>
+                      <IconButton
+                        aria-label="add"
+                        sx={{ padding: "0" }}
+                        onClick={() =>
+                          updateQuantity(item.id, item.quantity + 1)
+                        }
+                      >
+                        <AddCircleOutlineIcon
+                          fontSize="medium"
+                          color="secondary"
+                        />
+                      </IconButton>
+                    </Box>
                   </TableCell>
-                  <TableCell>
-                    <Typography variant="body2" fontWeight="bold">
+                  <TableCell sx={{ padding: "1rem 0.5rem" }}>
+                    <Typography
+                      variant="body2"
+                      fontWeight="bold"
+                      fontSize="medium"
+                      textAlign="right"
+                    >
                       {item.price * item.quantity}:-
                     </Typography>
                   </TableCell>
