@@ -50,7 +50,7 @@ const Sidebar = ({
         </Typography>
 
         {/* Table container with products in cart */}
-        <TableContainer component={Paper} sx={{ boxShadow: 2, marginBottom: 2 }}>
+        <TableContainer component={Paper} sx={{ boxShadow: 2, marginBottom: 3 }}>
           <Table>
             <TableBody>
               {cartItems.map((item) => (
@@ -58,7 +58,7 @@ const Sidebar = ({
                   <TableCell>
                     <img
                       src={item.image}
-                      // alt={item.title}
+                      alt={item.title}
                       style={{
                         width: 50,
                         height: 50,
@@ -68,7 +68,7 @@ const Sidebar = ({
                     />
                   </TableCell>
                   <TableCell>
-                    <Typography variant="body2">{item.title}</Typography>
+                    <Typography variant="body2" sx={{fontSize: "1rem"}}>{item.title}</Typography>
                   </TableCell>
                   <TableCell
                     sx={{
@@ -76,7 +76,6 @@ const Sidebar = ({
                       alignItems: "center",
                       justifyContent: "center",
                       gap: 1,
-                      paddingTop: "20px"
                     }}
                   >
                     <IconButton aria-label="remove" sx={{ padding: "0" }}>
