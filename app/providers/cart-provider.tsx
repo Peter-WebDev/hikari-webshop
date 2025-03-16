@@ -53,4 +53,21 @@ export default function CartProvider(props: PropsWithChildren) {
       }
     });
   };
+
+// Add to cart based on chosen quantity (for product page)
+  const addToCartWithQuantity = (item: CartItem, quantity: number) => {
+    setCartItems((prev) => {
+      const existingItem = prev.find((cartItem) => cartItem.id === item.id);
+
+      if (existingItem) {
+        return prev.map((cartItem) =>
+          cartItem.id === item.id
+            ? { ...cartItem, quantity: cartItem.quantity + quantity }
+            : cartItem
+        );
+      } else {
+        return [...prev, { ...item, quantity }];
+      }
+    });
+  };
 }
