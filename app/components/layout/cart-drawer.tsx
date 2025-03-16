@@ -14,7 +14,6 @@ import {
   TableBody,
   TableCell,
   TableContainer,
-  TableHead,
   TableRow,
   Typography,
 } from "@mui/material";
@@ -41,6 +40,10 @@ const Sidebar = ({
   handleCheckoutClick,
 }: SidebarProps) => {
   const { cartItems } = useCart();
+  const { totalPrice } = useCart();
+
+  const shippingFee = 0; // Can be changed
+  const totalWithShipping = totalPrice + shippingFee; // Total price is the subtotal
 
   return (
     <Drawer anchor="right" open={openSidebar} onClose={toggleSidebar}>
@@ -50,7 +53,10 @@ const Sidebar = ({
         </Typography>
 
         {/* Table container with products in cart */}
-        <TableContainer component={Paper} sx={{ boxShadow: 2, marginBottom: 3 }}>
+        <TableContainer
+          component={Paper}
+          sx={{ boxShadow: 2, marginBottom: 3 }}
+        >
           <Table>
             <TableBody>
               {cartItems.map((item) => (
@@ -68,7 +74,9 @@ const Sidebar = ({
                     />
                   </TableCell>
                   <TableCell>
-                    <Typography variant="body2" sx={{fontSize: "1rem"}}>{item.title}</Typography>
+                    <Typography variant="body2" sx={{ fontSize: "1rem" }}>
+                      {item.title}
+                    </Typography>
                   </TableCell>
                   <TableCell
                     sx={{
@@ -79,13 +87,19 @@ const Sidebar = ({
                     }}
                   >
                     <IconButton aria-label="remove" sx={{ padding: "0" }}>
-                      <RemoveCircleOutlineIcon fontSize="small" color="secondary" />
+                      <RemoveCircleOutlineIcon
+                        fontSize="small"
+                        color="secondary"
+                      />
                     </IconButton>
                     <Typography component="span" fontSize="small">
                       1
                     </Typography>
                     <IconButton aria-label="add">
-                      <AddCircleOutlineIcon fontSize="small" color="secondary" />
+                      <AddCircleOutlineIcon
+                        fontSize="small"
+                        color="secondary"
+                      />
                     </IconButton>
                   </TableCell>
                   <TableCell>
@@ -100,16 +114,33 @@ const Sidebar = ({
         </TableContainer>
 
         {/* Subtotal, shipping, and total */}
-        <Box sx={{ borderTop: "1px solid #ddd", paddingTop: 2, textAlign: "left" }}>
+        <Box
+          sx={{ borderTop: "1px solid #ddd", paddingTop: 2, textAlign: "left" }}
+        >
+          <Box sx={{ display: "flex", justifyContent: "space-between", paddingBottom: 1 }}>
           <Typography variant="body1">
-            <strong>Subtotal:</strong> 1580:-
+            <strong>Subtotal:</strong>
           </Typography>
           <Typography variant="body1">
-            <strong>Shipping fee:</strong> 0:-
+            {totalPrice}:-
           </Typography>
-          <Typography variant="h6" sx={{ fontWeight: "bold", marginTop: 1 }}>
-            Total: 1580:-
+          </Box>
+          <Box sx={{ display: "flex", justifyContent: "space-between" }}>
+          <Typography variant="body1">
+            <strong>Shipping fee:</strong>
           </Typography>
+          <Typography variant="body1">
+            {shippingFee}:-
+          </Typography>
+          </Box>
+          <Box sx={{ display: "flex", justifyContent: "space-between" }}>
+            <Typography variant="h6" sx={{ fontWeight: "bold", marginTop: 1 }}>
+              Total:
+            </Typography>
+            <Typography variant="h6" sx={{ marginTop: 1 }}>
+              {totalWithShipping} SEK
+            </Typography>
+          </Box>
         </Box>
 
         {/* Checkout button */}
