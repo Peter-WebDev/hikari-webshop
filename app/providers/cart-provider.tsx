@@ -9,6 +9,7 @@ interface CartContextType {
   cartItems: CartItem[];
   addToCart: (item: CartItem) => void;
   updateQuantity: (id: string, quantity: number) => void;
+  removeFromCart: (id: string) => void;
 }
 
 const CartContext = createContext({} as CartContextType);
@@ -72,7 +73,7 @@ export default function CartProvider(props: PropsWithChildren) {
     });
   };
 
-// Handles increase and decrease of a products quantity in the cart
+  // Handles increase and decrease of a products quantity in the cart
   const updateQuantity = (id: number, quantity: number) => {
     setCartItems((prev) =>
       prev.map((cartItem) =>
@@ -80,6 +81,13 @@ export default function CartProvider(props: PropsWithChildren) {
           ? { ...cartItem, quantity: Math.max(1, quantity) }
           : cartItem
       )
+    );
+  };
+
+// Remove product from cart
+  const removeFromCart = (id: number) => {
+    setCartItems((prev) =>
+      prev.filter((cartItem) => Number(cartItem.id) !== id)
     );
   };
 }
