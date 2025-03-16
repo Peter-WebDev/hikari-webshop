@@ -57,7 +57,7 @@ const Sidebar = ({ openSidebar, toggleSidebar }: SidebarProps) => {
                   <TableCell sx={{ padding: "1rem 0.5rem" }}>
                     <img
                       src={item.image}
-                      // alt={item.title}
+                      alt={item.title}
                       style={{
                         width: 40,
                         height: 40,
