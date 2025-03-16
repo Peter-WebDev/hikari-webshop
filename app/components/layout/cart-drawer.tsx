@@ -153,7 +153,7 @@ const Sidebar = ({ openSidebar, toggleSidebar }: SidebarProps) => {
             style={{ paddingTop: "1rem", textDecoration: "none" }}
           >
             <Button variant="contained" color="secondary">
-              CHECK OUT
+              CHECKOUT
             </Button>
           </Link>
         </Box>
