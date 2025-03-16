@@ -8,7 +8,6 @@ import {
   Button,
   Drawer,
   IconButton,
-  ListItem,
   Paper,
   Table,
   TableBody,
@@ -29,16 +28,9 @@ interface Product {
 interface SidebarProps {
   openSidebar: boolean;
   toggleSidebar: () => void;
-  products: Product[];
-  handleCheckoutClick: () => void;
 }
 
-const Sidebar = ({
-  openSidebar,
-  toggleSidebar,
-  products,
-  handleCheckoutClick,
-}: SidebarProps) => {
+const Sidebar = ({ openSidebar, toggleSidebar }: SidebarProps) => {
   const { cartItems } = useCart();
   const { totalPrice } = useCart();
 
@@ -117,21 +109,23 @@ const Sidebar = ({
         <Box
           sx={{ borderTop: "1px solid #ddd", paddingTop: 2, textAlign: "left" }}
         >
-          <Box sx={{ display: "flex", justifyContent: "space-between", paddingBottom: 1 }}>
-          <Typography variant="body1">
-            <strong>Subtotal:</strong>
-          </Typography>
-          <Typography variant="body1">
-            {totalPrice}:-
-          </Typography>
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "space-between",
+              paddingBottom: 1,
+            }}
+          >
+            <Typography variant="body1">
+              <strong>Subtotal:</strong>
+            </Typography>
+            <Typography variant="body1">{totalPrice}:-</Typography>
           </Box>
           <Box sx={{ display: "flex", justifyContent: "space-between" }}>
-          <Typography variant="body1">
-            <strong>Shipping fee:</strong>
-          </Typography>
-          <Typography variant="body1">
-            {shippingFee}:-
-          </Typography>
+            <Typography variant="body1">
+              <strong>Shipping fee:</strong>
+            </Typography>
+            <Typography variant="body1">{shippingFee}:-</Typography>
           </Box>
           <Box sx={{ display: "flex", justifyContent: "space-between" }}>
             <Typography variant="h6" sx={{ fontWeight: "bold", marginTop: 1 }}>
@@ -145,12 +139,14 @@ const Sidebar = ({
 
         {/* Checkout button */}
         <Box sx={{ display: "flex", flexDirection: "column", paddingTop: 2 }}>
-          <Link data-cy="cart-link" href={"/checkout"}>
-            <ListItem>
-              <Button variant="contained" onClick={handleCheckoutClick}>
-                CHECK OUT
-              </Button>
-            </ListItem>
+          <Link
+            data-cy="cart-link"
+            href={"/checkout"}
+            style={{ paddingTop: "1rem", textDecoration: "none" }}
+          >
+            <Button variant="contained" color="secondary">
+              CHECK OUT
+            </Button>
           </Link>
         </Box>
       </Box>
