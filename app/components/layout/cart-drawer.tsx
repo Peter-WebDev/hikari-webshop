@@ -54,7 +54,7 @@ const Sidebar = ({ openSidebar, toggleSidebar }: SidebarProps) => {
             <TableBody>
               {cartItems.map((item) => (
                 <TableRow key={item.id}>
-                  <TableCell sx={{ padding: "1rem 0.5rem" }}>
+                  <TableCell sx={{ padding: "1.5rem 0.5rem" }}>
                     <img
                       src={item.image}
                       alt={item.title}
@@ -66,12 +66,12 @@ const Sidebar = ({ openSidebar, toggleSidebar }: SidebarProps) => {
                       }}
                     />
                   </TableCell>
-                  <TableCell sx={{ padding: "1rem 0.5rem" }}>
+                  <TableCell sx={{ padding: "1.5rem 0.5rem" }}>
                     <Typography variant="body2" fontSize="medium">
                       {item.title}
                     </Typography>
                   </TableCell>
-                  <TableCell sx={{ padding: "1rem 0.5rem" }}>
+                  <TableCell sx={{ padding: "1.5rem 0.5rem" }}>
                     <Box
                       sx={{
                         display: "flex",
@@ -109,7 +109,7 @@ const Sidebar = ({ openSidebar, toggleSidebar }: SidebarProps) => {
                       </IconButton>
                     </Box>
                   </TableCell>
-                  <TableCell sx={{ padding: "1rem 0.5rem" }}>
+                  <TableCell sx={{ padding: "1.5rem 0.5rem" }}>
                     <Typography
                       variant="body2"
                       fontWeight="bold"
