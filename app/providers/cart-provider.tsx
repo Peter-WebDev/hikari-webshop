@@ -10,6 +10,7 @@ interface CartContextType {
   addToCart: (item: CartItem) => void;
   updateQuantity: (id: string, quantity: number) => void;
   removeFromCart: (id: string) => void;
+  totalPrice: number;
 }
 
 const CartContext = createContext({} as CartContextType);
@@ -84,10 +85,16 @@ export default function CartProvider(props: PropsWithChildren) {
     );
   };
 
-// Remove product from cart
+  // Remove product from cart
   const removeFromCart = (id: number) => {
     setCartItems((prev) =>
       prev.filter((cartItem) => Number(cartItem.id) !== id)
     );
   };
+
+// Calculates total price for the quantity of products in cart
+  const totalPrice = cartItems.reduce(
+    (total, item) => total + item.price * item.quantity,
+    0
+  );
 }
