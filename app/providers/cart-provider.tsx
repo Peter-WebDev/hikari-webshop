@@ -1,3 +1,5 @@
+"use client";
+
 import { Product } from "@/data";
 import {
   createContext,
@@ -42,6 +44,7 @@ export default function CartProvider({ children }: PropsWithChildren) {
 
   // Save cart to localStorage whenever the cart is updated
   useEffect(() => {
+    console.log("Updated Cart:", cartItems);
     localStorage.setItem("cart", JSON.stringify(cartItems));
   }, [cartItems]);
 
