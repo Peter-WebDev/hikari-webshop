@@ -33,6 +33,7 @@ interface SidebarProps {
 const Sidebar = ({ openSidebar, toggleSidebar }: SidebarProps) => {
   const { cartItems } = useCart();
   const { totalPrice } = useCart();
+  const { updateQuantity } = useCart();
 
   const shippingFee = 0; // Can be changed
   const totalWithShipping = totalPrice + shippingFee; // Total price is the subtotal
@@ -78,16 +79,23 @@ const Sidebar = ({ openSidebar, toggleSidebar }: SidebarProps) => {
                       gap: 1,
                     }}
                   >
-                    <IconButton aria-label="remove" sx={{ padding: "0" }}>
+                    <IconButton
+                      aria-label="remove"
+                      sx={{ padding: "0" }}
+                      onClick={() => updateQuantity(item.id, item.quantity - 1)}
+                    >
                       <RemoveCircleOutlineIcon
                         fontSize="small"
                         color="secondary"
                       />
                     </IconButton>
                     <Typography component="span" fontSize="small">
-                      1
+                      {item.quantity}
                     </Typography>
-                    <IconButton aria-label="add">
+                    <IconButton
+                      aria-label="add"
+                      onClick={() => updateQuantity(item.id, item.quantity + 1)}
+                    >
                       <AddCircleOutlineIcon
                         fontSize="small"
                         color="secondary"
