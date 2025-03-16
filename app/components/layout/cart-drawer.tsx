@@ -104,7 +104,7 @@ const Sidebar = ({ openSidebar, toggleSidebar }: SidebarProps) => {
                   </TableCell>
                   <TableCell>
                     <Typography variant="body2" fontWeight="bold">
-                      {item.price} SEK
+                      {item.price * item.quantity}:-
                     </Typography>
                   </TableCell>
                 </TableRow>
