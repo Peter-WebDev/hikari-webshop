@@ -1,5 +1,11 @@
 import { Product } from "@/data";
-import { createContext, PropsWithChildren, useEffect, useState } from "react";
+import {
+  createContext,
+  PropsWithChildren,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
 
 export interface CartItem extends Product {
   quantity: number; // The amount the user has put in the cart, updates dynamically
@@ -99,4 +105,21 @@ export default function CartProvider({ children }: PropsWithChildren) {
     (total, item) => total + item.price * item.quantity,
     0
   );
+
+  return (
+    <CartContext.Provider
+      value={{
+        cartItems,
+        addToCart,
+        addToCartWithQuantity,
+        updateQuantity,
+        removeFromCart,
+        totalPrice,
+      }}
+    >
+      {children}
+    </CartContext.Provider>
+  );
 }
+
+export const useCart = () => useContext(CartContext);
