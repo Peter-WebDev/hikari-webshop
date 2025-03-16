@@ -8,6 +8,7 @@ export interface CartItem extends Product {
 interface CartContextType {
   cartItems: CartItem[];
   addToCart: (item: CartItem) => void;
+  updateQuantity: (id: string, quantity: number) => void;
 }
 
 const CartContext = createContext({} as CartContextType);
@@ -54,7 +55,7 @@ export default function CartProvider(props: PropsWithChildren) {
     });
   };
 
-// Add to cart based on chosen quantity (for product page)
+  // Add to cart based on chosen quantity (for product page)
   const addToCartWithQuantity = (item: CartItem, quantity: number) => {
     setCartItems((prev) => {
       const existingItem = prev.find((cartItem) => cartItem.id === item.id);
@@ -69,5 +70,16 @@ export default function CartProvider(props: PropsWithChildren) {
         return [...prev, { ...item, quantity }];
       }
     });
+  };
+
+// Handles increase and decrease of a products quantity in the cart
+  const updateQuantity = (id: number, quantity: number) => {
+    setCartItems((prev) =>
+      prev.map((cartItem) =>
+        Number(cartItem.id) === id
+          ? { ...cartItem, quantity: Math.max(1, quantity) }
+          : cartItem
+      )
+    );
   };
 }
