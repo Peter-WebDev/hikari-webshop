@@ -1,5 +1,5 @@
 import { Product } from "@/data";
-import { createContext, useEffect, useState } from "react";
+import { createContext, PropsWithChildren, useEffect, useState } from "react";
 
 export interface CartItem extends Product {
   quantity: number; // The amount the user has put in the cart, updates dynamically
@@ -7,18 +7,19 @@ export interface CartItem extends Product {
 
 interface CartContextType {
   cartItems: CartItem[];
+  addToCart: (item: CartItem) => void;
 }
 
 const CartContext = createContext({} as CartContextType);
 
-export default function CartProvider() {
+export default function CartProvider(props: PropsWithChildren) {
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
 
   //   Check if there's any cart data saved in localStorage
   useEffect(() => {
     const storedCart = localStorage.getItem("cart");
     if (storedCart) {
-      try { 
+      try {
         // Attempt to parse cart data from localStorage
         setCartItems(JSON.parse(storedCart));
       } catch (error) {
@@ -33,4 +34,23 @@ export default function CartProvider() {
   useEffect(() => {
     localStorage.setItem("cart", JSON.stringify(cartItems));
   }, [cartItems]);
+
+  // Add to cart, only one at a time (for home page)
+  const addToCart = (item: CartItem) => {
+    setCartItems((prev) => {
+      const existingItem = prev.find((cartItem) => cartItem.id === item.id);
+
+      // If product already exists in cart, increase the quantity of the product by 1
+      if (existingItem) {
+        return prev.map((cartItem) =>
+          cartItem.id === item.id
+            ? { ...cartItem, quantity: cartItem.quantity + 1 }
+            : cartItem
+        );
+        // Else, add the product to cart
+      } else {
+        return [...prev, { ...item, quantity: 1 }]; // Start with 1
+      }
+    });
+  };
 }
