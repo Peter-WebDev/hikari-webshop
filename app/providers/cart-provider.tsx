@@ -8,7 +8,7 @@ export interface CartItem extends Product {
 interface CartContextType {
   cartItems: CartItem[];
   addToCart: (item: CartItem) => void;
-  addToCartWithQuantity: (item: CartItem, quantity: number) => void
+  addToCartWithQuantity: (item: CartItem, quantity: number) => void;
   updateQuantity: (id: string, quantity: number) => void;
   removeFromCart: (id: string) => void;
   totalPrice: number;
@@ -16,10 +16,10 @@ interface CartContextType {
 
 const CartContext = createContext({} as CartContextType);
 
-export default function CartProvider(props: PropsWithChildren) {
+export default function CartProvider({ children }: PropsWithChildren) {
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
 
-  //   Check if there's any cart data saved in localStorage
+  // Check if there's any cart data saved in localStorage
   useEffect(() => {
     const storedCart = localStorage.getItem("cart");
     if (storedCart) {
@@ -76,24 +76,25 @@ export default function CartProvider(props: PropsWithChildren) {
   };
 
   // Handles increase and decrease of a products quantity in the cart
-  const updateQuantity = (id: number, quantity: number) => {
+  const updateQuantity = (id: string, quantity: number) => {
     setCartItems((prev) =>
-      prev.map((cartItem) =>
-        Number(cartItem.id) === id
-          ? { ...cartItem, quantity: Math.max(1, quantity) }
-          : cartItem
-      )
+      prev
+        .map((cartItem) =>
+          cartItem.id === id
+            ? { ...cartItem, quantity: Math.max(0, quantity) }
+            : cartItem
+        )
+        // Remove the product if quantity reaches 0
+        .filter((cartItem) => cartItem.quantity > 0)
     );
   };
 
   // Remove product from cart
-  const removeFromCart = (id: number) => {
-    setCartItems((prev) =>
-      prev.filter((cartItem) => Number(cartItem.id) !== id)
-    );
+  const removeFromCart = (id: string) => {
+    setCartItems((prev) => prev.filter((cartItem) => cartItem.id !== id));
   };
 
-// Calculates total price for the quantity of products in cart
+  // Calculates total price for the quantity of products in cart
   const totalPrice = cartItems.reduce(
     (total, item) => total + item.price * item.quantity,
     0
