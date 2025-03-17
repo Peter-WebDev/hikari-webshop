@@ -50,16 +50,21 @@ export default async function AdminPage() {
           </Link>
         </Box>
 
-        {/* Tillfällig Tabell för produkter */}
         <TableContainer component={Paper} sx={{ boxShadow: 2 }}>
           <Table>
             <TableHead>
               <TableRow>
                 <TableCell sx={{ fontSize: { sm: "1.3rem", xs: "1.1rem" } }}>
+                  Article number
+                </TableCell>
+                <TableCell sx={{ fontSize: { sm: "1.3rem", xs: "1.1rem" } }}>
                   Image
                 </TableCell>
                 <TableCell sx={{ fontSize: { sm: "1.3rem", xs: "1.1rem" } }}>
                   Product name
+                </TableCell>
+                <TableCell sx={{ fontSize: { sm: "1.3rem", xs: "1.1rem" } }}>
+                  Price
                 </TableCell>
                 <TableCell
                   align="right"
@@ -71,7 +76,13 @@ export default async function AdminPage() {
             </TableHead>
             <TableBody>
               {products.map((product) => (
-                <TableRow key={product.id}>
+                <TableRow key={product.id} data-cy="product">
+                  <TableCell
+                    sx={{ fontSize: { sm: "1.1rem", xs: "1rem" } }}
+                    data-cy="product-id"
+                  >
+                    {product.id}
+                  </TableCell>
                   <TableCell>
                     <img
                       src={product.image}
@@ -84,8 +95,17 @@ export default async function AdminPage() {
                       }}
                     />
                   </TableCell>
-                  <TableCell sx={{ fontSize: { sm: "1.1rem", xs: "1rem" } }}>
+                  <TableCell
+                    sx={{ fontSize: { sm: "1.1rem", xs: "1rem" } }}
+                    data-cy="product-title"
+                  >
                     {product.title}
+                  </TableCell>
+                  <TableCell
+                    sx={{ fontSize: { sm: "1.1rem", xs: "1rem" } }}
+                    data-cy="product-price"
+                  >
+                    {product.price}
                   </TableCell>
                   <TableCell align="right">
                     <Link
