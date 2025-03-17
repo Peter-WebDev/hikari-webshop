@@ -28,9 +28,14 @@ interface Product {
 interface SidebarProps {
   openSidebar: boolean;
   toggleSidebar: () => void;
+  handleCheckoutClick: () => void;
 }
 
-const Sidebar = ({ openSidebar, toggleSidebar }: SidebarProps) => {
+const Sidebar = ({
+  openSidebar,
+  toggleSidebar,
+  handleCheckoutClick,
+}: SidebarProps) => {
   const { cartItems } = useCart();
   const { totalPrice } = useCart();
   const { updateQuantity } = useCart();
@@ -164,7 +169,11 @@ const Sidebar = ({ openSidebar, toggleSidebar }: SidebarProps) => {
             href={"/checkout"}
             style={{ paddingTop: "1rem", textDecoration: "none" }}
           >
-            <Button variant="contained" color="secondary">
+            <Button
+              variant="contained"
+              color="secondary"
+              onClick={handleCheckoutClick}
+            >
               CHECKOUT
             </Button>
           </Link>

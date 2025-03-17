@@ -24,22 +24,6 @@ const Header: React.FC = () => {
     setOpenSidebar(false);
   };
 
-  // Exempel på produkter
-  const products = [
-    {
-      id: "1",
-      title: "Aka",
-      image: "URL",
-      price: 790,
-    },
-    {
-      id: "2",
-      title: "Suna",
-      image: "URL",
-      price: 790,
-    },
-  ];
-
   return (
     <>
       <AppBar position="static" color="primary" sx={{ boxShadow: 2 }}>
@@ -89,7 +73,7 @@ const Header: React.FC = () => {
               </IconButton>
             </Link>
 
-            <IconButton onClick={toggleSidebar}>
+            <IconButton data-cy="open-cart-sidebar" onClick={toggleSidebar}>
               <ShoppingCartOutlinedIcon
                 sx={{
                   fontSize: { md: "2.5rem", sm: "2rem", xs: "1.8rem" },
@@ -103,7 +87,6 @@ const Header: React.FC = () => {
       <CartDrawer
         openSidebar={openSidebar}
         toggleSidebar={toggleSidebar}
-        products={products}
         handleCheckoutClick={handleCheckoutClick}
       />
     </>
