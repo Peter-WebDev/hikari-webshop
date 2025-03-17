@@ -94,7 +94,7 @@ const CheckoutForm = () => {
               </Box>
 
               {/* Trashbin-knapp-ikon */}
-              <IconButton size="small" color="secondary">
+              <IconButton size="small" sx={{ color: "#6e6e6e" }}>
                 <Delete />
               </IconButton>
 
