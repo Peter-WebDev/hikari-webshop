@@ -94,7 +94,7 @@ const CheckoutForm = () => {
 
               {/* Pris */}
               <Typography variant="body1" sx={{ fontWeight: "bold", ml: 2 }}>
-                {item.price}:-
+              {item.price * item.quantity}:-
               </Typography>
             </Box>
           ))}
