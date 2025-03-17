@@ -87,7 +87,7 @@ export default function AddProductForm() {
   };
 
   return (
-    <Container maxWidth="sm">
+    <Container component="main" maxWidth="sm" sx={{ mt: { md: 8, sm: 6, xs: 4 }, mb: 8 }}>
       <Paper elevation={3} sx={{ padding: 3, mt: 4, backgroundColor: "#f7f7f7" }}>
         <Typography variant="h4" fontWeight="bold" gutterBottom>
           New Product
@@ -225,7 +225,7 @@ export default function AddProductForm() {
             helperText={errors.diameter?.message}
           />
 
-          <Button type="submit" variant="contained" color="primary" data-cy="admin-add-product">
+          <Button type="submit" variant="contained" color="secondary" data-cy="admin-add-product">
             Add New Product
           </Button>
         </Box>
