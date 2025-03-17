@@ -77,13 +77,18 @@ const CheckoutForm = () => {
                 >
                   <Remove />
                 </IconButton>
-                <TextField
-                  data-cy="product-quantity"
-                  value={item.quantity}
-                  variant="outlined"
-                  size="small"
-                  sx={{ width: 40, textAlign: "center" }}
-                />
+                <Typography
+                  component="span"
+                  sx={{
+                    width: 40,
+                    textAlign: "center",
+                    display: "inline-block",
+                    border: "1px solid #6e6e6e",
+                    borderRadius: "0.2rem"
+                  }}
+                >
+                  {item.quantity}
+                </Typography>
                 <IconButton
                   data-cy="increase-quantity-button"
                   size="small"
@@ -108,8 +113,6 @@ const CheckoutForm = () => {
           {/* Subtotal, Shipping fee och Total-sammanställning */}
           <Box
             sx={{
-              mt: 2,
-              borderTop: "1px solid #ddd",
               pt: 2,
               textAlign: "right",
               paddingRight: 2,
