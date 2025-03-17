@@ -21,8 +21,11 @@ import { useCart } from "../providers/cart-provider";
 const steps = ["Shipping address", "Payment details", "Review your order"];
 
 const CheckoutForm = () => {
-  const { cartItems, updateQuantity } = useCart();
-  
+  const { cartItems, updateQuantity, totalPrice } = useCart();
+
+  const shippingFee = 0; // Can be changed
+  const totalWithShipping = totalPrice + shippingFee; // Total price is the subtotal
+
   return (
     <main>
       <Container maxWidth="sm">
@@ -94,7 +97,7 @@ const CheckoutForm = () => {
 
               {/* Pris */}
               <Typography variant="body1" sx={{ fontWeight: "bold", ml: 2 }}>
-              {item.price * item.quantity}:-
+                {item.price * item.quantity}:-
               </Typography>
             </Box>
           ))}
@@ -109,15 +112,35 @@ const CheckoutForm = () => {
               paddingRight: 2,
             }}
           >
-            <Typography variant="body1">
-              <strong>Subtotal:</strong> 1580:-
-            </Typography>
-            <Typography variant="body1">
-              <strong>Shipping fee:</strong> 0:-
-            </Typography>
-            <Typography variant="h6" sx={{ fontWeight: "bold", mt: 1 }}>
-              Total: 1580:-
-            </Typography>
+            <Box
+              sx={{
+                display: "flex",
+                justifyContent: "space-between",
+                paddingBottom: 1,
+              }}
+            >
+              <Typography variant="body1">
+                <strong>Subtotal:</strong>
+              </Typography>
+              <Typography variant="body1">{totalPrice}:-</Typography>
+            </Box>
+            <Box sx={{ display: "flex", justifyContent: "space-between" }}>
+              <Typography variant="body1">
+                <strong>Shipping fee:</strong>
+              </Typography>
+              <Typography variant="body1">{shippingFee}:-</Typography>
+            </Box>
+            <Box sx={{ display: "flex", justifyContent: "space-between" }}>
+              <Typography
+                variant="h6"
+                sx={{ fontWeight: "bold", marginTop: 1 }}
+              >
+                Total:
+              </Typography>
+              <Typography variant="h6" sx={{ marginTop: 1 }}>
+                {totalWithShipping} SEK
+              </Typography>
+            </Box>
           </Box>
 
           {/* Stegvis checkout-navigation 1-2-3 */}
