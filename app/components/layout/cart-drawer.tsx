@@ -1,8 +1,7 @@
 "use client";
 
 import { useCart } from "@/app/providers/cart-provider";
-import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
-import RemoveCircleOutlineIcon from "@mui/icons-material/RemoveCircleOutline";
+import { Add, Remove } from "@mui/icons-material";
 import {
   Box,
   Button,
@@ -46,8 +45,8 @@ const Sidebar = ({
   return (
     <Drawer anchor="right" open={openSidebar} onClose={toggleSidebar}>
       <Box sx={{ width: 350, padding: 2 }}>
-        <Typography variant="h6" sx={{ marginBottom: 2 }}>
-          Chosen products:
+        <Typography variant="h5" sx={{ marginBottom: 2 }}>
+          Your cart
         </Typography>
 
         {/* Table container with products in cart */}
@@ -92,12 +91,16 @@ const Sidebar = ({
                           updateQuantity(item.id, item.quantity - 1)
                         }
                       >
-                        <RemoveCircleOutlineIcon
-                          fontSize="medium"
-                          color="secondary"
-                        />
+                        <Remove fontSize="medium" color="secondary" />
                       </IconButton>
-                      <Typography component="span" fontSize="medium">
+                      <Typography
+                        component="span"
+                        fontSize="medium"
+                        width={30}
+                        border="1px solid #000"
+                        borderRadius={1}
+                        textAlign="center"
+                      >
                         {item.quantity}
                       </Typography>
                       <IconButton
@@ -107,10 +110,7 @@ const Sidebar = ({
                           updateQuantity(item.id, item.quantity + 1)
                         }
                       >
-                        <AddCircleOutlineIcon
-                          fontSize="medium"
-                          color="secondary"
-                        />
+                        <Add fontSize="medium" color="secondary" />
                       </IconButton>
                     </Box>
                   </TableCell>
