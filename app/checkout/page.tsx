@@ -15,29 +15,14 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
+import { useCart } from "../providers/cart-provider";
 
 // Steg i checkout-processen
 const steps = ["Shipping address", "Payment details", "Review your order"];
 
-// TEST-varukorgsdata, här ska vi lägga in db datan sen
-const cartItems = [
-  {
-    id: 1,
-    name: "Productname",
-    price: 790,
-    quantity: 1,
-    image: "/assets/herovideos/display-images/Aka - Display.png",
-  },
-  {
-    id: 2,
-    name: "Productname",
-    price: 790,
-    quantity: 1,
-    image: "/assets/herovideos/display-images/Haru - Display.png",
-  },
-];
-
 const CheckoutForm = () => {
+  const { cartItems, updateQuantity } = useCart();
+  
   return (
     <main>
       <Container maxWidth="sm">
@@ -67,7 +52,7 @@ const CheckoutForm = () => {
               <Box
                 component="img"
                 src={item.image}
-                alt={item.name}
+                alt={item.title}
                 sx={{ width: 50, height: 50, mr: 2 }}
               />
 
@@ -77,12 +62,15 @@ const CheckoutForm = () => {
                 variant="body1"
                 sx={{ flexGrow: 1 }}
               >
-                {item.name}
+                {item.title}
               </Typography>
 
               {/* Justering av antal items */}
               <Box sx={{ display: "flex", alignItems: "center" }}>
-                <IconButton size="small">
+                <IconButton
+                  size="small"
+                  onClick={() => updateQuantity(item.id, item.quantity - 1)}
+                >
                   <Remove />
                 </IconButton>
                 <TextField
@@ -91,7 +79,10 @@ const CheckoutForm = () => {
                   size="small"
                   sx={{ width: 40, textAlign: "center" }}
                 />
-                <IconButton size="small">
+                <IconButton
+                  size="small"
+                  onClick={() => updateQuantity(item.id, item.quantity + 1)}
+                >
                   <Add />
                 </IconButton>
               </Box>
