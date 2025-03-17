@@ -97,6 +97,7 @@ export default function AddProductForm() {
 
           <TextField
             label="Product Name/title"
+            type="text"
             {...register("title")}
             error={!!errors.title}
             helperText={errors.title?.message}
@@ -112,6 +113,7 @@ export default function AddProductForm() {
 
           <TextField
             label="Product description"
+            type="text"
             {...register("description")}
             multiline rows={3}
             error={!!errors.description}
@@ -120,6 +122,7 @@ export default function AddProductForm() {
 
           <TextField
             label="Image URL"
+            type="text"
             {...register("image")}
             error={!!errors.image}
             helperText={errors.image?.message}
@@ -127,6 +130,7 @@ export default function AddProductForm() {
 
           <TextField
             label="Image Dark URL"
+            type="text"
             {...register("imageDark")}
             error={!!errors.imageDark}
             helperText={errors.imageDark?.message}
@@ -134,18 +138,91 @@ export default function AddProductForm() {
 
           <TextField
             label="Title sign"
+            type="text"
             {...register("titleSign")}
             error={!!errors.titleSign}
             helperText={errors.titleSign?.message}
           />
 
           <TextField
-            type="color"
             label="Title sign color"
+            type="color"
             defaultValue="#000000"
             {...register("titleSignColor")}
             error={!!errors.titleSignColor}
             helperText={errors.titleSignColor?.message}
+          />
+
+          <TextField
+            label="Title Description"
+            type="text"
+            {...register("titleDescription")}
+            error={!!errors.titleDescription}
+            helperText={errors.titleDescription?.message}
+          />
+
+          <TextField
+            label="Title With Description"
+            type="text"
+            {...register("titleWithDescription")}
+            error={!!errors.titleWithDescription}
+            helperText={errors.titleWithDescription?.message}
+          />
+
+          <TextField
+            label="Slogan"
+            type="text"
+            {...register("slogan")}
+            error={!!errors.slogan}
+            helperText={errors.slogan?.message}
+          />
+
+          <TextField
+            label="Note of the candle"
+            type="text"
+            {...register("note")}
+            error={!!errors.note}
+            helperText={errors.note?.message}
+          />
+
+          <TextField
+            label="Brand name"
+            type="text"
+            {...register("brand")}
+            error={!!errors.brand}
+            helperText={errors.brand?.message}
+          />
+
+          <TextField
+            label="Product weight"
+            type="number"
+            {...register("weight")}
+            error={!!errors.brand}
+            helperText={errors.brand?.message}
+          />
+
+          <TextField
+            label="Product length"
+            type="number"
+            {...register("length")}
+            error={!!errors.brand}
+            helperText={errors.brand?.message}
+          />
+
+          <TextField
+            label="Product height"
+            type="number"
+            {...register("height")}
+            error={!!errors.height}
+            helperText={errors.height?.message}
+          />
+
+          <TextField
+            label="Product diameter"
+            type="number"
+            {...register("diameter")}
+            error={!!errors.diameter}
+            helperText={errors.diameter?.message}
           />
 
           <Button type="submit" variant="contained" color="primary" data-cy="admin-add-product">
