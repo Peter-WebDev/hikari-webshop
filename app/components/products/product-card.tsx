@@ -1,3 +1,6 @@
+"use client";
+
+import { useCart } from "@/app/providers/cart-provider";
 import { Product } from "@/data";
 import LocalMallIcon from "@mui/icons-material/LocalMall";
 import {
@@ -11,15 +14,20 @@ import {
 import Card from "@mui/material/Card";
 
 export default function ProductCard({ product }: { product: Product }) {
+  const { addToCart } = useCart();
+
   return (
-    <Link href={`/product/${product.articleNumber}/${product.titleWithDescription
-      ?.toLowerCase()
-      .replace(/[^\w\s-]/g, '') // Remove special characters
-      .trim()
-      .replace(/^\w/, c => c.toUpperCase()) // Capitalize first letter
-      .replace(/\s+/g, '-') // Replace spaces with hyphens
+    <Link
+      href={`/product/${product.articleNumber}/${
+        product.titleWithDescription
+          ?.toLowerCase()
+          .replace(/[^\w\s-]/g, "") // Remove special characters
+          .trim()
+          .replace(/^\w/, (c) => c.toUpperCase()) // Capitalize first letter
+          .replace(/\s+/g, "-") // Replace spaces with hyphens
       }`}
-      sx={{ textDecoration: "none" }}>
+      sx={{ textDecoration: "none" }}
+    >
       <Card
         data-cy="product"
         sx={{
@@ -63,7 +71,11 @@ export default function ProductCard({ product }: { product: Product }) {
               </Typography>
             </Box>
             {/* Add onClick to add product to cart */}
-            <IconButton data-cy="product-buy-button" aria-label="add to cart">
+            <IconButton
+              data-cy="product-buy-button"
+              aria-label="add to cart"
+              onClick={() => addToCart({ ...product, quantity: 1 })}
+            >
               <LocalMallIcon
                 sx={{
                   fontSize: { md: "2rem", xs: "1.8rem" },

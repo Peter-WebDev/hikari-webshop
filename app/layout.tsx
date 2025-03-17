@@ -12,6 +12,7 @@ import { PropsWithChildren } from "react";
 import theme from "../src/theme";
 import Footer from "./components/layout/footer";
 import Header from "./components/layout/header";
+import CartProvider from "./providers/cart-provider";
 
 const jost = Jost({ subsets: ["latin"] });
 
@@ -25,15 +26,16 @@ export default function RootLayout({ children }: PropsWithChildren) {
   return (
     <html lang="en">
       <body className={jost.className}>
-        <AppRouterCacheProvider>
-          <ThemeProvider theme={theme}>
-            <CssBaseline />
-            <Header />
-            <Link href="/"></Link>
-            {children}
-            <Footer />
-          </ThemeProvider>
-        </AppRouterCacheProvider>
+        <CartProvider>
+          <AppRouterCacheProvider>
+            <ThemeProvider theme={theme}>
+              <CssBaseline />
+              <Header />
+              {children}
+              <Footer />
+            </ThemeProvider>
+          </AppRouterCacheProvider>
+        </CartProvider>
       </body>
     </html>
   );
