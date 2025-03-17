@@ -71,18 +71,21 @@ const CheckoutForm = () => {
               {/* Justering av antal items */}
               <Box sx={{ display: "flex", alignItems: "center" }}>
                 <IconButton
+                  data-cy="decrease-quantity-button"
                   size="small"
                   onClick={() => updateQuantity(item.id, item.quantity - 1)}
                 >
                   <Remove />
                 </IconButton>
                 <TextField
+                  data-cy="product-quantity"
                   value={item.quantity}
                   variant="outlined"
                   size="small"
                   sx={{ width: 40, textAlign: "center" }}
                 />
                 <IconButton
+                  data-cy="increase-quantity-button"
                   size="small"
                   onClick={() => updateQuantity(item.id, item.quantity + 1)}
                 >
@@ -137,7 +140,11 @@ const CheckoutForm = () => {
               >
                 Total:
               </Typography>
-              <Typography variant="h6" sx={{ marginTop: 1 }}>
+              <Typography
+                data-cy="total-price"
+                variant="h6"
+                sx={{ marginTop: 1 }}
+              >
                 {totalWithShipping} SEK
               </Typography>
             </Box>
