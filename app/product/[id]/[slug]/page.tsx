@@ -1,18 +1,14 @@
+import QuantityButton from "@/app/components/quantity/quantityButton";
 import { db } from "@/prisma/db";
-import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import LocalMallIcon from "@mui/icons-material/LocalMall";
-import RemoveCircleOutlineIcon from "@mui/icons-material/RemoveCircleOutline";
 import {
   Accordion,
   AccordionDetails,
   AccordionSummary,
   Box,
-  Button,
   Card,
   CardMedia,
   Container,
-  IconButton,
   Typography,
 } from "@mui/material";
 import { notFound } from "next/navigation";
@@ -101,46 +97,7 @@ export default async function ProductPage({
             >
               Price:&nbsp;{product.price}&nbsp;SEK
             </Typography>
-            <Box
-              sx={{
-                display: "flex",
-                alignItems: "center",
-                gap: "0.5rem",
-                flexWrap: "wrap",
-                justifyContent: "space-between",
-              }}
-            >
-              <Box sx={{ display: "flex", alignItems: "center", gap: "1rem" }}>
-                <IconButton aria-label="remove" sx={{ padding: "0" }}>
-                  <RemoveCircleOutlineIcon
-                    color="secondary"
-                    sx={{ fontSize: { sm: "2.2rem", xs: "2rem" } }}
-                  />
-                </IconButton>
-                <Typography
-                  component="span"
-                  sx={{ fontSize: { md: "2rem", sm: "1.9rem", xs: "1.7rem" } }}
-                >
-                  1
-                </Typography>
-                <IconButton aria-label="add" sx={{ padding: "0" }}>
-                  <AddCircleOutlineIcon
-                    color="secondary"
-                    sx={{ fontSize: { sm: "2.2rem", xs: "2rem" } }}
-                  />
-                </IconButton>
-              </Box>
-              <Button
-                data-cy="product-buy-button"
-                color="secondary"
-                variant="contained"
-                endIcon={<LocalMallIcon />}
-                // size="large"
-                sx={{ py: "0.5rem", px: "1.5rem" }}
-              >
-                Add to cart
-              </Button>
-            </Box>
+            <QuantityButton product={product} />
             <Accordion
               sx={{
                 backgroundColor: "#C1B8AF",
