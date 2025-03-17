@@ -15,7 +15,7 @@ const productSchema = z.object({
   titleSign: z.string().min(1, "Title sign must be at least 1 character").optional(),
   
   // Regex to check hex value, 6 chars (#RRGGBB)
-  // Refine to check color in accordance to WCAG
+  // Refine to check color contrast
   titleSignColor: z.string()
     .regex(/^#([0-9A-Fa-f]{6})$/, "Title sign color must be a valid hex color")
     .refine(
