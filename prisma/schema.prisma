@@ -11,21 +11,21 @@ datasource db {
 }
 
 model Product {
-  id            String  @id @default(cuid())
-  articleNumber String  @unique @default(cuid())
-  image         String
-  imageDark     String?
-  title         String
-  titleSign     String?
-  titleSignColor String?
-  titleDescription String?
+  id                   String  @id @default(cuid())
+  articleNumber        String  @unique
+  image                String
+  imageDark            String?
+  title                String
+  titleSign            String?
+  titleSignColor       String?
+  titleDescription     String?
   titleWithDescription String?
-  description   String
-  price         Float
-  slogan        String?
-  note          String?
-  weight        String?
-  brand         String?
-  height        String?
-  diameter      String?
+  description          String
+  price                Float
+  slogan               String?
+  note                 String?
+  weight               String?
+  brand                String?
+  height               String?
+  diameter             String?
 }
