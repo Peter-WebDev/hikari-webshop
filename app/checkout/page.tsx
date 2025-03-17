@@ -31,10 +31,10 @@ const CheckoutForm = () => {
       <Container maxWidth="sm">
         <Paper
           elevation={3}
-          sx={{ padding: 3, mt: 4, backgroundColor: "#f7f7f7" }}
+          sx={{ padding: 3, mt: 6, backgroundColor: "#f7f7f7" }}
         >
           {/* Checkout-rubriken */}
-          <Typography variant="h4" fontWeight="bold" gutterBottom>
+          <Typography variant="h4" fontWeight="bold" gutterBottom mb="1.5rem">
             Checkout
           </Typography>
 
@@ -91,7 +91,7 @@ const CheckoutForm = () => {
               </Box>
 
               {/* Trashbin-knapp-ikon */}
-              <IconButton size="small" color="primary">
+              <IconButton size="small" color="secondary">
                 <Delete />
               </IconButton>
 
@@ -144,11 +144,11 @@ const CheckoutForm = () => {
           </Box>
 
           {/* Stegvis checkout-navigation 1-2-3 */}
-          <Box sx={{ mt: 2, borderTop: "1px solid #ddd", pt: 2 }}>
+          <Box sx={{ mt: 2, borderTop: "1px solid #ddd", pt: 4 }}>
             <Stepper activeStep={0} alternativeLabel>
               {steps.map((label) => (
                 <Step key={label}>
-                  <StepLabel>{label}</StepLabel>
+                  <StepLabel>{label} </StepLabel>
                 </Step>
               ))}
             </Stepper>
