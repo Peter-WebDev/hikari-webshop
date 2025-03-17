@@ -1,6 +1,7 @@
 "use client";
 
-import { deleteProduct, productSchema, updateEditedProduct } from "@/app/actions";
+import { deleteProduct, updateEditedProduct } from "@/app/actions";
+import { productSchema } from "@/app/utils/validation";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Box, Button, Container, Paper, TextField, Typography } from "@mui/material";
 import { useRouter } from "next/router";
@@ -10,7 +11,7 @@ import { z } from "zod";
 
 
 export type ProductForm = z.infer<typeof productSchema>;
-export default function EditProductForm({ product }: { product: ProductForm }) {
+export default function EditProductForm({ product }: { product: ProductForm & { id: string}}) {
     const router = useRouter();
 
     const { 
