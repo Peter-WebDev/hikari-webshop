@@ -65,7 +65,7 @@ export default function QuantityButton({ product }: { product: Product }) {
           setQuantity(1); // Reset to 1 when items are added to cart
         }}
       >
-        Add to cart
+        {quantity === 1 ? "Add to cart" : `Add ${quantity} items`}
       </Button>
     </Box>
   );
