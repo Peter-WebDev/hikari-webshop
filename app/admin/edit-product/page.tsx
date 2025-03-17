@@ -1,14 +1,20 @@
 import { db } from "@/prisma/db";
 import EditProductForm from "./EditProductForm";
 
-export default async function EditProductPage({ params }: { params: { id: string } }) {
+export default async function EditProductPage({ params }: { params: { id?: string } }) {
+  console.log("Params received:", params); 
+
+  if (!params.id) {
+    return <div>Error: No product ID provided</div>;
+}
+
   const product = await db.product.findUnique({
       where: { id: params.id },
   });
 
   if (!product) {
-      return <h2>Product not found</h2>;
-  }
+    return <div>Error: Product not found</div>;
+}
 
   return (
       <div>
