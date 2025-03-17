@@ -2,9 +2,8 @@
 
 import { useCart } from "@/app/providers/cart-provider";
 import { Product } from "@/data";
-import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
+import { Add, Remove } from "@mui/icons-material";
 import LocalMallIcon from "@mui/icons-material/LocalMall";
-import RemoveCircleOutlineIcon from "@mui/icons-material/RemoveCircleOutline";
 import { Box, Button, IconButton, Typography } from "@mui/material";
 import { useState } from "react";
 
@@ -32,14 +31,18 @@ export default function QuantityButton({ product }: { product: Product }) {
           onClick={() => setQuantity((prev) => Math.max(1, prev - 1))}
           disabled={quantity === 1}
         >
-          <RemoveCircleOutlineIcon
+          <Remove
             color="secondary"
             sx={{ fontSize: { sm: "2.2rem", xs: "2rem" } }}
           />
         </IconButton>
         <Typography
           component="span"
-          sx={{ fontSize: { md: "2rem", sm: "1.9rem", xs: "1.7rem" } }}
+          width={45}
+          border= "1px solid #000"
+          borderRadius={1}
+          textAlign= "center"
+          sx={{ fontSize: { sm: "1.3rem", xs: "1.1rem" } }}
         >
           {quantity}
         </Typography>
@@ -48,7 +51,7 @@ export default function QuantityButton({ product }: { product: Product }) {
           sx={{ padding: "0" }}
           onClick={() => setQuantity((prev) => prev + 1)}
         >
-          <AddCircleOutlineIcon
+          <Add
             color="secondary"
             sx={{ fontSize: { sm: "2.2rem", xs: "2rem" } }}
           />
@@ -59,7 +62,9 @@ export default function QuantityButton({ product }: { product: Product }) {
         color="secondary"
         variant="contained"
         endIcon={<LocalMallIcon />}
-        sx={{ py: "0.5rem", px: "1.5rem" }}
+        sx={{
+          fontSize: { sm: "1rem", xs: "0.9rem" },
+        }}
         onClick={() => {
           addToCartWithQuantity({ ...product, quantity }, quantity);
           setQuantity(1); // Reset to 1 when items are added to cart
