@@ -2,8 +2,7 @@ import FacebookIcon from '@mui/icons-material/Facebook';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import XIcon from '@mui/icons-material/X';
 import YouTubeIcon from '@mui/icons-material/YouTube';
-import { Box, Grid2, IconButton, Typography } from "@mui/material";
-import Link from 'next/link';
+import { Box, Grid2, IconButton, Link, Typography } from "@mui/material";
 
 export default function Footer() {
     return (
@@ -24,7 +23,7 @@ export default function Footer() {
                     sm: "row"
                 }}
                 margin={2}>
-                <Link role="link" color="inherit" aria-label="Home" href="/">
+                <Link color="inherit" underline="none" aria-label="Home" href="/">
                     <Box>
                         <Typography
                             component="h2"
@@ -32,7 +31,7 @@ export default function Footer() {
                         >
                             HIKARI
                         </Typography>
-                        <Box component="div" sx={{ padding: 0, margin: 0, listStyle: "none" }}>
+                        <Box component="div" sx={{ padding: 0, margin: 0 }}>
                             <Typography
                                 component="h3"
                                 variant="h6"
