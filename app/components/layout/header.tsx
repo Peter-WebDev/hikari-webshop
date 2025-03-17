@@ -29,30 +29,32 @@ const Header: React.FC = () => {
       <AppBar position="static" color="primary" sx={{ boxShadow: 2 }}>
         <Toolbar sx={{ display: "flex", justifyContent: "space-between" }}>
           <Box sx={{ flex: 1 }} />
-
-          <Box
-            sx={{
-              flex: 1,
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-            }}
-          >
-            <Typography
-              variant="h1"
+          <Link color="inherit" underline="none" aria-label="Home" href="/">
+            <Box
               sx={{
-                lineHeight: 1,
+                flex: 1,
                 display: "flex",
-                flexDirection: "column",
-                textAlign: "center",
-                fontSize: { md: "2rem", sm: "2rem", xs: "1.5rem" },
-                fontWeight: "300",
+                justifyContent: "center",
+                alignItems: "center",
               }}
             >
-              <span>HIKARI</span>
-              <span>ヒカリ</span>
-            </Typography>
-          </Box>
+              <Typography
+                component="h1"
+                variant="h1"
+                sx={{
+                  lineHeight: 1,
+                  display: "flex",
+                  flexDirection: "column",
+                  textAlign: "center",
+                  fontSize: { md: "2rem", sm: "2rem", xs: "1.5rem" },
+                  fontWeight: "300",
+                }}
+              >
+                <span>HIKARI</span>
+                <span>ヒカリ</span>
+              </Typography>
+            </Box>
+          </Link>
 
           <Box
             sx={{
@@ -62,8 +64,8 @@ const Header: React.FC = () => {
               justifyContent: "flex-end",
             }}
           >
-            <Link href="/admin">
-              <IconButton>
+            <Link aria-label="Admin" href="/admin">
+              <IconButton aria-label="Admin">
                 <AdminPanelSettingsOutlinedIcon
                   data-cy="admin-link"
                   sx={{
@@ -73,7 +75,7 @@ const Header: React.FC = () => {
               </IconButton>
             </Link>
 
-            <IconButton data-cy="open-cart-sidebar" onClick={toggleSidebar}>
+            <IconButton aria-label="Cart" data-cy="open-cart-sidebar" onClick={toggleSidebar}>
               <ShoppingCartOutlinedIcon
                 sx={{
                   fontSize: { md: "2.5rem", sm: "2rem", xs: "1.8rem" },
