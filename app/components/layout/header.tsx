@@ -64,11 +64,10 @@ const Header: React.FC = () => {
               justifyContent: "flex-end",
             }}
           >
-            <Link href="/admin">
-              <IconButton>
+            <Link aria-label="Admin" href="/admin">
+              <IconButton aria-label="Admin">
                 <AdminPanelSettingsOutlinedIcon
                   data-cy="admin-link"
-                  aria-label="Admin"
                   sx={{
                     fontSize: { md: "2.5rem", sm: "2rem", xs: "1.8rem" },
                   }}
@@ -76,9 +75,8 @@ const Header: React.FC = () => {
               </IconButton>
             </Link>
 
-            <IconButton data-cy="open-cart-sidebar" onClick={toggleSidebar}>
+            <IconButton aria-label="Cart" data-cy="open-cart-sidebar" onClick={toggleSidebar}>
               <ShoppingCartOutlinedIcon
-                aria-label="Cart"
                 sx={{
                   fontSize: { md: "2.5rem", sm: "2rem", xs: "1.8rem" },
                 }}
