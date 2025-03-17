@@ -60,9 +60,10 @@ export default function QuantityButton({ product }: { product: Product }) {
         variant="contained"
         endIcon={<LocalMallIcon />}
         sx={{ py: "0.5rem", px: "1.5rem" }}
-        onClick={() =>
-          addToCartWithQuantity({ ...product, quantity }, quantity)
-        }
+        onClick={() => {
+          addToCartWithQuantity({ ...product, quantity }, quantity);
+          setQuantity(1); // Reset to 1 when items are added to cart
+        }}
       >
         Add to cart
       </Button>
