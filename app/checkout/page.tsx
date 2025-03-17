@@ -21,7 +21,7 @@ import { useCart } from "../providers/cart-provider";
 const steps = ["Shipping address", "Payment details", "Review your order"];
 
 const CheckoutForm = () => {
-  const { cartItems, updateQuantity, totalPrice } = useCart();
+  const { cartItems, updateQuantity, totalPrice, removeFromCart } = useCart();
 
   const shippingFee = 0; // Can be changed
   const totalWithShipping = totalPrice + shippingFee; // Total price is the subtotal
@@ -84,7 +84,7 @@ const CheckoutForm = () => {
                     textAlign: "center",
                     display: "inline-block",
                     border: "1px solid #6e6e6e",
-                    borderRadius: "0.2rem"
+                    borderRadius: "0.2rem",
                   }}
                 >
                   {item.quantity}
@@ -99,7 +99,11 @@ const CheckoutForm = () => {
               </Box>
 
               {/* Trashbin-knapp-ikon */}
-              <IconButton size="small" sx={{ color: "#6e6e6e" }}>
+              <IconButton
+                size="small"
+                sx={{ color: "#6e6e6e" }}
+                onClick={() => removeFromCart(item.id)}
+              >
                 <Delete />
               </IconButton>
 
