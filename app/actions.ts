@@ -66,7 +66,6 @@ export async function deleteProduct(id: string) {
     });
 
     revalidatePath("/admin");
-    redirect("/admin");
   } catch (error) {
     console.error("Error deleting product:", error);
     throw new Error("Could not delete product");
