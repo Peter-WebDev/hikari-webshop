@@ -48,7 +48,7 @@ const Sidebar = ({
           sx={{
             boxShadow: 2,
             marginBottom: 3,
-            padding: 2,
+            // padding: 2,
             display: "flex",
             flexDirection: "column",
             gap: 2,
