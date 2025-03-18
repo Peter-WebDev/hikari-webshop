@@ -8,14 +8,8 @@ import {
   Drawer,
   IconButton,
   Paper,
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableRow,
   Typography,
 } from "@mui/material";
-import Link from "next/link";
 
 interface Product {
   id: string;
@@ -49,86 +43,90 @@ const Sidebar = ({
           Your cart
         </Typography>
 
-        {/* Table container with products in cart */}
-        <TableContainer
+        <Box
           component={Paper}
-          sx={{ boxShadow: 2, marginBottom: 3 }}
+          sx={{
+            boxShadow: 2,
+            marginBottom: 3,
+            padding: 2,
+            display: "flex",
+            flexDirection: "column",
+            gap: 2,
+          }}
         >
-          <Table>
-            <TableBody>
-              {cartItems.map((item) => (
-                <TableRow key={item.id}>
-                  <TableCell sx={{ padding: "1.5rem 0.5rem" }}>
-                    <img
-                      src={item.image}
-                      alt={item.title}
-                      style={{
-                        width: 50,
-                        height: 50,
-                        objectFit: "cover",
-                        borderRadius: 4,
-                      }}
-                    />
-                  </TableCell>
-                  <TableCell sx={{ padding: "1.5rem 0.5rem" }}>
-                    <Typography variant="body2" fontSize="medium">
-                      {item.title}
-                    </Typography>
-                  </TableCell>
-                  <TableCell sx={{ padding: "1.5rem 0.5rem" }}>
-                    <Box
-                      sx={{
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center",
-                        gap: 1,
-                      }}
-                    >
-                      <IconButton
-                        aria-label="remove"
-                        sx={{ padding: "0" }}
-                        onClick={() =>
-                          updateQuantity(item.id, item.quantity - 1)
-                        }
-                      >
-                        <Remove fontSize="medium" color="secondary" />
-                      </IconButton>
-                      <Typography
-                        component="span"
-                        fontSize="medium"
-                        width={30}
-                        border="1px solid #000"
-                        borderRadius={1}
-                        textAlign="center"
-                      >
-                        {item.quantity}
-                      </Typography>
-                      <IconButton
-                        aria-label="add"
-                        sx={{ padding: "0" }}
-                        onClick={() =>
-                          updateQuantity(item.id, item.quantity + 1)
-                        }
-                      >
-                        <Add fontSize="medium" color="secondary" />
-                      </IconButton>
-                    </Box>
-                  </TableCell>
-                  <TableCell sx={{ padding: "1.5rem 0.5rem" }}>
-                    <Typography
-                      variant="body2"
-                      fontWeight="bold"
-                      fontSize="medium"
-                      textAlign="right"
-                    >
-                      {item.price * item.quantity}:-
-                    </Typography>
-                  </TableCell>
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
-        </TableContainer>
+          {cartItems.map((item) => (
+            <Box
+              key={item.id}
+              sx={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "space-between",
+                gap: 2,
+                padding: "1rem",
+                borderBottom: "1px solid #ddd",
+              }}
+            >
+              <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
+                <img
+                  src={item.image}
+                  alt={item.title}
+                  style={{
+                    width: 50,
+                    height: 50,
+                    objectFit: "cover",
+                    borderRadius: 4,
+                  }}
+                />
+                <Typography variant="body2" fontSize="medium">
+                  {item.title}
+                </Typography>
+              </Box>
+
+              <Box
+                sx={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  gap: 1,
+                }}
+              >
+                <IconButton
+                  aria-label="remove"
+                  sx={{ padding: "0" }}
+                  onClick={() => updateQuantity(item.id, item.quantity - 1)}
+                >
+                  <Remove fontSize="medium" color="secondary" />
+                </IconButton>
+                <Typography
+                  component="span"
+                  fontSize="medium"
+                  width={30}
+                  border="1px solid #000"
+                  borderRadius={1}
+                  textAlign="center"
+                >
+                  {item.quantity}
+                </Typography>
+                <IconButton
+                  aria-label="add"
+                  sx={{ padding: "0" }}
+                  onClick={() => updateQuantity(item.id, item.quantity + 1)}
+                >
+                  <Add fontSize="medium" color="secondary" />
+                </IconButton>
+              </Box>
+
+              <Typography
+                variant="body2"
+                fontWeight="bold"
+                fontSize="medium"
+                textAlign="right"
+              >
+                {item.price * item.quantity}:-
+              </Typography>
+            </Box>
+          ))}
+        </Box>
 
         {/* Subtotal, shipping, and total */}
         <Box
@@ -164,19 +162,15 @@ const Sidebar = ({
 
         {/* Checkout button */}
         <Box sx={{ display: "flex", flexDirection: "column", paddingTop: 2 }}>
-          <Link
-            data-cy="cart-link"
-            href={"/checkout"}
+          <Button
             style={{ paddingTop: "1rem", textDecoration: "none" }}
+            data-cy="cart-link"
+            variant="contained"
+            color="secondary"
+            onClick={handleCheckoutClick}
           >
-            <Button
-              variant="contained"
-              color="secondary"
-              onClick={handleCheckoutClick}
-            >
-              CHECKOUT
-            </Button>
-          </Link>
+            CHECKOUT
+          </Button>
         </Box>
       </Box>
     </Drawer>
