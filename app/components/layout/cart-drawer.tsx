@@ -10,7 +10,6 @@ import {
   Paper,
   Typography,
 } from "@mui/material";
-import Link from "next/link";
 
 interface Product {
   id: string;
@@ -163,19 +162,15 @@ const Sidebar = ({
 
         {/* Checkout button */}
         <Box sx={{ display: "flex", flexDirection: "column", paddingTop: 2 }}>
-          <Link
-            data-cy="cart-link"
-            href={"/checkout"}
+          <Button
             style={{ paddingTop: "1rem", textDecoration: "none" }}
+            data-cy="cart-link"
+            variant="contained"
+            color="secondary"
+            onClick={handleCheckoutClick}
           >
-            <Button
-              variant="contained"
-              color="secondary"
-              onClick={handleCheckoutClick}
-            >
-              CHECKOUT
-            </Button>
-          </Link>
+            CHECKOUT
+          </Button>
         </Box>
       </Box>
     </Drawer>

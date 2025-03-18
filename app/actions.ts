@@ -5,18 +5,10 @@ import { customAlphabet } from "nanoid/non-secure";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { z } from "zod";
+import { productSchema } from "./utils/validation";
 
 // Create a custom nanoid generator that only uses numbers. Length set to 15.
 const generateRandomDigits = customAlphabet("0123456789", 15);
-
-const productSchema = z.object({
-  title: z.string().min(3, "Product title must be at least 3 characters"),
-  price: z.number().min(1, "Price must be at least 1"),
-  description: z
-    .string()
-    .min(3, "Product description must be at least 3 characters"),
-  image: z.string().url("Product image must be a valid url"),
-});
 
 //Skapa produkt i databasen
 export async function createProduct(data: any) {
@@ -41,6 +33,42 @@ export async function createProduct(data: any) {
 
   revalidatePath("/admin/add-product");
   redirect("/admin/add-product");
+}
+
+//Uppdatera editerad produkt i databasen
+export async function updateEditedProduct(
+  id: string,
+  data: z.infer<typeof productSchema>
+) {
+  try {
+    const validatedData = productSchema.parse(data);
+
+    await db.product.update({
+      where: { id },
+      data: validatedData,
+    });
+
+    revalidatePath("/admin/edit-product");
+    redirect("/admin/edit-product");
+  } catch (error) {
+    console.error("Error updating product:", error);
+    throw new Error("Could not update product");
+  }
+}
+
+//Ta bort produkt i databasen
+export async function deleteProduct(id: string) {
+  try {
+    await db.product.delete({
+      where: { id },
+    });
+
+    revalidatePath("/admin");
+    redirect("/admin");
+  } catch (error) {
+    console.error("Error deleting product:", error);
+    throw new Error("Could not delete product");
+  }
 }
 
 //KOMMENTAR TILL KOD:
