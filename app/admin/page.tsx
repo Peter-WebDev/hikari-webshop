@@ -78,6 +78,7 @@ export default async function AdminPage() {
                   <TableCell
                     data-cy="product-id"
                   >
+                    {/* Här ska vi få in artikel nummer */}
                     {product.id}
                   </TableCell>
                   <TableCell>
