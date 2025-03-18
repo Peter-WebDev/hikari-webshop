@@ -39,7 +39,7 @@ export default function EditProductForm({ product }: { product: ProductForm & { 
   };
 
   return (
-    <Container maxWidth="sm">
+    <Container maxWidth="sm" sx={{ mt: { md: 8, sm: 6, xs: 4 }, mb: 8 }}>
       <Paper elevation={3} sx={{ padding: 3, mt: 4, backgroundColor: "#f7f7f7" }}>
         <Typography variant="h4" fontWeight="bold" gutterBottom>
           Edit product
@@ -49,6 +49,7 @@ export default function EditProductForm({ product }: { product: ProductForm & { 
 
           <TextField
             label="Product Name/title"
+            type="text"
             {...register("title")}
             error={!!errors.title}
             helperText={errors.title?.message}
@@ -56,6 +57,7 @@ export default function EditProductForm({ product }: { product: ProductForm & { 
 
           <TextField
             label="Title Sign"
+            type="text"
             {...register("titleSign")}
             error={!!errors.titleSign}
             helperText={errors.titleSign?.message}
@@ -63,6 +65,7 @@ export default function EditProductForm({ product }: { product: ProductForm & { 
 
           <TextField
             label="Title Sign Color"
+            type="color"
             {...register("titleSignColor")}
             error={!!errors.titleSignColor}
             helperText={errors.titleSignColor?.message}
@@ -70,6 +73,7 @@ export default function EditProductForm({ product }: { product: ProductForm & { 
 
           <TextField
             label="Title Description"
+            type="text"
             {...register("titleDescription")}
             error={!!errors.titleDescription}
             helperText={errors.titleDescription?.message}
@@ -77,6 +81,7 @@ export default function EditProductForm({ product }: { product: ProductForm & { 
 
           <TextField
             label="Title With Description"
+            type="text"
             {...register("titleWithDescription")}
             error={!!errors.titleWithDescription}
             helperText={errors.titleWithDescription?.message}
@@ -92,6 +97,7 @@ export default function EditProductForm({ product }: { product: ProductForm & { 
 
           <TextField
             label="Product description"
+            type="text"
             {...register("description")}
             multiline
             rows={3}
@@ -101,6 +107,7 @@ export default function EditProductForm({ product }: { product: ProductForm & { 
 
           <TextField
             label="Image URL"
+            type="text"
             {...register("image")}
             error={!!errors.image}
             helperText={errors.image?.message}
@@ -108,6 +115,7 @@ export default function EditProductForm({ product }: { product: ProductForm & { 
 
           <TextField
             label="Dark Image URL"
+            type="text"
             {...register("imageDark")}
             error={!!errors.imageDark}
             helperText={errors.imageDark?.message}
@@ -115,6 +123,7 @@ export default function EditProductForm({ product }: { product: ProductForm & { 
 
           <TextField
             label="Slogan"
+            type="text"
             {...register("slogan")}
             error={!!errors.slogan}
             helperText={errors.slogan?.message}
@@ -122,6 +131,7 @@ export default function EditProductForm({ product }: { product: ProductForm & { 
 
           <TextField
             label="Note"
+            type="text"
             {...register("note")}
             multiline
             rows={2}
@@ -131,6 +141,7 @@ export default function EditProductForm({ product }: { product: ProductForm & { 
 
           <TextField
             label="Weight"
+            type="text"
             {...register("weight")}
             error={!!errors.weight}
             helperText={errors.weight?.message}
@@ -138,6 +149,7 @@ export default function EditProductForm({ product }: { product: ProductForm & { 
 
           <TextField
             label="Brand"
+            type="text"
             {...register("brand")}
             error={!!errors.brand}
             helperText={errors.brand?.message}
@@ -145,6 +157,7 @@ export default function EditProductForm({ product }: { product: ProductForm & { 
 
           <TextField
             label="Height"
+            type="text"
             {...register("height")}
             error={!!errors.height}
             helperText={errors.height?.message}
@@ -152,13 +165,14 @@ export default function EditProductForm({ product }: { product: ProductForm & { 
 
           <TextField
             label="Diameter"
+            type="text"
             {...register("diameter")}
             error={!!errors.diameter}
             helperText={errors.diameter?.message}
           />
 
           {/*Spara ändringar-knapp */}
-          <Button type="submit" variant="contained" color="primary">
+          <Button type="submit" variant="contained" color="secondary">
             Save Changes
           </Button>
 
