@@ -1,6 +1,7 @@
 "use client";
 
 import { useCart } from "@/app/providers/cart-provider";
+import { useSnackbar } from "@/app/providers/snackbar-provider";
 import { Product } from "@/data";
 import LocalMallIcon from "@mui/icons-material/LocalMall";
 import {
@@ -9,12 +10,14 @@ import {
   CardMedia,
   IconButton,
   Link,
+  Slide,
   Typography,
 } from "@mui/material";
 import Card from "@mui/material/Card";
 
 export default function ProductCard({ product }: { product: Product }) {
   const { addToCart } = useCart();
+  const { showSnackbar } = useSnackbar();
 
   return (
     <Link
@@ -77,6 +80,7 @@ export default function ProductCard({ product }: { product: Product }) {
               onClick={(e) => {
                 e.preventDefault();
                 addToCart({ ...product, quantity: 1 });
+                showSnackbar(`${product.title} ${product.titleSign} added to your cart`, Slide);
               }}
             >
               <LocalMallIcon
