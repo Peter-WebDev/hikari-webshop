@@ -43,7 +43,12 @@ export async function updateEditedProduct(
   data: z.infer<typeof productSchema>
 ) {
   try {
+    console.log("Updating product with ID:", id);
+    console.log("Data to update:", data);
+
     const validatedData = productSchema.parse(data);
+
+    console.log("Validated data:", validatedData);
 
     await db.product.update({
       where: { id },
@@ -54,6 +59,7 @@ export async function updateEditedProduct(
     redirect("/admin/edit-product");
   } catch (error) {
     console.error("Error updating product:", error);
+    console.log("Prisma Error:", error);
     throw new Error("Could not update product");
   }
 }
