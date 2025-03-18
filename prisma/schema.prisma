@@ -28,4 +28,41 @@ model Product {
   brand                String?
   height               String?
   diameter             String?
+
+  orderItems OrderItem[]
+}
+
+model Order {
+  id          String   @id @default(cuid())
+  orderNumber String   @unique
+  createdAt   DateTime @default(now())
+  totalPrice  Float
+  customerId  String
+
+  customer   Customer    @relation(fields: [customerId], references: [id])
+  orderItems OrderItem[]
+}
+
+model OrderItem {
+  id        String @id @default(cuid())
+  quantity  Int
+  productId String
+  price     Float
+  orderId   String
+
+  order   Order   @relation(fields: [orderId], references: [id])
+  product Product @relation(fields: [productId], references: [id])
+}
+
+model Customer {
+  id        String @id @default(cuid())
+  firstName String
+  lastName  String
+  city      String
+  zipCode   Int
+  address   String
+  email     String
+  phone     String
+
+  orders Order[]
 }
