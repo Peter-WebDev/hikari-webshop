@@ -1,25 +1,25 @@
 import { db } from "@/prisma/db";
-import EditProductForm from "../../components/edit-product/edit-product-form";
+import EditProductForm from "../../../components/edit-product/edit-product-form";
 
 export default async function EditProductPage({ params }: { params: { id?: string } }) {
-  console.log("Params received:", params); 
+  console.log("Params received:", params);
 
   if (!params.id) {
     return <div>Error: No product ID provided</div>;
-}
+  }
 
   const product = await db.product.findUnique({
-      where: { id: params.id },
+    where: { id: params.id },
   });
 
   if (!product) {
     return <div>Error: Product not found</div>;
-}
+  }
 
   return (
-      <div>
-          <h2>TESTRUBRIK EDIT PRODUCT</h2>
-          <EditProductForm product={product} />
-      </div>
+    <div>
+      <h2>TESTRUBRIK EDIT PRODUCT</h2>
+      <EditProductForm product={product} />
+    </div>
   );
 }
