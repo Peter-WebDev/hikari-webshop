@@ -8,12 +8,6 @@ import {
   IconButton,
   Link,
   Paper,
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TableRow,
   Typography,
 } from "@mui/material";
 
@@ -50,63 +44,70 @@ export default async function AdminPage() {
           </Link>
         </Box>
 
-        {/* Tillfällig Tabell för produkter */}
-        <TableContainer component={Paper} sx={{ boxShadow: 2 }}>
-          <Table>
-            <TableHead>
-              <TableRow>
-                <TableCell sx={{ fontSize: { sm: "1.3rem", xs: "1.1rem" } }}>
-                  Image
-                </TableCell>
-                <TableCell sx={{ fontSize: { sm: "1.3rem", xs: "1.1rem" } }}>
-                  Product name
-                </TableCell>
-                <TableCell
-                  align="right"
-                  sx={{ fontSize: { sm: "1.3rem", xs: "1.1rem" } }}
+        <Box component={Paper} sx={{ boxShadow: 2, padding: 2 }}>
+          {/* Header-raden */}
+          <Box
+            sx={{
+              display: "grid",
+              gridTemplateColumns: "1fr 1fr 2fr 1fr 1fr",
+              fontWeight: "bold",
+              paddingBottom: 2,
+              borderBottom: "2px solid #ccc",
+            }}
+          >
+            <Typography>Image</Typography>
+            <Typography>Article number</Typography>
+            <Typography>Product name</Typography>
+            <Typography>Price</Typography>
+            <Typography align="right">Actions</Typography>
+          </Box>
+
+          {/* Produkt-rader */}
+          {products.map((product) => (
+            <Box
+              key={product.id}
+              sx={{
+                display: "grid",
+                gridTemplateColumns: "1fr 1fr 2fr 1fr 1fr",
+                alignItems: "center",
+                paddingY: 2,
+                borderBottom: "1px solid #ccc",
+              }}
+              data-cy="product"
+            >
+              <Box>
+                <img
+                  src={product.image}
+                  alt={product.title}
+                  style={{
+                    width: 50,
+                    height: 50,
+                    objectFit: "cover",
+                    borderRadius: 4,
+                  }}
+                />
+              </Box>
+              <Typography data-cy="product-id">{product.id}</Typography>
+              <Typography data-cy="product-title">{product.title}</Typography>
+              <Typography data-cy="product-price">
+                {product.price} SEK
+              </Typography>
+              <Box sx={{ display: "flex", justifyContent: "flex-end", gap: 1 }}>
+                <Link
+                  data-cy="admin-edit-product"
+                  href={`/admin/edit-product/${product.id}`}
                 >
-                  Actions
-                </TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {products.map((product) => (
-                <TableRow key={product.id}>
-                  <TableCell>
-                    <img
-                      src={product.image}
-                      alt={product.title}
-                      style={{
-                        width: 50,
-                        height: 50,
-                        objectFit: "cover",
-                        borderRadius: 4,
-                      }}
-                    />
-                  </TableCell>
-                  <TableCell sx={{ fontSize: { sm: "1.1rem", xs: "1rem" } }}>
-                    {product.title}
-                  </TableCell>
-                  <TableCell align="right">
-                    <Link
-                      data-cy="admin-edit-product"
-                      href={`/admin/edit-product/${product.id}`}
-                    >
-                      <IconButton color="secondary">
-                        <EditIcon />
-                      </IconButton>
-                    </Link>
-                    <Link data-cy="admin-remove-product">
-                      <IconButton color="error">
-                        <DeleteIcon />
-                      </IconButton>
-                    </Link>
-                  </TableCell>
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
-        </TableContainer>
+                  <IconButton color="secondary">
+                    <EditIcon />
+                  </IconButton>
+                </Link>
+                <IconButton color="error" data-cy="admin-remove-product">
+                  <DeleteIcon />
+                </IconButton>
+              </Box>
+            </Box>
+          ))}
+        </Box>
       </Box>
     </main>
   );

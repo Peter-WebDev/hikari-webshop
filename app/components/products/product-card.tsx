@@ -74,7 +74,10 @@ export default function ProductCard({ product }: { product: Product }) {
             <IconButton
               data-cy="product-buy-button"
               aria-label="add to cart"
-              onClick={() => addToCart({ ...product, quantity: 1 })}
+              onClick={(e) => {
+                e.preventDefault();
+                addToCart({ ...product, quantity: 1 });
+              }}
             >
               <LocalMallIcon
                 sx={{
