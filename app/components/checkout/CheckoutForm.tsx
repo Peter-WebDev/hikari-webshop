@@ -2,20 +2,20 @@
 
 import { Add, Delete, Remove } from "@mui/icons-material";
 import {
-    Box,
-    Button,
-    Checkbox,
-    Container,
-    FormControlLabel,
-    IconButton,
-    Paper,
-    Step,
-    StepLabel,
-    Stepper,
-    TextField,
-    Typography,
+  Box,
+  Button,
+  Checkbox,
+  Container,
+  FormControlLabel,
+  IconButton,
+  Paper,
+  Step,
+  StepLabel,
+  Stepper,
+  TextField,
+  Typography,
 } from "@mui/material";
-import { useCart } from "../providers/cart-provider";
+import { useCart } from "../../providers/cart-provider";
 
 // Steg i checkout-processen
 const steps = ["Shipping address", "Payment details", "Review your order"];
