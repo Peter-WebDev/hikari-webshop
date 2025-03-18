@@ -1,8 +1,26 @@
 import { z } from "zod";
 
 export const productSchema = z.object({
-    title: z.string().min(3, "Product title must be at least 3 characters"),
-    price: z.number().min(1, "Price must be at least 1"),
-    description: z.string().min(3, "Product description must be at least 3 characters"),
-    image: z.string().url("Product image must be a valid url"),
+  articleNumber: z.string().optional(),
+  title: z.string().min(3, "Product title must be at least 3 characters"),
+  titleSign: z.string().optional().nullable(),
+  titleSignColor: z.string().optional().nullable(),
+  titleDescription: z.string().optional().nullable(),
+  titleWithDescription: z.string().optional().nullable(),
+  description: z
+    .string()
+    .min(3, "Product description must be at least 3 characters"),
+  price: z.number().min(1, "Price must be at least 1"),
+  image: z.string().url("Product image must be a valid url"),
+  imageDark: z
+    .string()
+    .url("Dark image must be a valid URL")
+    .optional()
+    .nullable(),
+  slogan: z.string().optional().nullable(),
+  note: z.string().optional().nullable(),
+  weight: z.string().optional().nullable(),
+  brand: z.string().optional().nullable(),
+  height: z.string().optional().nullable(),
+  diameter: z.string().optional().nullable(),
 });
