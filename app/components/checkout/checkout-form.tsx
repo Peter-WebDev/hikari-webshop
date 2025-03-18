@@ -88,7 +88,7 @@ const CheckoutForm = () => {
       <Container maxWidth="sm">
         <Paper
           elevation={3}
-          sx={{ padding: 3, mt: 6, backgroundColor: "#f7f7f7" }}
+          sx={{ padding: 3, mt: 6, mb: 6, backgroundColor: "#f7f7f7" }}
         >
           {/* Checkout-formulär */}
           <Typography variant="h6" sx={{ mt: 4 }}>
@@ -221,7 +221,7 @@ const CheckoutForm = () => {
             {/* Nästa-knapp */}
             <Button
               variant="contained"
-              color="primary"
+              color="secondary"
               fullWidth
               sx={{ mt: 2 }}
               onClick={handleSubmit}
