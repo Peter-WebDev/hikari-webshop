@@ -39,7 +39,7 @@ const Sidebar = ({
   return (
     <Drawer anchor="right" open={openSidebar} onClose={toggleSidebar}>
       <Box sx={{ width: 350, padding: 2 }}>
-        <Typography variant="h5" sx={{ marginBottom: 2 }}>
+        <Typography variant="h5" fontWeight="600" sx={{ marginBottom: 2 }}>
           Your cart
         </Typography>
 
@@ -163,7 +163,7 @@ const Sidebar = ({
         {/* Checkout button */}
         <Box sx={{ display: "flex", flexDirection: "column", paddingTop: 2 }}>
           <Button
-            style={{ paddingTop: "1rem", textDecoration: "none" }}
+            size="large"
             data-cy="cart-link"
             variant="contained"
             color="secondary"
