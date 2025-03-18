@@ -1,10 +1,11 @@
+import CheckoutProduct from "../components/checkout/checkout-products";
 import CheckoutForm from "../components/checkout/CheckoutForm";
 
 export default function CheckoutPage() {
   return (
-    <div>
-      <h2>Checkout Page</h2>
+    <main>
+      <CheckoutProduct />
       <CheckoutForm />
-    </div>
+    </main>
   );
 }
