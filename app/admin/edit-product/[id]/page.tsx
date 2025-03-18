@@ -17,9 +17,8 @@ export default async function EditProductPage({ params }: { params: { id?: strin
   }
 
   return (
-    <div>
-      <h2>TESTRUBRIK EDIT PRODUCT</h2>
+    <main>
       <EditProductForm product={product} />
-    </div>
+    </main>
   );
 }
