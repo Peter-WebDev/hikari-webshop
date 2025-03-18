@@ -1,29 +1,25 @@
-"use-client";
+import { db } from "@/prisma/db";
+import EditProductForm from "./EditProductForm";
 
-import { Box, Button, Container, Paper, TextField, Typography } from "@mui/material";
+export default async function EditProductPage({ params }: { params: { id?: string } }) {
+  console.log("Params received:", params); 
 
-const EditProductForm = () => {
-    return (
-      <Container maxWidth="sm">
-        <Paper elevation={3} sx={{ padding: 3, mt: 4, backgroundColor: "#f7f7f7" }}>
-          <Typography variant="h4" fontWeight="bold" gutterBottom>
-            Edit product
-          </Typography>
-  
-          <Box component="form" sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
-            <TextField label="Product id" variant="outlined" fullWidth />
-            <TextField label="Product name" variant="outlined" fullWidth />
-            <TextField label="Price" variant="outlined" fullWidth />
-            <TextField label="Product description" variant="outlined" multiline rows={3} fullWidth />
-            <TextField label="Image URL" variant="outlined" fullWidth />
-  
-            <Button variant="contained" color="primary" fullWidth sx={{ mt: 2 }}>
-              Save changes
-            </Button>
-          </Box>
-        </Paper>
-      </Container>
-    );
-  };
-  
-  export default EditProductForm;
+  if (!params.id) {
+    return <div>Error: No product ID provided</div>;
+}
+
+  const product = await db.product.findUnique({
+      where: { id: params.id },
+  });
+
+  if (!product) {
+    return <div>Error: Product not found</div>;
+}
+
+  return (
+      <div>
+          <h2>TESTRUBRIK EDIT PRODUCT</h2>
+          <EditProductForm product={product} />
+      </div>
+  );
+}
