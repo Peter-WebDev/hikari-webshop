@@ -10,16 +10,78 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import { useCart } from "../../providers/cart-provider";
+import { useState } from "react";
 
-// Steg i checkout-processen
-const steps = ["Shipping address", "Payment details", "Review your order"];
+// Definiera typ för formData och errors
+interface FormData {
+  firstName: string;
+  lastName: string;
+  address: string;
+  zipCode: string;
+  city: string;
+  country: string;
+  email: string;
+  phone: string;
+}
+
+interface Errors {
+  [key: string]: boolean; // Dynamisk indexsignatur för fältnamn
+}
 
 const CheckoutForm = () => {
-  const { cartItems, updateQuantity, totalPrice, removeFromCart } = useCart();
+  // Sätt upp formData och errors med rätt typer
+  const [formData, setFormData] = useState<FormData>({
+    firstName: "",
+    lastName: "",
+    address: "",
+    zipCode: "",
+    city: "",
+    country: "",
+    email: "",
+    phone: "",
+  });
 
-  const shippingFee = 0; // Can be changed
-  const totalWithShipping = totalPrice + shippingFee; // Total price is the subtotal
+  const [errors, setErrors] = useState<Errors>({
+    firstName: false,
+    lastName: false,
+    address: false,
+    zipCode: false,
+    city: false,
+    country: false,
+    email: false,
+    phone: false,
+  });
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  };
+
+  const handleSubmit = () => {
+    const newErrors: Errors = { ...errors };
+
+    // Validera varje fält
+    Object.keys(formData).forEach((field) => {
+      if (formData.hasOwnProperty(field)) {
+        if (formData[field as keyof FormData].trim() === "") {
+          newErrors[field] = true; // Sätt felmeddelande om tomt fält
+        } else {
+          newErrors[field] = false; // Ta bort felmeddelande om fältet är ifyllt
+        }
+      }
+    });
+
+    setErrors(newErrors);
+
+    // Om inga fel finns, kan formuläret skickas
+    if (Object.values(newErrors).every((error) => !error)) {
+      console.log("Formulär skickat:", formData);
+      // Gör något med formulärdata, t.ex. skicka till server
+    }
+  };
 
   return (
     <main>
@@ -39,49 +101,115 @@ const CheckoutForm = () => {
             sx={{ display: "flex", flexDirection: "column", gap: 2, mt: 2 }}
           >
             <TextField
-              data-cy="customer-name"
+              slotProps={{
+                htmlInput: { "data-cy": "customer-name" },
+                formHelperText: { "data-cy": "customer-name-error" } as any,
+              }}
               label="First name *"
               variant="outlined"
               fullWidth
+              name="firstName"
+              value={formData.firstName}
+              onChange={handleChange}
+              error={errors.firstName}
+              helperText={errors.firstName ? "First name is required." : ""}
             />
 
-            <TextField label="Last name *" variant="outlined" fullWidth />
+            <TextField
+              label="Last name *"
+              variant="outlined"
+              fullWidth
+              name="lastName"
+              value={formData.lastName}
+              onChange={handleChange}
+              error={errors.lastName}
+              helperText={errors.lastName ? "Last name is required." : ""}
+            />
 
             <TextField
-              data-cy="customer-address"
+              slotProps={{
+                htmlInput: { "data-cy": "customer-address" },
+                formHelperText: { "data-cy": "customer-address-error" } as any,
+              }}
               label="Address *"
               variant="outlined"
               fullWidth
+              name="address"
+              value={formData.address}
+              onChange={handleChange}
+              error={errors.address}
+              helperText={errors.address ? "Address is required." : ""}
             />
 
             <TextField
-              data-cy="customer-zipcode"
+              slotProps={{
+                htmlInput: { "data-cy": "customer-zipcode" },
+                formHelperText: { "data-cy": "customer-zipcode-error" } as any,
+              }}
               label="Zip code *"
               variant="outlined"
               fullWidth
+              name="zipCode"
+              value={formData.zipCode}
+              onChange={handleChange}
+              error={errors.zipCode}
+              helperText={errors.zipCode ? "Zip code is required." : ""}
             />
 
             <TextField
-              data-cy="customer-city"
+              slotProps={{
+                htmlInput: { "data-cy": "customer-city" },
+                formHelperText: { "data-cy": "customer-city-error" } as any,
+              }}
               label="City *"
               variant="outlined"
               fullWidth
+              name="city"
+              value={formData.city}
+              onChange={handleChange}
+              error={errors.city}
+              helperText={errors.city ? "City is required." : ""}
             />
 
-            <TextField label="Country *" variant="outlined" fullWidth />
+            <TextField
+              label="Country *"
+              variant="outlined"
+              fullWidth
+              name="country"
+              value={formData.country}
+              onChange={handleChange}
+              error={errors.country}
+              helperText={errors.country ? "Country is required." : ""}
+            />
 
             <TextField
-              data-cy="customer-email"
+              slotProps={{
+                htmlInput: { "data-cy": "customer-email" },
+                formHelperText: { "data-cy": "customer-email-error" } as any,
+              }}
               label="Email *"
               variant="outlined"
               fullWidth
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+              error={errors.email}
+              helperText={errors.email ? "Email is required." : ""}
             />
 
             <TextField
-              data-cy="customer-phone"
+              slotProps={{
+                htmlInput: { "data-cy": "customer-phone" },
+                formHelperText: { "data-cy": "customer-phone-error" } as any,
+              }}
               label="Phone *"
               variant="outlined"
               fullWidth
+              name="phone"
+              value={formData.phone}
+              onChange={handleChange}
+              error={errors.phone}
+              helperText={errors.phone ? "Phone is required." : ""}
             />
 
             {/* Checkbox för betalningsadress */}
@@ -96,6 +224,7 @@ const CheckoutForm = () => {
               color="primary"
               fullWidth
               sx={{ mt: 2 }}
+              onClick={handleSubmit}
             >
               Next
             </Button>
