@@ -1,17 +1,17 @@
-import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
-import RemoveCircleOutlineIcon from "@mui/icons-material/RemoveCircleOutline";
+"use client";
+
+import { useCart } from "@/app/providers/cart-provider";
+import { Add, Remove } from "@mui/icons-material";
 import {
   Box,
   Button,
   Drawer,
   IconButton,
-  ListItem,
   Paper,
   Table,
   TableBody,
   TableCell,
   TableContainer,
-  TableHead,
   TableRow,
   Typography,
 } from "@mui/material";
@@ -27,34 +27,41 @@ interface Product {
 interface SidebarProps {
   openSidebar: boolean;
   toggleSidebar: () => void;
-  products: Product[];
   handleCheckoutClick: () => void;
 }
 
 const Sidebar = ({
   openSidebar,
   toggleSidebar,
-  products,
   handleCheckoutClick,
 }: SidebarProps) => {
+  const { cartItems } = useCart();
+  const { totalPrice } = useCart();
+  const { updateQuantity } = useCart();
+
+  const shippingFee = 0; // Can be changed
+  const totalWithShipping = totalPrice + shippingFee; // Total price is the subtotal
+
   return (
     <Drawer anchor="right" open={openSidebar} onClose={toggleSidebar}>
-      <Box>
-        <TableHead>
-          <TableRow>
-            <TableCell>Choosen products:</TableCell>
-          </TableRow>
-        </TableHead>
+      <Box sx={{ width: 350, padding: 2 }}>
+        <Typography variant="h5" sx={{ marginBottom: 2 }}>
+          Your cart
+        </Typography>
 
-        <TableContainer component={Paper} sx={{ boxShadow: 2 }}>
+        {/* Table container with products in cart */}
+        <TableContainer
+          component={Paper}
+          sx={{ boxShadow: 2, marginBottom: 3 }}
+        >
           <Table>
             <TableBody>
-              {products.map((product) => (
-                <TableRow key={product.id}>
-                  <TableCell>
+              {cartItems.map((item) => (
+                <TableRow key={item.id}>
+                  <TableCell sx={{ padding: "1.5rem 0.5rem" }}>
                     <img
-                      src={product.image}
-                      alt={product.title}
+                      src={item.image}
+                      alt={item.title}
                       style={{
                         width: 50,
                         height: 50,
@@ -63,33 +70,58 @@ const Sidebar = ({
                       }}
                     />
                   </TableCell>
-                  <TableCell
-                    sx={{
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      gap: 1,
-                    }}
-                  >
-                    <IconButton aria-label="remove" sx={{ padding: "0" }}>
-                      <RemoveCircleOutlineIcon
-                        fontSize="small"
-                        color="secondary"
-                      />
-                    </IconButton>
-                    <Typography component="span" fontSize="small">
-                      1
+                  <TableCell sx={{ padding: "1.5rem 0.5rem" }}>
+                    <Typography variant="body2" fontSize="medium">
+                      {item.title}
                     </Typography>
-                    <IconButton aria-label="add">
-                      <AddCircleOutlineIcon
-                        fontSize="small"
-                        color="secondary"
-                      />
-                    </IconButton>
                   </TableCell>
-                  <TableCell align="right">
-                    <Typography variant="body2" fontWeight="bold">
-                      {product.price}:-
+                  <TableCell sx={{ padding: "1.5rem 0.5rem" }}>
+                    <Box
+                      sx={{
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        gap: 1,
+                      }}
+                    >
+                      <IconButton
+                        aria-label="remove"
+                        sx={{ padding: "0" }}
+                        onClick={() =>
+                          updateQuantity(item.id, item.quantity - 1)
+                        }
+                      >
+                        <Remove fontSize="medium" color="secondary" />
+                      </IconButton>
+                      <Typography
+                        component="span"
+                        fontSize="medium"
+                        width={30}
+                        border="1px solid #000"
+                        borderRadius={1}
+                        textAlign="center"
+                      >
+                        {item.quantity}
+                      </Typography>
+                      <IconButton
+                        aria-label="add"
+                        sx={{ padding: "0" }}
+                        onClick={() =>
+                          updateQuantity(item.id, item.quantity + 1)
+                        }
+                      >
+                        <Add fontSize="medium" color="secondary" />
+                      </IconButton>
+                    </Box>
+                  </TableCell>
+                  <TableCell sx={{ padding: "1.5rem 0.5rem" }}>
+                    <Typography
+                      variant="body2"
+                      fontWeight="bold"
+                      fontSize="medium"
+                      textAlign="right"
+                    >
+                      {item.price * item.quantity}:-
                     </Typography>
                   </TableCell>
                 </TableRow>
@@ -98,42 +130,54 @@ const Sidebar = ({
           </Table>
         </TableContainer>
 
+        {/* Subtotal, shipping, and total */}
         <Box
-          sx={{
-            mt: 2,
-            borderTop: "1px solid #ddd",
-            pt: 2,
-            textAlign: "left",
-            paddingLeft: 2,
-          }}
+          sx={{ borderTop: "1px solid #ddd", paddingTop: 2, textAlign: "left" }}
         >
-          <Typography variant="body1">
-            <strong>Subtotal:</strong> 1580:-
-          </Typography>
-          <Typography variant="body1">
-            <strong>Shipping fee:</strong> 0:-
-          </Typography>
-          <Typography variant="h6" sx={{ fontWeight: "bold", mt: 1 }}>
-            Total: 1580:-
-          </Typography>
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "space-between",
+              paddingBottom: 1,
+            }}
+          >
+            <Typography variant="body1">
+              <strong>Subtotal:</strong>
+            </Typography>
+            <Typography variant="body1">{totalPrice}:-</Typography>
+          </Box>
+          <Box sx={{ display: "flex", justifyContent: "space-between" }}>
+            <Typography variant="body1">
+              <strong>Shipping fee:</strong>
+            </Typography>
+            <Typography variant="body1">{shippingFee}:-</Typography>
+          </Box>
+          <Box sx={{ display: "flex", justifyContent: "space-between" }}>
+            <Typography variant="h6" sx={{ fontWeight: "bold", marginTop: 1 }}>
+              Total:
+            </Typography>
+            <Typography variant="h6" sx={{ marginTop: 1 }}>
+              {totalWithShipping} SEK
+            </Typography>
+          </Box>
         </Box>
-      </Box>
 
-      <Box
-        sx={{
-          width: 250,
-          display: "flex",
-          flexDirection: "column",
-          paddingTop: 2,
-        }}
-      >
-        <Link data-cy="cart-link" href={"/checkout"}>
-          <ListItem>
-            <Button variant="contained" onClick={handleCheckoutClick}>
-              CHECK OUT
+        {/* Checkout button */}
+        <Box sx={{ display: "flex", flexDirection: "column", paddingTop: 2 }}>
+          <Link
+            data-cy="cart-link"
+            href={"/checkout"}
+            style={{ paddingTop: "1rem", textDecoration: "none" }}
+          >
+            <Button
+              variant="contained"
+              color="secondary"
+              onClick={handleCheckoutClick}
+            >
+              CHECKOUT
             </Button>
-          </ListItem>
-        </Link>
+          </Link>
+        </Box>
       </Box>
     </Drawer>
   );

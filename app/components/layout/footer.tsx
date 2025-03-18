@@ -2,7 +2,7 @@ import FacebookIcon from '@mui/icons-material/Facebook';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import XIcon from '@mui/icons-material/X';
 import YouTubeIcon from '@mui/icons-material/YouTube';
-import { Box, Grid2, IconButton, Typography } from "@mui/material";
+import { Box, Grid2, IconButton, Link, Typography } from "@mui/material";
 
 export default function Footer() {
     return (
@@ -23,30 +23,29 @@ export default function Footer() {
                     sm: "row"
                 }}
                 margin={2}>
-                <Box>
-                    <Typography
-                        component="h2"
-                        variant="h5"
-                        id="logotype"
-                    >
-                        Hikari
-                    </Typography>
-                    <Box component="div" aria-labelledby="logotype" sx={{ padding: 0, margin: 0, listStyle: "none" }}>
+                <Link color="inherit" underline="none" aria-label="Home" href="/">
+                    <Box>
                         <Typography
-                            component="h3"
-                            variant="h6"
-                            id="logotype"
-                            align="center"
+                            component="h2"
+                            variant="h5"
                         >
-                            ヒカリ
+                            HIKARI
                         </Typography>
+                        <Box component="div" sx={{ padding: 0, margin: 0 }}>
+                            <Typography
+                                component="h3"
+                                variant="h6"
+                                align="center"
+                            >
+                                ヒカリ
+                            </Typography>
+                        </Box>
                     </Box>
-                </Box>
+                </Link>
                 <Box>
                     <Typography
                         component="h2"
                         variant="h5"
-                        id="contact-us"
                         textAlign={{
                             xs: "center",
                             sm: "left"
@@ -55,7 +54,7 @@ export default function Footer() {
                         Contact us
                     </Typography>
                     <Box component="div" aria-labelledby="contact-us" sx={{ padding: 0, margin: 0, listStyle: "none" }}>
-                        <address>
+                        <address id="contact-us">
                             Hikari Corporation<br />
                             42 Shard Street<br />
                             London, CA 90210
