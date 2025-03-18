@@ -54,21 +54,19 @@ export default async function AdminPage() {
           <Table>
             <TableHead>
               <TableRow>
-                <TableCell sx={{ fontSize: { sm: "1.3rem", xs: "1.1rem" } }}>
+                <TableCell sx={{ fontSize: { xs: "1rem" } }}>
                   Article number
                 </TableCell>
-                <TableCell sx={{ fontSize: { sm: "1.3rem", xs: "1.1rem" } }}>
-                  Image
-                </TableCell>
-                <TableCell sx={{ fontSize: { sm: "1.3rem", xs: "1.1rem" } }}>
+                <TableCell sx={{ fontSize: { xs: "1rem" } }}>Image</TableCell>
+                <TableCell sx={{ fontSize: { xs: "1rem" } }}>
                   Product name
                 </TableCell>
-                <TableCell sx={{ fontSize: { sm: "1.3rem", xs: "1.1rem" } }}>
+                <TableCell sx={{ fontSize: { xs: "1rem" } }}>
                   Price
                 </TableCell>
                 <TableCell
                   align="right"
-                  sx={{ fontSize: { sm: "1.3rem", xs: "1.1rem" } }}
+                  sx={{ fontSize: { xs: "1rem" } }}
                 >
                   Actions
                 </TableCell>
@@ -78,7 +76,6 @@ export default async function AdminPage() {
               {products.map((product) => (
                 <TableRow key={product.id} data-cy="product">
                   <TableCell
-                    sx={{ fontSize: { sm: "1.1rem", xs: "1rem" } }}
                     data-cy="product-id"
                   >
                     {product.id}
@@ -96,13 +93,11 @@ export default async function AdminPage() {
                     />
                   </TableCell>
                   <TableCell
-                    sx={{ fontSize: { sm: "1.1rem", xs: "1rem" } }}
                     data-cy="product-title"
                   >
                     {product.title}
                   </TableCell>
                   <TableCell
-                    sx={{ fontSize: { sm: "1.1rem", xs: "1rem" } }}
                     data-cy="product-price"
                   >
                     {product.price}
