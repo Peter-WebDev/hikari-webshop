@@ -1,5 +1,5 @@
 import { db } from "@/prisma/db";
-import EditProductForm from "./EditProductForm";
+import EditProductForm from "../../components/edit-product/edit-product-form";
 
 export default async function EditProductPage({ params }: { params: { id?: string } }) {
   console.log("Params received:", params); 
