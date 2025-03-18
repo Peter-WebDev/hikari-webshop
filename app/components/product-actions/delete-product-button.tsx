@@ -11,7 +11,7 @@ export default function DeleteProductButton({ productId }: { productId: string }
     const handleDelete = async (): Promise<void> => {
         if (confirm("Are you sure you want to delete this product?")) {
             await deleteProduct(productId);
-            router.refresh();
+            router.push("/admin");
         }
     };
 
