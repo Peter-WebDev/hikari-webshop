@@ -1,6 +1,8 @@
 "use server";
 
+import { CartItem } from "@/data";
 import { db } from "@/prisma/db";
+import { Prisma } from "@prisma/client";
 import { customAlphabet } from "nanoid/non-secure";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
@@ -68,6 +70,32 @@ export async function deleteProduct(id: string) {
   } catch (error) {
     console.error("Error deleting product:", error);
     throw new Error("Could not delete product");
+  }
+}
+
+export async function createOrder(
+  customer: Prisma.CustomerCreateInput,
+  cartItems: CartItem[]
+) {
+  try {
+    await db.order.create({
+      data: {
+        orderNumber: "1234",
+        totalPrice: 123,
+        customer: {
+          create: customer,
+        },
+        // orderItems: { create: cartItems.map((item) => ({
+        //   ""
+        // })) },
+      },
+    });
+
+    // revalidatePath("/admin");
+    // redirect("/admin");
+  } catch (error) {
+    // console.error("Error deleting product:", error);
+    // throw new Error("Could not delete product");
   }
 }
 
