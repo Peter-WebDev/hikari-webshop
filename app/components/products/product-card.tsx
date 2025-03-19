@@ -73,7 +73,6 @@ export default function ProductCard({ product }: { product: Product }) {
                 {product.titleSign}
               </Typography>
             </Box>
-            {/* Add onClick to add product to cart */}
             <IconButton
               data-cy="product-buy-button"
               aria-label="add to cart"
