@@ -58,6 +58,7 @@ const CheckoutForm = () => {
       ...formData,
       [name]: value,
     });
+    setErrors({ ...errors, [name]: false });
   };
 
   const handleSubmit = () => {
@@ -102,7 +103,10 @@ const CheckoutForm = () => {
           >
             <TextField
               slotProps={{
-                htmlInput: { "data-cy": "customer-name" },
+                htmlInput: {
+                  "data-cy": "customer-name",
+                  autoComplete: "given-name",
+                },
                 formHelperText: { "data-cy": "customer-name-error" } as any,
               }}
               label="First name *"
@@ -116,6 +120,7 @@ const CheckoutForm = () => {
             />
 
             <TextField
+              autoComplete="family-name"
               label="Last name *"
               variant="outlined"
               fullWidth
@@ -128,7 +133,10 @@ const CheckoutForm = () => {
 
             <TextField
               slotProps={{
-                htmlInput: { "data-cy": "customer-address" },
+                htmlInput: {
+                  "data-cy": "customer-address",
+                  autoComplete: "street-address",
+                },
                 formHelperText: { "data-cy": "customer-address-error" } as any,
               }}
               label="Address *"
@@ -143,7 +151,10 @@ const CheckoutForm = () => {
 
             <TextField
               slotProps={{
-                htmlInput: { "data-cy": "customer-zipcode" },
+                htmlInput: {
+                  "data-cy": "customer-zipcode",
+                  autoComplete: "postal-code",
+                },
                 formHelperText: { "data-cy": "customer-zipcode-error" } as any,
               }}
               label="Zip code *"
@@ -158,7 +169,10 @@ const CheckoutForm = () => {
 
             <TextField
               slotProps={{
-                htmlInput: { "data-cy": "customer-city" },
+                htmlInput: {
+                  "data-cy": "customer-city",
+                  autoComplete: "address-level2",
+                },
                 formHelperText: { "data-cy": "customer-city-error" } as any,
               }}
               label="City *"
@@ -172,6 +186,7 @@ const CheckoutForm = () => {
             />
 
             <TextField
+              autoComplete="shipping"
               label="Country *"
               variant="outlined"
               fullWidth
@@ -184,7 +199,10 @@ const CheckoutForm = () => {
 
             <TextField
               slotProps={{
-                htmlInput: { "data-cy": "customer-email" },
+                htmlInput: {
+                  "data-cy": "customer-email",
+                  autoComplete: "email",
+                },
                 formHelperText: { "data-cy": "customer-email-error" } as any,
               }}
               label="Email *"
@@ -199,7 +217,7 @@ const CheckoutForm = () => {
 
             <TextField
               slotProps={{
-                htmlInput: { "data-cy": "customer-phone" },
+                htmlInput: { "data-cy": "customer-phone", autoComplete: "tel" },
                 formHelperText: { "data-cy": "customer-phone-error" } as any,
               }}
               label="Phone *"
@@ -220,6 +238,7 @@ const CheckoutForm = () => {
 
             {/* Nästa-knapp */}
             <Button
+              type="submit"
               variant="contained"
               color="secondary"
               fullWidth
