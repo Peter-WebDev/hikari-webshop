@@ -1,10 +1,11 @@
 "use client";
 
 import { useCart } from "@/app/providers/cart-provider";
+import { useSnackbar } from "@/app/providers/snackbar-provider";
 import { Product } from "@/data";
 import { Add, Remove } from "@mui/icons-material";
 import LocalMallIcon from "@mui/icons-material/LocalMall";
-import { Box, Button, IconButton, Typography } from "@mui/material";
+import { Box, Button, IconButton, Slide, Typography } from "@mui/material";
 import { useState } from "react";
 
 export default function QuantityButton({ product }: { product: Product }) {
@@ -13,6 +14,7 @@ export default function QuantityButton({ product }: { product: Product }) {
   // Get the products quantity from cartItems else set it to 1
   const cartItem = cartItems.find((item) => item.id === product.id);
   const [quantity, setQuantity] = useState(cartItem ? cartItem.quantity : 1);
+  const { showSnackbar } = useSnackbar();
 
   return (
     <Box
@@ -39,9 +41,9 @@ export default function QuantityButton({ product }: { product: Product }) {
         <Typography
           component="span"
           width={45}
-          border= "1px solid #000"
+          border="1px solid #000"
           borderRadius={1}
-          textAlign= "center"
+          textAlign="center"
           sx={{ fontSize: { sm: "1.3rem", xs: "1.1rem" } }}
         >
           {quantity}
@@ -68,6 +70,12 @@ export default function QuantityButton({ product }: { product: Product }) {
         onClick={() => {
           addToCartWithQuantity({ ...product, quantity }, quantity);
           setQuantity(1); // Reset to 1 when items are added to cart
+          showSnackbar(
+            `${quantity === 1 ? "Added" : `Added ${quantity}`} ${
+              product.title
+            } ${product.titleSign} to your cart`,
+            Slide
+          );
         }}
       >
         {quantity === 1 ? "Add to cart" : `Add ${quantity} items`}
