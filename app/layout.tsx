@@ -6,13 +6,11 @@ import { CssBaseline } from "@mui/material";
 import { AppRouterCacheProvider } from "@mui/material-nextjs/v15-appRouter";
 import { ThemeProvider } from "@mui/material/styles";
 import { Jost } from "next/font/google";
-import Link from "next/link";
 import type { Metadata } from "next/types";
 import { PropsWithChildren } from "react";
 import theme from "../src/theme";
 import Footer from "./components/layout/footer";
 import Header from "./components/layout/header";
-import CartProvider from "./providers/cart-provider";
 
 const jost = Jost({ subsets: ["latin"] });
 
@@ -26,16 +24,14 @@ export default function RootLayout({ children }: PropsWithChildren) {
   return (
     <html lang="en">
       <body className={jost.className}>
-        <CartProvider>
-          <AppRouterCacheProvider>
-            <ThemeProvider theme={theme}>
-              <CssBaseline />
-              <Header />
-              {children}
-              <Footer />
-            </ThemeProvider>
-          </AppRouterCacheProvider>
-        </CartProvider>
+        <AppRouterCacheProvider>
+          <ThemeProvider theme={theme}>
+            <CssBaseline />
+            <Header />
+            {children}
+            <Footer />
+          </ThemeProvider>
+        </AppRouterCacheProvider>
       </body>
     </html>
   );
