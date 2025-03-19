@@ -1,7 +1,6 @@
 import { z } from "zod";
 
 export const productSchema = z.object({
-  articleNumber: z.string().optional(),
   title: z.string().min(3, "Product title must be at least 3 characters"),
   titleSign: z.string().optional().nullable(),
   titleSignColor: z.string().optional().nullable(),
@@ -10,13 +9,7 @@ export const productSchema = z.object({
   description: z
     .string()
     .min(3, "Product description must be at least 3 characters"),
-  price: z
-    .string()
-    .transform((value) => parseFloat(value))
-    .refine((value) => !isNaN(value), {
-      message: "Price must be a valid number",
-    })
-    .refine((value) => value >= 1, { message: "Price must be at least 1" }),
+  price: z.coerce.number().positive("Price must be positive"),
   image: z.string().url("Product image must be a valid url"),
   imageDark: z
     .string()
@@ -30,4 +23,5 @@ export const productSchema = z.object({
   brand: z.string().optional().nullable(),
   height: z.string().optional().nullable(),
   diameter: z.string().optional().nullable(),
+  articleNumber: z.string().optional(), // Include but make it optional
 });
