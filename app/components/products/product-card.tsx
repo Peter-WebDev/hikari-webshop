@@ -79,7 +79,7 @@ export default function ProductCard({ product }: { product: Product }) {
               onClick={(e) => {
                 e.preventDefault();
                 addToCart({ ...product, quantity: 1 });
-                showSnackbar(`${product.title} ${product.titleSign} added to your cart`, Slide);
+                showSnackbar(`${product.title} ${product.titleSign} has been added to cart`, Slide);
               }}
             >
               <LocalMallIcon
