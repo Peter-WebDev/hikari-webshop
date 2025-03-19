@@ -31,7 +31,7 @@ export const products: Product[] = [
   {
     id: "1",
     articleNumber: "123451",
-    image: "URL",
+    image: "/assets/herovideos/display-images/suna-display.png",
     imageDark: "URL",
     title: "Suna",
     titleSign: "砂",
@@ -51,7 +51,7 @@ export const products: Product[] = [
   {
     id: "2",
     articleNumber: "123452",
-    image: "URL",
+    image: "/assets/herovideos/display-images/aka-display.png",
     imageDark: "URL",
     title: "Aka",
     titleSign: "赤",
@@ -71,7 +71,7 @@ export const products: Product[] = [
   {
     id: "3",
     articleNumber: "123453",
-    image: "URL",
+    image: "/assets/herovideos/display-images/kaze -display.png",
     imageDark: "URL",
     title: "Kaze",
     titleSign: "風",
@@ -91,7 +91,7 @@ export const products: Product[] = [
   {
     id: "4",
     articleNumber: "123454",
-    image: "URL",
+    image: "/assets/herovideos/display-images/kaigan-display.png",
     imageDark: "URL",
     title: "Kaigan",
     titleSign: "海岸",
@@ -111,7 +111,7 @@ export const products: Product[] = [
   {
     id: "5",
     articleNumber: "123455",
-    image: "URL",
+    image: "/assets/herovideos/display-images/haru-display.png",
     imageDark: "URL",
     title: "Haru",
     titleSign: "春",
@@ -122,7 +122,7 @@ export const products: Product[] = [
       "Fresh, floral, and full of life, Haru captures the awakening of springtime. The scent of dewy grass, wildflowers in bloom, and delicate morning mist creates a light and uplifting atmosphere.",
     price: 790,
     slogan: "Haru - Awaken your senses. Welcome the season.",
-    note: "Dewy grass, wildflowers in bloom and morning mist", 
+    note: "Dewy grass, wildflowers in bloom and morning mist",
     weight: "280 g",
     brand: "Hikari",
     height: "10.7 cm",
@@ -131,7 +131,7 @@ export const products: Product[] = [
   {
     id: "6",
     articleNumber: "123456",
-    image: "URL",
+    image: "/assets/herovideos/display-images/mori-display.png",
     imageDark: "URL",
     title: "Mori",
     titleSign: "森",
