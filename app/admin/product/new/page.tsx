@@ -1,9 +1,12 @@
+import ShopLayout from "@/app/shop-layout";
 import AddProductForm from "../../../components/add-product/add-product-form";
 
 export default function AddProductPage() {
   return (
     <div>
-      <AddProductForm />
+      <ShopLayout>
+        <AddProductForm />
+      </ShopLayout>
     </div>
   );
 }
