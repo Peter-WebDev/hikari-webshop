@@ -1,174 +1,100 @@
 "use client";
 
-import { Add, Delete, Remove } from "@mui/icons-material";
 import {
   Box,
   Button,
   Checkbox,
   Container,
   FormControlLabel,
-  IconButton,
   Paper,
-  Step,
-  StepLabel,
-  Stepper,
   TextField,
   Typography,
 } from "@mui/material";
-import { useCart } from "../../providers/cart-provider";
+import { useRouter } from "next/navigation"; // Importera router
+import { useState } from "react";
 
-// Steg i checkout-processen
-const steps = ["Shipping address", "Payment details", "Review your order"];
+// Definiera typ för formData och errors
+interface FormData {
+  firstName: string;
+  lastName: string;
+  address: string;
+  zipCode: string;
+  city: string;
+  country: string;
+  email: string;
+  phone: string;
+}
+
+interface Errors {
+  [key: string]: boolean; // Dynamisk indexsignatur för fältnamn
+}
 
 const CheckoutForm = () => {
-  const { cartItems, updateQuantity, totalPrice, removeFromCart } = useCart();
+  const router = useRouter(); // Skapa router-instans
 
-  const shippingFee = 0; // Can be changed
-  const totalWithShipping = totalPrice + shippingFee; // Total price is the subtotal
+  // Sätt upp formData och errors med rätt typer
+  const [formData, setFormData] = useState<FormData>({
+    firstName: "",
+    lastName: "",
+    address: "",
+    zipCode: "",
+    city: "",
+    country: "",
+    email: "",
+    phone: "",
+  });
+
+  const [errors, setErrors] = useState<Errors>({
+    firstName: false,
+    lastName: false,
+    address: false,
+    zipCode: false,
+    city: false,
+    country: false,
+    email: false,
+    phone: false,
+  });
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+    setErrors({ ...errors, [name]: false });
+  };
+
+  const handleSubmit = () => {
+    const newErrors: Errors = { ...errors };
+
+    // Validera varje fält
+    Object.keys(formData).forEach((field) => {
+      if (formData.hasOwnProperty(field)) {
+        if (formData[field as keyof FormData].trim() === "") {
+          newErrors[field] = true; // Sätt felmeddelande om tomt fält
+        } else {
+          newErrors[field] = false; // Ta bort felmeddelande om fältet är ifyllt
+        }
+      }
+    });
+
+    setErrors(newErrors);
+
+    // Om inga fel finns, kan formuläret skickas
+    if (Object.values(newErrors).every((error) => !error)) {
+      console.log("Formulär skickat:", formData);
+      // Navigera till nästa sida, exempelvis /payment
+      router.push("/confirmation[order-number]");
+    }
+  };
 
   return (
     <main>
       <Container maxWidth="sm">
         <Paper
           elevation={3}
-          sx={{ padding: 3, mt: 6, backgroundColor: "#f7f7f7" }}
+          sx={{ padding: 3, mt: 6, mb: 6, backgroundColor: "#f7f7f7" }}
         >
-          {/* Checkout-rubriken */}
-          <Typography variant="h4" fontWeight="bold" gutterBottom mb="1.5rem">
-            Checkout
-          </Typography>
-
-          {cartItems.map((item) => (
-            <Box
-              key={item.id}
-              sx={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "space-between",
-                borderBottom: "1px solid #ddd",
-                paddingBottom: 2,
-                paddingRight: 2,
-                mb: 2,
-              }}
-            >
-              {/* Produktbild */}
-              <Box
-                component="img"
-                src={item.image}
-                alt={item.title}
-                sx={{ width: 50, height: 50, mr: 2 }}
-              />
-
-              {/* Produktnamn, OBS ska data-cyn vara placerad här??? */}
-              <Typography
-                data-cy="cart-item"
-                variant="body1"
-                sx={{ flexGrow: 1 }}
-              >
-                {item.title}
-              </Typography>
-
-              {/* Justering av antal items */}
-              <Box sx={{ display: "flex", alignItems: "center" }}>
-                <IconButton
-                  data-cy="decrease-quantity-button"
-                  size="small"
-                  onClick={() => updateQuantity(item.id, item.quantity - 1)}
-                >
-                  <Remove />
-                </IconButton>
-                <Typography
-                  component="span"
-                  sx={{
-                    width: 40,
-                    textAlign: "center",
-                    display: "inline-block",
-                    border: "1px solid #6e6e6e",
-                    borderRadius: "0.2rem",
-                  }}
-                >
-                  {item.quantity}
-                </Typography>
-                <IconButton
-                  data-cy="increase-quantity-button"
-                  size="small"
-                  onClick={() => updateQuantity(item.id, item.quantity + 1)}
-                >
-                  <Add />
-                </IconButton>
-              </Box>
-
-              {/* Trashbin-knapp-ikon */}
-              <IconButton
-                size="small"
-                sx={{ color: "#6e6e6e" }}
-                onClick={() => removeFromCart(item.id)}
-              >
-                <Delete />
-              </IconButton>
-
-              {/* Pris */}
-              <Typography variant="body1" sx={{ fontWeight: "bold", ml: 2 }}>
-                {item.price * item.quantity}:-
-              </Typography>
-            </Box>
-          ))}
-
-          {/* Subtotal, Shipping fee och Total-sammanställning */}
-          <Box
-            sx={{
-              pt: 2,
-              textAlign: "right",
-              paddingRight: 2,
-            }}
-          >
-            <Box
-              sx={{
-                display: "flex",
-                justifyContent: "space-between",
-                paddingBottom: 1,
-              }}
-            >
-              <Typography variant="body1">
-                <strong>Subtotal:</strong>
-              </Typography>
-              <Typography variant="body1">{totalPrice}:-</Typography>
-            </Box>
-            <Box sx={{ display: "flex", justifyContent: "space-between" }}>
-              <Typography variant="body1">
-                <strong>Shipping fee:</strong>
-              </Typography>
-              <Typography variant="body1">{shippingFee}:-</Typography>
-            </Box>
-            <Box sx={{ display: "flex", justifyContent: "space-between" }}>
-              <Typography
-                variant="h6"
-                sx={{ fontWeight: "bold", marginTop: 1 }}
-              >
-                Total:
-              </Typography>
-              <Typography
-                data-cy="total-price"
-                variant="h6"
-                sx={{ marginTop: 1 }}
-              >
-                {totalWithShipping} SEK
-              </Typography>
-            </Box>
-          </Box>
-
-          {/* Stegvis checkout-navigation 1-2-3 */}
-          <Box sx={{ mt: 2, borderTop: "1px solid #ddd", pt: 4 }}>
-            <Stepper activeStep={0} alternativeLabel>
-              {steps.map((label) => (
-                <Step key={label}>
-                  <StepLabel>{label} </StepLabel>
-                </Step>
-              ))}
-            </Stepper>
-          </Box>
-
-          {/* Checkout-formulär */}
           <Typography variant="h6" sx={{ mt: 4 }}>
             Shipping address
           </Typography>
@@ -179,61 +105,147 @@ const CheckoutForm = () => {
             sx={{ display: "flex", flexDirection: "column", gap: 2, mt: 2 }}
           >
             <TextField
-              data-cy="customer-name"
+              slotProps={{
+                htmlInput: {
+                  "data-cy": "customer-name",
+                  autoComplete: "given-name",
+                },
+                formHelperText: { "data-cy": "customer-name-error" } as any,
+              }}
               label="First name *"
               variant="outlined"
               fullWidth
+              name="firstName"
+              value={formData.firstName}
+              onChange={handleChange}
+              error={errors.firstName}
+              helperText={errors.firstName ? "First name is required." : ""}
             />
 
-            <TextField label="Last name *" variant="outlined" fullWidth />
+            <TextField
+              autoComplete="family-name"
+              label="Last name *"
+              variant="outlined"
+              fullWidth
+              name="lastName"
+              value={formData.lastName}
+              onChange={handleChange}
+              error={errors.lastName}
+              helperText={errors.lastName ? "Last name is required." : ""}
+            />
 
             <TextField
-              data-cy="customer-address"
+              slotProps={{
+                htmlInput: {
+                  "data-cy": "customer-address",
+                  autoComplete: "street-address",
+                },
+                formHelperText: { "data-cy": "customer-address-error" } as any,
+              }}
               label="Address *"
               variant="outlined"
               fullWidth
+              name="address"
+              value={formData.address}
+              onChange={handleChange}
+              error={errors.address}
+              helperText={errors.address ? "Address is required." : ""}
             />
 
             <TextField
-              data-cy="customer-zipcode"
+              slotProps={{
+                htmlInput: {
+                  "data-cy": "customer-zipcode",
+                  autoComplete: "postal-code",
+                },
+                formHelperText: { "data-cy": "customer-zipcode-error" } as any,
+              }}
               label="Zip code *"
               variant="outlined"
               fullWidth
+              name="zipCode"
+              value={formData.zipCode}
+              onChange={handleChange}
+              error={errors.zipCode}
+              helperText={errors.zipCode ? "Zip code is required." : ""}
             />
 
             <TextField
-              data-cy="customer-city"
+              slotProps={{
+                htmlInput: {
+                  "data-cy": "customer-city",
+                  autoComplete: "address-level2",
+                },
+                formHelperText: { "data-cy": "customer-city-error" } as any,
+              }}
               label="City *"
               variant="outlined"
               fullWidth
+              name="city"
+              value={formData.city}
+              onChange={handleChange}
+              error={errors.city}
+              helperText={errors.city ? "City is required." : ""}
             />
 
-            <TextField label="Country *" variant="outlined" fullWidth />
+            <TextField
+              autoComplete="shipping"
+              label="Country *"
+              variant="outlined"
+              fullWidth
+              name="country"
+              value={formData.country}
+              onChange={handleChange}
+              error={errors.country}
+              helperText={errors.country ? "Country is required." : ""}
+            />
 
             <TextField
-              data-cy="customer-email"
+              slotProps={{
+                htmlInput: {
+                  "data-cy": "customer-email",
+                  autoComplete: "email",
+                },
+                formHelperText: { "data-cy": "customer-email-error" } as any,
+              }}
               label="Email *"
               variant="outlined"
               fullWidth
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+              error={errors.email}
+              helperText={errors.email ? "Email is required." : ""}
             />
 
             <TextField
-              data-cy="customer-phone"
+              slotProps={{
+                htmlInput: { "data-cy": "customer-phone", autoComplete: "tel" },
+                formHelperText: { "data-cy": "customer-phone-error" } as any,
+              }}
               label="Phone *"
               variant="outlined"
               fullWidth
+              name="phone"
+              value={formData.phone}
+              onChange={handleChange}
+              error={errors.phone}
+              helperText={errors.phone ? "Phone is required." : ""}
             />
 
-            {/* Checkbox för betalningsadress */}
             <FormControlLabel
               control={<Checkbox color="primary" />}
               label="Use this address for payment details"
             />
 
-            {/* Nästa-knapp */}
             <Button
+              onSubmit={(e) => {
+                e.preventDefault();
+                handleSubmit();
+              }}
+              type="submit"
               variant="contained"
-              color="primary"
+              color="secondary"
               fullWidth
               sx={{ mt: 2 }}
             >
