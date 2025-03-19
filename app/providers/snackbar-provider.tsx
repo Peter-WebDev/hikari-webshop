@@ -50,6 +50,7 @@ export default function SnackbarProvider({ children }: PropsWithChildren) {
     <SnackbarContext.Provider value={{ showSnackbar }}>
       {children}
       <Snackbar
+        data-cy="added-to-cart-toast"
         open={snackbar.open}
         autoHideDuration={2000}
         onClose={handleClose}
