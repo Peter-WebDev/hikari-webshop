@@ -36,6 +36,7 @@ const CheckoutProduct = () => {
 
           {cartItems.map((item) => (
             <Box
+              data-cy="cart-item"
               key={item.id}
               sx={{
                 display: "flex",
@@ -57,9 +58,9 @@ const CheckoutProduct = () => {
 
               {/* Produktnamn, OBS ska data-cyn vara placerad här??? */}
               <Typography
-                data-cy="cart-item"
                 variant="body1"
                 sx={{ flexGrow: 1 }}
+                data-cy="product-title"
               >
                 {item.title}
               </Typography>
@@ -74,6 +75,7 @@ const CheckoutProduct = () => {
                   <Remove />
                 </IconButton>
                 <Typography
+                  data-cy="product-quantity"
                   component="span"
                   sx={{
                     width: 40,
@@ -104,7 +106,11 @@ const CheckoutProduct = () => {
               </IconButton>
 
               {/* Pris */}
-              <Typography variant="body1" sx={{ fontWeight: "bold", ml: 2 }}>
+              <Typography
+                variant="body1"
+                sx={{ fontWeight: "bold", ml: 2 }}
+                data-cy="product-price"
+              >
                 {item.price * item.quantity}:-
               </Typography>
             </Box>
