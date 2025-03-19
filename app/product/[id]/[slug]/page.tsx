@@ -57,7 +57,7 @@ export default async function ProductPage({
             >
               <CardMedia
                 component="img"
-                image={product.imageProduct}
+                image={product.image}
                 alt=""
               ></CardMedia>
             </Card>

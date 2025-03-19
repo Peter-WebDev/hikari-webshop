@@ -87,7 +87,9 @@ export default async function AdminPage() {
                   }}
                 />
               </Box>
-              <Typography data-cy="product-id">{product.id}</Typography>
+              <Typography data-cy="product-id">
+                {product.articleNumber}
+              </Typography>
               <Typography data-cy="product-title">{product.title}</Typography>
               <Typography data-cy="product-price">
                 {product.price} SEK
