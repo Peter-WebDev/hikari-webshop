@@ -4,6 +4,7 @@ import AdminPanelSettingsOutlinedIcon from "@mui/icons-material/AdminPanelSettin
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import {
   AppBar,
+  Badge,
   Box,
   IconButton,
   Link,
@@ -75,12 +76,18 @@ const Header: React.FC = () => {
               </IconButton>
             </Link>
 
-            <IconButton aria-label="Cart" data-cy="open-cart-sidebar" onClick={toggleSidebar}>
-              <ShoppingCartOutlinedIcon
-                sx={{
-                  fontSize: { md: "2.5rem", sm: "2rem", xs: "1.8rem" },
-                }}
-              />
+            <IconButton
+              aria-label="Cart"
+              data-cy="open-cart-sidebar"
+              onClick={toggleSidebar}
+            >
+              <Badge badgeContent={4} color="secondary">
+                <ShoppingCartOutlinedIcon
+                  sx={{
+                    fontSize: { md: "2.5rem", sm: "2rem", xs: "1.8rem" },
+                  }}
+                />
+              </Badge>
             </IconButton>
           </Box>
         </Toolbar>
