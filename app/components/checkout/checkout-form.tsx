@@ -10,6 +10,7 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
+import { useRouter } from "next/navigation"; // Importera router
 import { useState } from "react";
 
 // Definiera typ för formData och errors
@@ -29,6 +30,8 @@ interface Errors {
 }
 
 const CheckoutForm = () => {
+  const router = useRouter(); // Skapa router-instans
+
   // Sätt upp formData och errors med rätt typer
   const [formData, setFormData] = useState<FormData>({
     firstName: "",
@@ -80,7 +83,8 @@ const CheckoutForm = () => {
     // Om inga fel finns, kan formuläret skickas
     if (Object.values(newErrors).every((error) => !error)) {
       console.log("Formulär skickat:", formData);
-      // Gör något med formulärdata, t.ex. skicka till server
+      // Navigera till nästa sida, exempelvis /payment
+      router.push("/confirmation[order-number]");
     }
   };
 
@@ -91,7 +95,6 @@ const CheckoutForm = () => {
           elevation={3}
           sx={{ padding: 3, mt: 6, mb: 6, backgroundColor: "#f7f7f7" }}
         >
-          {/* Checkout-formulär */}
           <Typography variant="h6" sx={{ mt: 4 }}>
             Shipping address
           </Typography>
@@ -230,20 +233,21 @@ const CheckoutForm = () => {
               helperText={errors.phone ? "Phone is required." : ""}
             />
 
-            {/* Checkbox för betalningsadress */}
             <FormControlLabel
               control={<Checkbox color="primary" />}
               label="Use this address for payment details"
             />
 
-            {/* Nästa-knapp */}
             <Button
+              onSubmit={(e) => {
+                e.preventDefault();
+                handleSubmit();
+              }}
               type="submit"
               variant="contained"
               color="secondary"
               fullWidth
               sx={{ mt: 2 }}
-              onClick={handleSubmit}
             >
               Next
             </Button>
