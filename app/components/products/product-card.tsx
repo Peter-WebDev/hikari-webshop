@@ -41,7 +41,7 @@ export default function ProductCard({ product }: { product: Product }) {
           },
         }}
       >
-        <CardMedia component="img" height="200" image={product.image} alt="" />
+        <CardMedia component="img" height="280" image={product.image} alt="" />
         <CardContent>
           <Box
             sx={{
