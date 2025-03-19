@@ -1,5 +1,6 @@
 "use client";
 
+import { useCart } from "@/app/providers/cart-provider";
 import AdminPanelSettingsOutlinedIcon from "@mui/icons-material/AdminPanelSettingsOutlined";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import {
@@ -12,7 +13,7 @@ import {
   Typography,
 } from "@mui/material";
 import { useRouter } from "next/navigation";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import CartDrawer from "./cart-drawer"; // Importera den nya komponenten
 
 const Header: React.FC = () => {
@@ -24,6 +25,18 @@ const Header: React.FC = () => {
     router.push("/checkout");
     setOpenSidebar(false);
   };
+
+  const { cartItems } = useCart();
+  // Tracks if the component has mounted to prevent hydration errors
+  const [mounted, setMounted] = useState(false);
+
+  // Indicates when the component is ready. Initially false (server-rendered), then true after first client render.
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  // Calculates the total amount of all products in the cart
+  const totalQuantity = cartItems.reduce((sum, item) => sum + item.quantity, 0);
 
   return (
     <>
@@ -75,19 +88,32 @@ const Header: React.FC = () => {
                 />
               </IconButton>
             </Link>
-
             <IconButton
               aria-label="Cart"
               data-cy="open-cart-sidebar"
               onClick={toggleSidebar}
             >
-              <Badge badgeContent={4} color="secondary">
+              {/* If mounted === true it renders badge with total amount of products in cart, else if its false we get 0 */}
+              {mounted ? (
+                <Badge
+                  badgeContent={totalQuantity}
+                  color="secondary"
+                  showZero
+                  data-cy="cart-items-count-badge"
+                >
+                  <ShoppingCartOutlinedIcon
+                    sx={{
+                      fontSize: { md: "2.5rem", sm: "2rem", xs: "1.8rem" },
+                    }}
+                  />
+                </Badge>
+              ) : (
                 <ShoppingCartOutlinedIcon
                   sx={{
                     fontSize: { md: "2.5rem", sm: "2rem", xs: "1.8rem" },
                   }}
                 />
-              </Badge>
+              )}
             </IconButton>
           </Box>
         </Toolbar>
