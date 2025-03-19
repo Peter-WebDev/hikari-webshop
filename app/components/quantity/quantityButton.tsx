@@ -71,9 +71,9 @@ export default function QuantityButton({ product }: { product: Product }) {
           addToCartWithQuantity({ ...product, quantity }, quantity);
           setQuantity(1); // Reset to 1 when items are added to cart
           showSnackbar(
-            `${quantity === 1 ? "Added" : `Added ${quantity}`} ${
+            `${quantity === 1 ? "Has been added" : `Has been added ${quantity}`} ${
               product.title
-            } ${product.titleSign} to your cart`,
+            } ${product.titleSign} to cart`,
             Slide
           );
         }}
