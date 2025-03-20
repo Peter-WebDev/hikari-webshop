@@ -1,11 +1,23 @@
 import { db } from "@/prisma/db";
 import { Box, Button, Container, Paper, Typography } from "@mui/material";
 
-export default async function ConfirmationPage() {
+export default async function ConfirmationPage({
+  params,
+}: {
+  params: { "order-number": string };
+}) {
   const order = await db.order.findUnique({
-    where: { orderNumber: "" },
+    where: { orderNumber: params["order-number"] },
     include: { customer: true, orderItems: { include: { product: true } } },
   });
+
+  if (!order) {
+    return (
+      <Container maxWidth="sm">
+        <Typography variant="h5">Order not found</Typography>
+      </Container>
+    );
+  }
 
   return (
     <Container
@@ -33,9 +45,19 @@ export default async function ConfirmationPage() {
           Your order details:
         </Typography>
 
-        <Typography variant="body1">Order number:</Typography>
+        <Typography variant="body1">
+          Order number: {order.orderNumber}
+        </Typography>
         <Typography variant="body1">Order items:</Typography>
-        <Typography variant="body1">Total price:</Typography>
+        {order.orderItems.map((item) => (
+          <Typography key={item.id} variant="body2">
+            {" "}
+            {item.quantity}x {item.product.title} - {item.price}:-
+          </Typography>
+        ))}
+        <Typography variant="body1">
+          Total price: {order.totalPrice} SEK
+        </Typography>
 
         <Box sx={{ borderBottom: "1px solid #ccc", my: 2 }}></Box>
         {/*Shipping Information:*/}
@@ -43,13 +65,19 @@ export default async function ConfirmationPage() {
           Your shipping information:
         </Typography>
 
-        <Typography variant="body1">Full name:</Typography>
-        <Typography variant="body1">Address:</Typography>
-        <Typography variant="body1">Zipcode:</Typography>
-        <Typography variant="body1">City:</Typography>
-        <Typography variant="body1">Email:</Typography>
+        <Typography variant="body1">
+          Full name: {order.customer.name} {order.customer.name}
+        </Typography>
+        <Typography variant="body1">
+          Address: {order.customer.address}
+        </Typography>
+        <Typography variant="body1">
+          Zipcode: {order.customer.zipCode}
+        </Typography>
+        <Typography variant="body1">City: {order.customer.city}</Typography>
+        <Typography variant="body1">Email: {order.customer.email}</Typography>
         <Typography variant="body1" sx={{ mb: 3 }}>
-          Phone:
+          Phone: {order.customer.phone}
         </Typography>
 
         {/*Shop Some More BTN:*/}
