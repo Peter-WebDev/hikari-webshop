@@ -2,7 +2,7 @@
 
 import { deleteProduct } from "@/app/actions";
 import DeleteIcon from "@mui/icons-material/Delete";
-import { Box, Button, IconButton, Modal, Typography } from "@mui/material";
+import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, IconButton } from "@mui/material";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
@@ -23,13 +23,14 @@ export default function DeleteProductButton({ productId }: { productId: string }
             await deleteProduct(productId);
 
             router.refresh();
-            handleClose();
+            
 
         } catch (error) {
             console.error("Error deleting product:", error);
             alert("Error deleting product. Please try again later.");
         } finally {
             setIsDeleting(false);
+            handleClose();
         }
     };
 
@@ -42,39 +43,26 @@ export default function DeleteProductButton({ productId }: { productId: string }
         disabled={isDeleting}
         aria-label="Delete product"
         >
-            <DeleteIcon />
+        <DeleteIcon />
         </IconButton>
 
-  {/* MUI Modal för bekräftelse */}
-  <Modal open={open} onClose={handleClose} aria-labelledby="delete-modal-title">
-                <Box
-                    sx={{
-                        position: "absolute",
-                        top: "50%",
-                        left: "50%",
-                        transform: "translate(-50%, -50%)",
-                        width: 400,
-                        bgcolor: "background.paper",
-                        boxShadow: 24,
-                        p: 4,
-                        borderRadius: 2,
-                        textAlign: "center",
-                    }}
-                >
-                    <Typography id="delete-modal-title" variant="h6">
-                        Are you sure you want to delete this product?
-                    </Typography>
-
-                    <Box sx={{ mt: 3, display: "flex", justifyContent: "space-between" }}>
-                        <Button data-cy="confirm-delete-button" variant="contained" color="error" onClick={handleDelete}>
-                            Yes, Delete
-                        </Button>
-                        <Button variant="outlined" onClick={handleClose}>
-                            Cancel
-                        </Button>
-                    </Box>
-                </Box>
-            </Modal>
-        </>
-    );
+      {/* BYTT MODALDIALOG */}
+      <Dialog open={open} onClose={handleClose}>
+        <DialogTitle>Delete Product</DialogTitle>
+        <DialogContent>
+          <DialogContentText sx={{ color: "black" }}>
+            Are you sure you want to delete this product?
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose} color="secondary">
+            Cancel
+          </Button>
+          <Button data-cy="confirm-delete-button" onClick={handleDelete} color="error" disabled={isDeleting}>
+            {isDeleting ? "Deleting..." : "Delete"}
+          </Button>
+        </DialogActions>
+      </Dialog>
+    </>
+  );
 }
