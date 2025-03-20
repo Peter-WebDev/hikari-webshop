@@ -41,7 +41,23 @@ export default function ProductCard({ product }: { product: Product }) {
           },
         }}
       >
-        <CardMedia component="img" height="280" image={product.image} alt="" />
+        <CardMedia
+          component="img"
+          image={product.image}
+          alt=""
+          sx={{
+            width: {
+              xs: "70%",
+              sm: "80%",
+              md: "100%",
+            },
+            height: "auto",
+            objectFit: "contain",
+            margin: "0 auto",
+            display: "block",
+            paddingTop: "1rem",
+          }}
+        />
         <CardContent>
           <Box
             sx={{

@@ -78,16 +78,18 @@ const Header: React.FC = () => {
               justifyContent: "flex-end",
             }}
           >
-            <Link aria-label="Admin" href="/admin">
-              <IconButton aria-label="Admin">
-                <AdminPanelSettingsOutlinedIcon
-                  data-cy="admin-link"
-                  sx={{
-                    fontSize: { md: "2.5rem", sm: "2rem", xs: "1.8rem" },
-                  }}
-                />
-              </IconButton>
-            </Link>
+            <IconButton
+              aria-label="Admin"
+              onClick={() => router.push("/admin")}
+            >
+              <AdminPanelSettingsOutlinedIcon
+                data-cy="admin-link"
+                sx={{
+                  fontSize: { md: "2.5rem", sm: "2rem", xs: "1.8rem" },
+                }}
+              />
+            </IconButton>
+
             <IconButton
               aria-label="Cart"
               data-cy="open-cart-sidebar"
