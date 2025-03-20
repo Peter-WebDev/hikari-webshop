@@ -38,6 +38,7 @@ const Header: React.FC = () => {
   // Calculates the total amount of all products in the cart
   const totalQuantity = cartItems.reduce((sum, item) => sum + item.quantity, 0);
 
+
   return (
     <>
       <AppBar position="static" color="primary" sx={{ boxShadow: 2 }}>
@@ -78,16 +79,18 @@ const Header: React.FC = () => {
               justifyContent: "flex-end",
             }}
           >
-            <Link aria-label="Admin" href="/admin">
-              <IconButton aria-label="Admin">
-                <AdminPanelSettingsOutlinedIcon
-                  data-cy="admin-link"
-                  sx={{
-                    fontSize: { md: "2.5rem", sm: "2rem", xs: "1.8rem" },
-                  }}
-                />
-              </IconButton>
-            </Link>
+            <IconButton
+              aria-label="Admin"
+              onClick={() => router.push("/admin")}
+            >
+              <AdminPanelSettingsOutlinedIcon
+                data-cy="admin-link"
+                sx={{
+                  fontSize: { md: "2.5rem", sm: "2rem", xs: "1.8rem" },
+                }}
+              />
+            </IconButton>
+
             <IconButton
               aria-label="Cart"
               data-cy="open-cart-sidebar"
@@ -118,7 +121,6 @@ const Header: React.FC = () => {
           </Box>
         </Toolbar>
       </AppBar>
-
       <CartDrawer
         openSidebar={openSidebar}
         toggleSidebar={toggleSidebar}

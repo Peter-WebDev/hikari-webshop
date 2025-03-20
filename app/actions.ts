@@ -33,8 +33,7 @@ export async function createProduct(data: any) {
     },
   });
 
-  revalidatePath("/admin/add-product");
-  redirect("/admin/add-product");
+  revalidatePath("/admin/product/new");
 }
 
 //Uppdatera editerad produkt i databasen
@@ -42,20 +41,49 @@ export async function updateEditedProduct(
   id: string,
   data: z.infer<typeof productSchema>
 ) {
+  console.log("ID received:", id);
   try {
-    const validatedData = productSchema.parse(data);
+    console.log("Updating product with ID:", id);
+    console.log("Data to update:", data);
 
-    await db.product.update({
+    // Fetch the existing product first
+    const existingProduct = await db.product.findUnique({
       where: { id },
-      data: validatedData,
     });
 
-    revalidatePath("/admin/edit-product");
-    redirect("/admin/edit-product");
+    if (!existingProduct) {
+      throw new Error(`Product width ID ${id} not found`);
+    }
+
+    // Validate the data
+    const validatedData = productSchema.parse(data);
+
+    // Merge validated data with existing articleNumber
+    // Ensures we don't try to update the articleNumber field
+    const dataToUpdate = {
+      ...validatedData,
+      articleNumber: existingProduct.articleNumber,
+    };
+
+    console.log("Data to update:", dataToUpdate);
+
+    const updatedProduct = await db.product.update({
+      where: { id },
+      data: dataToUpdate,
+    });
+
+    console.log("Sucessfully updated product:", updatedProduct);
   } catch (error) {
     console.error("Error updating product:", error);
-    throw new Error("Could not update product");
+    // Rethrow NEXT_REDIRECT if it's the cause
+    if (error && (error as any).digest === "NEXT_REDIRECT") {
+      throw error;
+    }
+    throw new Error(`Could not update product: ${(error as Error).message}`);
   }
+  // Redirect to the products list instead of edit page
+  revalidatePath("/admin");
+  redirect("/admin");
 }
 
 //Ta bort produkt i databasen
@@ -66,7 +94,6 @@ export async function deleteProduct(id: string) {
     });
 
     revalidatePath("/admin");
-    redirect("/admin");
   } catch (error) {
     console.error("Error deleting product:", error);
     throw new Error("Could not delete product");

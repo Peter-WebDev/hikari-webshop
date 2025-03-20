@@ -2,9 +2,9 @@ import AddProductForm from "../../../components/add-product/add-product-form";
 
 export default function AddProductPage() {
   return (
-    <div>
+    <main>
       <AddProductForm />
-    </div>
+    </main>
   );
 }
 //KOMMENTAR TILL KOD, SERVERKOMPONENT SOM LADDAR FORMULÄRET:

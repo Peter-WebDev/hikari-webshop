@@ -96,8 +96,6 @@ const CheckoutForm = () => {
     };
 
     // Create order
-    console.log("CLIENT, CREATE ORDER");
-    console.log({ zip: formData.zipCode });
     const response = await createOrder(formattedData, cartItems);
 
     if (response && response.success) {
