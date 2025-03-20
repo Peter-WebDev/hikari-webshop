@@ -33,8 +33,7 @@ export async function createProduct(data: any) {
     },
   });
 
-  revalidatePath("/admin/add-product");
-  redirect("/admin/add-product");
+  revalidatePath("/admin/product/new");
 }
 
 //Uppdatera editerad produkt i databasen

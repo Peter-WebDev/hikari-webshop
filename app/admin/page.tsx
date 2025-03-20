@@ -44,7 +44,7 @@ export default async function AdminPage() {
           <Typography component="h2" variant="h4" fontWeight="bold">
             Admin
           </Typography>
-          <Link data-cy="admin-add-product" href="/admin/add-product">
+          <Link data-cy="admin-add-product" href="/admin/product/new">
             <Button
               variant="contained"
               color="secondary"
