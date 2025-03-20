@@ -29,7 +29,7 @@ export default async function ProductPage({
 
   return (
     <main>
-      <Container maxWidth="md" sx={{ mt: { md: 8, sm: 6, xs: 4 }, mb: 8 }}>
+      <Container maxWidth="md" sx={{ mt: { md: 8, sm: 6, xs: 4 }, mb: 25 }}>
         <Box
           component="article"
           sx={{
@@ -53,11 +53,7 @@ export default async function ProductPage({
               boxShadow: "none",
             }}
           >
-            <CardMedia
-              component="img"
-              image={product.image}
-              alt=""
-            ></CardMedia>
+            <CardMedia component="img" image={product.image} alt=""></CardMedia>
           </Card>
           <Box sx={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
             <Typography

@@ -38,7 +38,6 @@ const Header: React.FC = () => {
   // Calculates the total amount of all products in the cart
   const totalQuantity = cartItems.reduce((sum, item) => sum + item.quantity, 0);
 
-
   return (
     <>
       <AppBar position="static" color="primary" sx={{ boxShadow: 2 }}>
@@ -53,21 +52,40 @@ const Header: React.FC = () => {
                 alignItems: "center",
               }}
             >
-              <Typography
-                component="h1"
-                variant="h1"
-                sx={{
-                  lineHeight: 1,
-                  display: "flex",
-                  flexDirection: "column",
-                  textAlign: "center",
-                  fontSize: { md: "2rem", sm: "2rem", xs: "1.5rem" },
-                  fontWeight: "300",
-                }}
-              >
-                <span>HIKARI</span>
-                <span>ヒカリ</span>
-              </Typography>
+              <Box>
+                <Typography
+                  component="h1"
+                  variant="h1"
+                  sx={{
+                    lineHeight: 1,
+                    display: "flex",
+                    flexDirection: "column",
+                    textAlign: "center",
+                    fontSize: { md: "2.5rem", sm: "2.5rem", xs: "2rem" },
+                    fontWeight: "300",
+                  }}
+                >
+                  HIKARI
+                </Typography>
+                <Box
+                  component="div"
+                  sx={{
+                    padding: 0,
+                    margin: 0,
+                  }}
+                >
+                  <Typography
+                    component="h1"
+                    variant="h5"
+                    align="center"
+                    sx={{
+                      fontSize: { md: "2rem", sm: "2rem", xs: "1.5rem" },
+                    }}
+                  >
+                    ヒカリ
+                  </Typography>
+                </Box>
+              </Box>
             </Box>
           </Link>
 
