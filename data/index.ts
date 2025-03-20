@@ -7,6 +7,8 @@ export interface Product {
   articleNumber: string;
   image: string;
   imageDark?: string | null;
+  imageProduct?: string | null;
+  imageProductDark?: string | null;
   title: string;
   titleSign?: string | null;
   titleSignColor?: string | null;
@@ -31,8 +33,10 @@ export const products: Product[] = [
   {
     id: "1",
     articleNumber: "123451",
-    image: "URL",
-    imageDark: "URL",
+    image: "/assets/herovideos/display-images/suna-display.png",
+    imageDark: "/assets/herovideos/display-images/suna-display-darkmode.png",
+    imageProduct: "/assets/herovideos/product-images/suna-lightmode.png",
+    imageProductDark: "/assets/herovideos/product-images/suna-darkmode.png",
     title: "Suna",
     titleSign: "砂",
     titleSignColor: "#b6b47b",
@@ -51,8 +55,10 @@ export const products: Product[] = [
   {
     id: "2",
     articleNumber: "123452",
-    image: "URL",
-    imageDark: "URL",
+    image: "/assets/herovideos/display-images/aka-display.png",
+    imageDark: "/assets/herovideos/display-images/aka-display-darkmode.png",
+    imageProduct: "/assets/herovideos/product-images/aka-lightmode.png",
+    imageProductDark: "/assets/herovideos/product-images/aka-darkmode.png",
     title: "Aka",
     titleSign: "赤",
     titleSignColor: "#ff0000",
@@ -71,8 +77,10 @@ export const products: Product[] = [
   {
     id: "3",
     articleNumber: "123453",
-    image: "URL",
-    imageDark: "URL",
+    image: "/assets/herovideos/display-images/kaze-display.png",
+    imageDark: "/assets/herovideos/display-images/kaze-display-darkmode.png",
+    imageProduct: "/assets/herovideos/product-images/kaze-lightmode.png",
+    imageProductDark: "/assets/herovideos/product-images/kaze-darkmode.png",
     title: "Kaze",
     titleSign: "風",
     titleSignColor: "#23d7ff",
@@ -91,8 +99,10 @@ export const products: Product[] = [
   {
     id: "4",
     articleNumber: "123454",
-    image: "URL",
-    imageDark: "URL",
+    image: "/assets/herovideos/display-images/kaigan-display.png",
+    imageDark: "/assets/herovideos/display-images/kaigan-display-darkmode.png",
+    imageProduct: "/assets/herovideos/product-images/kaigan-lightmode.png",
+    imageProductDark: "/assets/herovideos/product-images/kaigan-darkmode.png",
     title: "Kaigan",
     titleSign: "海岸",
     titleSignColor: "#1d41ff",
@@ -111,8 +121,10 @@ export const products: Product[] = [
   {
     id: "5",
     articleNumber: "123455",
-    image: "URL",
-    imageDark: "URL",
+    image: "/assets/herovideos/display-images/haru-display.png",
+    imageDark: "/assets/herovideos/display-images/haru-display-darkmode.png",
+    imageProduct: "/assets/herovideos/product-images/haru-lightmode.png",
+    imageProductDark: "/assets/herovideos/product-images/haru-darkmode.png",
     title: "Haru",
     titleSign: "春",
     titleSignColor: "#ff8900",
@@ -122,7 +134,7 @@ export const products: Product[] = [
       "Fresh, floral, and full of life, Haru captures the awakening of springtime. The scent of dewy grass, wildflowers in bloom, and delicate morning mist creates a light and uplifting atmosphere.",
     price: 790,
     slogan: "Haru - Awaken your senses. Welcome the season.",
-    note: "Dewy grass, wildflowers in bloom and morning mist", 
+    note: "Dewy grass, wildflowers in bloom and morning mist",
     weight: "280 g",
     brand: "Hikari",
     height: "10.7 cm",
@@ -131,8 +143,10 @@ export const products: Product[] = [
   {
     id: "6",
     articleNumber: "123456",
-    image: "URL",
-    imageDark: "URL",
+    image: "/assets/herovideos/display-images/mori-display.png",
+    imageDark: "/assets/herovideos/display-images/mori-display-darkmode.png",
+    imageProduct: "/assets/herovideos/product-images/mori-lightmode.png",
+    imageProductDark: "/assets/herovideos/product-images/mori-darkmode.png",
     title: "Mori",
     titleSign: "森",
     titleSignColor: "#62895c",

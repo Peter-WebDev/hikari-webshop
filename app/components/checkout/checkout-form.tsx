@@ -3,9 +3,7 @@
 import {
   Box,
   Button,
-  Checkbox,
   Container,
-  FormControlLabel,
   Paper,
   TextField,
   Typography,
@@ -18,7 +16,7 @@ interface FormData {
   firstName: string;
   lastName: string;
   address: string;
-  zipCode: string;
+  zipCode: number | null;
   city: string;
   country: string;
   email: string;
@@ -37,7 +35,7 @@ const CheckoutForm = () => {
     firstName: "",
     lastName: "",
     address: "",
-    zipCode: "",
+    zipCode: null,
     city: "",
     country: "",
     email: "",
@@ -57,10 +55,12 @@ const CheckoutForm = () => {
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
+
     setFormData({
       ...formData,
-      [name]: value,
+      [name]: name === "zipCode" ? Number(value) : value,
     });
+
     setErrors({ ...errors, [name]: false });
   };
 
@@ -70,10 +70,22 @@ const CheckoutForm = () => {
     // Validera varje fält
     Object.keys(formData).forEach((field) => {
       if (formData.hasOwnProperty(field)) {
-        if (formData[field as keyof FormData].trim() === "") {
-          newErrors[field] = true; // Sätt felmeddelande om tomt fält
-        } else {
-          newErrors[field] = false; // Ta bort felmeddelande om fältet är ifyllt
+        const value = formData[field as keyof FormData];
+
+        if (typeof value === "string") {
+          if (value.trim() === "") {
+            newErrors[field] = true;
+          } else {
+            newErrors[field] = false;
+          }
+        } else if (typeof value === "number") {
+          if (value === null || isNaN(value)) {
+            newErrors[field] = true;
+          } else {
+            newErrors[field] = false;
+          }
+        } else if (value === null) {
+          newErrors[field] = true;
         }
       }
     });
@@ -153,6 +165,7 @@ const CheckoutForm = () => {
             />
 
             <TextField
+              type="number"
               slotProps={{
                 htmlInput: {
                   "data-cy": "customer-zipcode",
@@ -164,10 +177,10 @@ const CheckoutForm = () => {
               variant="outlined"
               fullWidth
               name="zipCode"
-              value={formData.zipCode}
+              value={formData.zipCode ?? ""}
               onChange={handleChange}
               error={errors.zipCode}
-              helperText={errors.zipCode ? "Zip code is required." : ""}
+              helperText={errors.zipCode ? "Zip code is required." : null}
             />
 
             <TextField
@@ -233,13 +246,8 @@ const CheckoutForm = () => {
               helperText={errors.phone ? "Phone is required." : ""}
             />
 
-            <FormControlLabel
-              control={<Checkbox color="primary" />}
-              label="Use this address for payment details"
-            />
-
             <Button
-              onSubmit={(e) => {
+              onClick={(e) => {
                 e.preventDefault();
                 handleSubmit();
               }}

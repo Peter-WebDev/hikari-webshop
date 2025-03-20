@@ -58,7 +58,6 @@ export default function ProductCard({ product }: { product: Product }) {
             paddingTop: "1rem",
           }}
         />
-
         <CardContent>
           <Box
             sx={{
