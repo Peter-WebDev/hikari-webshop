@@ -31,9 +31,9 @@ async function ProductContent({ id }: { id?: string }) {
     }
 
     return (
-      <div>
+      <main>
         <EditProductForm product={product} />
-      </div>
+      </main>
     );
   } catch (error) {
     console.error("Error fetching product:", error);

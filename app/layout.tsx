@@ -11,6 +11,8 @@ import { PropsWithChildren } from "react";
 import theme from "../src/theme";
 import Footer from "./components/layout/footer";
 import Header from "./components/layout/header";
+import CartProvider from "./providers/cart-provider";
+import SnackbarProvider from "./providers/snackbar-provider";
 
 const jost = Jost({ subsets: ["latin"] });
 
@@ -24,14 +26,18 @@ export default function RootLayout({ children }: PropsWithChildren) {
   return (
     <html lang="en">
       <body className={jost.className}>
-        <AppRouterCacheProvider>
-          <ThemeProvider theme={theme}>
-            <CssBaseline />
-            <Header />
-            {children}
-            <Footer />
-          </ThemeProvider>
-        </AppRouterCacheProvider>
+        <CartProvider>
+          <SnackbarProvider>
+            <AppRouterCacheProvider>
+              <ThemeProvider theme={theme}>
+                <CssBaseline />
+                <Header />
+                {children}
+                <Footer />
+              </ThemeProvider>
+            </AppRouterCacheProvider>
+          </SnackbarProvider>
+        </CartProvider>
       </body>
     </html>
   );

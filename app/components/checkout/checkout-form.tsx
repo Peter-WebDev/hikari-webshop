@@ -1,6 +1,5 @@
 "use client";
 
-import ShopLayout from "@/app/shop-layout";
 import {
   Box,
   Button,
@@ -91,172 +90,170 @@ const CheckoutForm = () => {
 
   return (
     <main>
-      <ShopLayout>
-        <Container maxWidth="sm">
-          <Paper
-            elevation={3}
-            sx={{ padding: 3, mt: 6, mb: 6, backgroundColor: "#f7f7f7" }}
+      <Container maxWidth="sm">
+        <Paper
+          elevation={3}
+          sx={{ padding: 3, mt: 6, mb: 6, backgroundColor: "#f7f7f7" }}
+        >
+          <Typography variant="h6" sx={{ mt: 4 }}>
+            Shipping address
+          </Typography>
+
+          <Box
+            data-cy="customer-form"
+            component="form"
+            sx={{ display: "flex", flexDirection: "column", gap: 2, mt: 2 }}
           >
-            <Typography variant="h6" sx={{ mt: 4 }}>
-              Shipping address
-            </Typography>
+            <TextField
+              slotProps={{
+                htmlInput: {
+                  "data-cy": "customer-name",
+                  autoComplete: "given-name",
+                },
+                formHelperText: { "data-cy": "customer-name-error" } as any,
+              }}
+              label="First name *"
+              variant="outlined"
+              fullWidth
+              name="firstName"
+              value={formData.firstName}
+              onChange={handleChange}
+              error={errors.firstName}
+              helperText={errors.firstName ? "First name is required." : ""}
+            />
 
-            <Box
-              data-cy="customer-form"
-              component="form"
-              sx={{ display: "flex", flexDirection: "column", gap: 2, mt: 2 }}
+            <TextField
+              autoComplete="family-name"
+              label="Last name *"
+              variant="outlined"
+              fullWidth
+              name="lastName"
+              value={formData.lastName}
+              onChange={handleChange}
+              error={errors.lastName}
+              helperText={errors.lastName ? "Last name is required." : ""}
+            />
+
+            <TextField
+              slotProps={{
+                htmlInput: {
+                  "data-cy": "customer-address",
+                  autoComplete: "street-address",
+                },
+                formHelperText: { "data-cy": "customer-address-error" } as any,
+              }}
+              label="Address *"
+              variant="outlined"
+              fullWidth
+              name="address"
+              value={formData.address}
+              onChange={handleChange}
+              error={errors.address}
+              helperText={errors.address ? "Address is required." : ""}
+            />
+
+            <TextField
+              slotProps={{
+                htmlInput: {
+                  "data-cy": "customer-zipcode",
+                  autoComplete: "postal-code",
+                },
+                formHelperText: { "data-cy": "customer-zipcode-error" } as any,
+              }}
+              label="Zip code *"
+              variant="outlined"
+              fullWidth
+              name="zipCode"
+              value={formData.zipCode}
+              onChange={handleChange}
+              error={errors.zipCode}
+              helperText={errors.zipCode ? "Zip code is required." : ""}
+            />
+
+            <TextField
+              slotProps={{
+                htmlInput: {
+                  "data-cy": "customer-city",
+                  autoComplete: "address-level2",
+                },
+                formHelperText: { "data-cy": "customer-city-error" } as any,
+              }}
+              label="City *"
+              variant="outlined"
+              fullWidth
+              name="city"
+              value={formData.city}
+              onChange={handleChange}
+              error={errors.city}
+              helperText={errors.city ? "City is required." : ""}
+            />
+
+            <TextField
+              autoComplete="shipping"
+              label="Country *"
+              variant="outlined"
+              fullWidth
+              name="country"
+              value={formData.country}
+              onChange={handleChange}
+              error={errors.country}
+              helperText={errors.country ? "Country is required." : ""}
+            />
+
+            <TextField
+              slotProps={{
+                htmlInput: {
+                  "data-cy": "customer-email",
+                  autoComplete: "email",
+                },
+                formHelperText: { "data-cy": "customer-email-error" } as any,
+              }}
+              label="Email *"
+              variant="outlined"
+              fullWidth
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+              error={errors.email}
+              helperText={errors.email ? "Email is required." : ""}
+            />
+
+            <TextField
+              slotProps={{
+                htmlInput: { "data-cy": "customer-phone", autoComplete: "tel" },
+                formHelperText: { "data-cy": "customer-phone-error" } as any,
+              }}
+              label="Phone *"
+              variant="outlined"
+              fullWidth
+              name="phone"
+              value={formData.phone}
+              onChange={handleChange}
+              error={errors.phone}
+              helperText={errors.phone ? "Phone is required." : ""}
+            />
+
+            <FormControlLabel
+              control={<Checkbox color="primary" />}
+              label="Use this address for payment details"
+            />
+
+            <Button
+              onSubmit={(e) => {
+                e.preventDefault();
+                handleSubmit();
+              }}
+              type="submit"
+              variant="contained"
+              color="secondary"
+              fullWidth
+              sx={{ mt: 2 }}
             >
-              <TextField
-                slotProps={{
-                  htmlInput: {
-                    "data-cy": "customer-name",
-                    autoComplete: "given-name",
-                  },
-                  formHelperText: { "data-cy": "customer-name-error" } as any,
-                }}
-                label="First name *"
-                variant="outlined"
-                fullWidth
-                name="firstName"
-                value={formData.firstName}
-                onChange={handleChange}
-                error={errors.firstName}
-                helperText={errors.firstName ? "First name is required." : ""}
-              />
-
-              <TextField
-                autoComplete="family-name"
-                label="Last name *"
-                variant="outlined"
-                fullWidth
-                name="lastName"
-                value={formData.lastName}
-                onChange={handleChange}
-                error={errors.lastName}
-                helperText={errors.lastName ? "Last name is required." : ""}
-              />
-
-              <TextField
-                slotProps={{
-                  htmlInput: {
-                    "data-cy": "customer-address",
-                    autoComplete: "street-address",
-                  },
-                  formHelperText: { "data-cy": "customer-address-error" } as any,
-                }}
-                label="Address *"
-                variant="outlined"
-                fullWidth
-                name="address"
-                value={formData.address}
-                onChange={handleChange}
-                error={errors.address}
-                helperText={errors.address ? "Address is required." : ""}
-              />
-
-              <TextField
-                slotProps={{
-                  htmlInput: {
-                    "data-cy": "customer-zipcode",
-                    autoComplete: "postal-code",
-                  },
-                  formHelperText: { "data-cy": "customer-zipcode-error" } as any,
-                }}
-                label="Zip code *"
-                variant="outlined"
-                fullWidth
-                name="zipCode"
-                value={formData.zipCode}
-                onChange={handleChange}
-                error={errors.zipCode}
-                helperText={errors.zipCode ? "Zip code is required." : ""}
-              />
-
-              <TextField
-                slotProps={{
-                  htmlInput: {
-                    "data-cy": "customer-city",
-                    autoComplete: "address-level2",
-                  },
-                  formHelperText: { "data-cy": "customer-city-error" } as any,
-                }}
-                label="City *"
-                variant="outlined"
-                fullWidth
-                name="city"
-                value={formData.city}
-                onChange={handleChange}
-                error={errors.city}
-                helperText={errors.city ? "City is required." : ""}
-              />
-
-              <TextField
-                autoComplete="shipping"
-                label="Country *"
-                variant="outlined"
-                fullWidth
-                name="country"
-                value={formData.country}
-                onChange={handleChange}
-                error={errors.country}
-                helperText={errors.country ? "Country is required." : ""}
-              />
-
-              <TextField
-                slotProps={{
-                  htmlInput: {
-                    "data-cy": "customer-email",
-                    autoComplete: "email",
-                  },
-                  formHelperText: { "data-cy": "customer-email-error" } as any,
-                }}
-                label="Email *"
-                variant="outlined"
-                fullWidth
-                name="email"
-                value={formData.email}
-                onChange={handleChange}
-                error={errors.email}
-                helperText={errors.email ? "Email is required." : ""}
-              />
-
-              <TextField
-                slotProps={{
-                  htmlInput: { "data-cy": "customer-phone", autoComplete: "tel" },
-                  formHelperText: { "data-cy": "customer-phone-error" } as any,
-                }}
-                label="Phone *"
-                variant="outlined"
-                fullWidth
-                name="phone"
-                value={formData.phone}
-                onChange={handleChange}
-                error={errors.phone}
-                helperText={errors.phone ? "Phone is required." : ""}
-              />
-
-              <FormControlLabel
-                control={<Checkbox color="primary" />}
-                label="Use this address for payment details"
-              />
-
-              <Button
-                onSubmit={(e) => {
-                  e.preventDefault();
-                  handleSubmit();
-                }}
-                type="submit"
-                variant="contained"
-                color="secondary"
-                fullWidth
-                sx={{ mt: 2 }}
-              >
-                Next
-              </Button>
-            </Box>
-          </Paper>
-        </Container>
-      </ShopLayout>
+              Next
+            </Button>
+          </Box>
+        </Paper>
+      </Container>
     </main>
   );
 };

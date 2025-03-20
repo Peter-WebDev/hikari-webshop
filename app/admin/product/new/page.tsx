@@ -1,13 +1,10 @@
-import ShopLayout from "@/app/shop-layout";
 import AddProductForm from "../../../components/add-product/add-product-form";
 
 export default function AddProductPage() {
   return (
-    <div>
-      <ShopLayout>
-        <AddProductForm />
-      </ShopLayout>
-    </div>
+    <main>
+      <AddProductForm />
+    </main>
   );
 }
 //KOMMENTAR TILL KOD, SERVERKOMPONENT SOM LADDAR FORMULÄRET:
