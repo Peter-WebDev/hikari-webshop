@@ -1,72 +1,11 @@
 "use client";
 
 import { createProduct } from "@/app/actions";
+import { productSchema } from "@/app/utils/validation";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Box, Button, Container, Paper, TextField, Typography } from "@mui/material";
+import { Box, Button, Container, FormHelperText, Paper, TextField, Typography } from "@mui/material";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-
-const productSchema = z.object({
-  title: z.string().min(3, "Product title must be at least 3 characters"),
-  price: z.coerce.number().min(1, "Price must be at least 1"),
-  description: z.string().min(3, "Product description must be at least 3 characters"),
-  image: z.string().url("Product image must be a valid url"),
-  imageDark: z.string().url("Product image must be a valid url").optional(),
-  titleSign: z.string().min(1, "Title sign must be at least 1 character").optional(),
-  
-  // Regex to check hex value, 6 chars (#RRGGBB)
-  // Refine to check color contrast
-  titleSignColor: z.string()
-    .regex(/^#([0-9A-Fa-f]{6})$/, "Title sign color must be a valid hex color")
-    .refine(
-      (color) => {
-        // Convert hex to RGB
-        const hex = color.replace('#', '');
-        let r, g, b;
-
-        if (hex.length === 3) {
-          // #RGB format
-          r = parseInt(hex[0] + hex[0], 16);
-          g = parseInt(hex[1] + hex[1], 16);
-          b = parseInt(hex[2] + hex[2], 16);
-        } else {
-          // #RRGGBB format
-          r = parseInt(hex.substring(0, 2), 16);
-          g = parseInt(hex.substring(2, 4), 16);
-          b = parseInt(hex.substring(4, 6), 16);
-        }
-
-        // Your background color (example: white #FFFFFF)
-        const bgR = 237;
-        const bgG = 237;
-        const bgB = 233;
-
-        // Calculate perceived brightness using weighted RGB (simplified luminance formula)
-        // This uses the perceived brightness formula: (0.299*R + 0.587*G + 0.114*B)
-        // Note: This is a simplification of the WCAG contrast formula but works for basic validation
-        const colorLuminance = (0.299 * r + 0.587 * g + 0.114 * b) / 255;
-        const bgLuminance = (0.299 * bgR + 0.587 * bgG + 0.114 * bgB) / 255;
-
-        const contrast = Math.abs(colorLuminance - bgLuminance);
-
-        // Minimum contrast threshold (e.g., 0.3 for moderate contrast, 0.5-0.6 for more stricter contrast)
-        return contrast > 0.4;
-      },
-      {
-        message: "Color doesn't have enough contrast with the background"
-      }
-    )
-    .optional(),
-  titleDescription: z.string().optional(),
-  titleWithDescription: z.string().optional(),
-  slogan: z.string().optional(),
-  note: z.string().optional(),
-  brand: z.string().optional(),
-  weight: z.coerce.number().min(1, "Weight must be at least 1").optional(),
-  length: z.coerce.number().min(1, "Length must be at least 1").optional(),
-  height: z.coerce.number().min(1, "Height must be at least 1").optional(),
-  diameter: z.coerce.number().min(1, "Diameter must be at least 1").optional(),
-});
 
 export type Product = z.infer<typeof productSchema>;
 
@@ -93,17 +32,32 @@ export default function AddProductForm() {
           New Product
         </Typography>
 
-        <Box component="form" onSubmit={handleSubmit(onSubmit)} sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
+        <Box component="form" data-cy="product-form" onSubmit={handleSubmit(onSubmit)} sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
 
           <TextField
+            slotProps={{
+              htmlInput: {
+                "data-cy": "product-title",
+              },
+            }}
             label="Product Name/title"
             type="text"
+            data-cy="product-title"
             {...register("title")}
             error={!!errors.title}
-            helperText={errors.title?.message}
+            helperText={errors.title ?
+              <FormHelperText component="span" data-cy="product-title-error">
+                {errors.title.message}
+              </FormHelperText> : null
+            }
           />
 
           <TextField
+            slotProps={{
+              htmlInput: {
+                "data-cy": "product-price",
+              },
+            }}
             label="Price"
             type="number"
             {...register("price")}
@@ -112,20 +66,38 @@ export default function AddProductForm() {
           />
 
           <TextField
+            slotProps={{
+              htmlInput: {
+                "data-cy": "product-decription",
+              },
+            }}
             label="Product description"
             type="text"
             {...register("description")}
-            multiline rows={3}
             error={!!errors.description}
-            helperText={errors.description?.message}
+            helperText={errors.description ?
+              <FormHelperText component="span" data-cy="product-description-error">
+                {errors.description.message}
+              </FormHelperText> : null
+            }
           />
+          
 
           <TextField
+            slotProps={{
+              htmlInput: {
+                "data-cy": "product-image",
+              },
+            }}
             label="Image URL"
             type="text"
             {...register("image")}
             error={!!errors.image}
-            helperText={errors.image?.message}
+            helperText={errors.image ?
+              <FormHelperText component="span" data-cy="product-image-error">
+                {errors.image.message}
+              </FormHelperText> : null
+            }
           />
 
           <TextField
@@ -197,14 +169,6 @@ export default function AddProductForm() {
             label="Product weight"
             type="number"
             {...register("weight")}
-            error={!!errors.brand}
-            helperText={errors.brand?.message}
-          />
-
-          <TextField
-            label="Product length"
-            type="number"
-            {...register("length")}
             error={!!errors.brand}
             helperText={errors.brand?.message}
           />
