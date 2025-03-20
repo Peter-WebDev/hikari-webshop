@@ -1,8 +1,7 @@
 "use client";
-
 import { useCart } from "@/app/providers/cart-provider";
-import AdminPanelSettingsOutlinedIcon from "@mui/icons-material/AdminPanelSettingsOutlined";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
+import SupervisorAccountOutlinedIcon from "@mui/icons-material/SupervisorAccountOutlined";
 import {
   AppBar,
   Badge,
@@ -101,7 +100,7 @@ const Header: React.FC = () => {
               aria-label="Admin"
               onClick={() => router.push("/admin")}
             >
-              <AdminPanelSettingsOutlinedIcon
+              <SupervisorAccountOutlinedIcon
                 data-cy="admin-link"
                 sx={{
                   fontSize: { md: "2.5rem", sm: "2rem", xs: "1.8rem" },
