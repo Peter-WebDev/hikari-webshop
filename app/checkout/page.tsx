@@ -1,12 +1,14 @@
-import CheckoutForm from "../components/checkout/checkout-form";
+import { default as CheckoutForm } from "../components/checkout/checkout-form";
+import CheckoutProducts from "../components/checkout/checkout-products";
 import ShopLayout from "../shop-layout";
 
 export default function CheckoutPage() {
   return (
-    <div>
+    <main>
       <ShopLayout>
+        <CheckoutProducts />
         <CheckoutForm />
       </ShopLayout>
-    </div>
+    </main>
   );
 }
