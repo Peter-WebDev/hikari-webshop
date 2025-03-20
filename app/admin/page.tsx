@@ -1,6 +1,5 @@
 import { db } from "@/prisma/db";
 import AddIcon from "@mui/icons-material/Add";
-import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
 import {
   Box,
@@ -8,18 +7,30 @@ import {
   IconButton,
   Link,
   Paper,
-  Typography,
+  Typography
 } from "@mui/material";
+import DeleteProductButton from "../components/product-actions/delete-product-button";
 
 export default async function AdminPage() {
-  const products = await db.product.findMany();
+  const products = await db.product.findMany({
+    select: {
+      id: true,
+      articleNumber: true,
+      image: true,
+      title: true,
+      price: true,
+    },
+    orderBy: {
+      id: "asc",
+    }
+  });
 
   return (
     <main>
       <Box
-        sx={{ maxWidth: "900px", margin: "auto", padding: { md: 8, xs: 4 } }}
+        sx={{ maxWidth: "900px", margin: "auto", padding: { md: 4, xs: 4 } }}
       >
-        {/* Rubrik och Lägg till-knapp */}
+        {/* Header and Add button */}
         <Box
           sx={{
             display: "flex",
@@ -103,9 +114,8 @@ export default async function AdminPage() {
                     <EditIcon />
                   </IconButton>
                 </Link>
-                <IconButton color="error" data-cy="admin-remove-product">
-                  <DeleteIcon />
-                </IconButton>
+                {/* Replaced delete button with a client component */}
+                <DeleteProductButton productId={product.id} />
               </Box>
             </Box>
           ))}

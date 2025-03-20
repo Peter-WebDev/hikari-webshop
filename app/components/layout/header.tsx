@@ -38,6 +38,7 @@ const Header: React.FC = () => {
   // Calculates the total amount of all products in the cart
   const totalQuantity = cartItems.reduce((sum, item) => sum + item.quantity, 0);
 
+
   return (
     <>
       <AppBar position="static" color="primary" sx={{ boxShadow: 2 }}>
@@ -120,7 +121,6 @@ const Header: React.FC = () => {
           </Box>
         </Toolbar>
       </AppBar>
-
       <CartDrawer
         openSidebar={openSidebar}
         toggleSidebar={toggleSidebar}
