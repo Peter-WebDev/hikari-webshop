@@ -57,14 +57,13 @@ model OrderItem {
 }
 
 model Customer {
-  id        String @id @default(cuid())
-  firstName String
-  lastName  String
-  city      String
-  zipCode   Int
-  address   String
-  email     String
-  phone     String
+  id      String @id @default(cuid())
+  name    String
+  city    String
+  zipCode Int
+  address String
+  email   String
+  phone   String
 
   orders Order[]
 }

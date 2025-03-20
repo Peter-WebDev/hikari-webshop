@@ -20,6 +20,7 @@ interface CartContextType {
   updateQuantity: (id: string, quantity: number) => void;
   removeFromCart: (id: string) => void;
   totalPrice: number;
+  clearCart: () => void;
 }
 
 const CartContext = createContext({} as CartContextType);
@@ -109,6 +110,12 @@ export default function CartProvider({ children }: PropsWithChildren) {
     0
   );
 
+  // Empty cart
+  const clearCart = () => {
+    setCartItems([]);
+    localStorage.removeItem("cart");
+  };
+
   return (
     <CartContext.Provider
       value={{
@@ -118,6 +125,7 @@ export default function CartProvider({ children }: PropsWithChildren) {
         updateQuantity,
         removeFromCart,
         totalPrice,
+        clearCart,
       }}
     >
       {children}
