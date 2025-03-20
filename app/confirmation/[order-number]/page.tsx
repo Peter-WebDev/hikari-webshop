@@ -1,5 +1,6 @@
 import { db } from "@/prisma/db";
-import { Box, Button, Container, Paper, Typography } from "@mui/material";
+import { Box, Container, Paper, Typography } from "@mui/material";
+import Link from "next/link";
 
 export default async function ConfirmationPage({
   params,
@@ -31,12 +32,13 @@ export default async function ConfirmationPage({
       >
         {/*Titel:*/}
         <Typography
-          variant="h5"
+          component="h2"
           fontWeight="bold"
           gutterBottom
           textAlign="center"
+          sx={{ fontSize: { sm: "1.8rem", xs: "1.5rem" } }}
         >
-          Thanks for your order!
+          Thanks for your order {order.customer.name}!
         </Typography>
 
         <Box sx={{ borderBottom: "1px solid #ccc", my: 2 }}></Box>
@@ -46,45 +48,78 @@ export default async function ConfirmationPage({
         </Typography>
 
         <Typography variant="body1">
-          Order number: {order.orderNumber}
+          <strong style={{ fontWeight: 600 }}>Order number:</strong>{" "}
+          {order.orderNumber}
         </Typography>
-        <Typography variant="body1">Order items:</Typography>
+        <Typography variant="body1">
+          <strong style={{ fontWeight: 600 }}>Created at:</strong>{" "}
+          {new Date(order.createdAt).toLocaleString()}
+        </Typography>
+        <Typography variant="body1" sx={{ fontWeight: 600 }}>
+          Order items:
+        </Typography>
         {order.orderItems.map((item) => (
-          <Typography key={item.id} variant="body2">
-            {" "}
+          <Typography key={item.id} variant="body2" mb="0.5rem">
             {item.quantity}x {item.product.title} - {item.price}:-
           </Typography>
         ))}
         <Typography variant="body1">
-          Total price: {order.totalPrice} SEK
+          <strong style={{ fontWeight: 600 }}>Total price:</strong>{" "}
+          {order.totalPrice} SEK
         </Typography>
 
         <Box sx={{ borderBottom: "1px solid #ccc", my: 2 }}></Box>
-        {/*Shipping Information:*/}
+
         <Typography variant="h6" fontWeight="bold" sx={{ mb: 1 }}>
           Your shipping information:
         </Typography>
 
         <Typography variant="body1">
-          Full name: {order.customer.name} {order.customer.name}
+          <strong style={{ fontWeight: 600 }}>Full name:</strong>{" "}
+          {order.customer.name}
         </Typography>
         <Typography variant="body1">
-          Address: {order.customer.address}
+          <strong style={{ fontWeight: 600 }}>Address:</strong>{" "}
+          {order.customer.address}
         </Typography>
         <Typography variant="body1">
-          Zipcode: {order.customer.zipCode}
+          <strong style={{ fontWeight: 600 }}>Zipcode:</strong>{" "}
+          {order.customer.zipCode}
         </Typography>
-        <Typography variant="body1">City: {order.customer.city}</Typography>
-        <Typography variant="body1">Email: {order.customer.email}</Typography>
+        <Typography variant="body1">
+          <strong style={{ fontWeight: 600 }}>City:</strong>{" "}
+          {order.customer.city}
+        </Typography>
+        <Typography variant="body1">
+          <strong style={{ fontWeight: 600 }}>Email:</strong>{" "}
+          {order.customer.email}
+        </Typography>
         <Typography variant="body1" sx={{ mb: 3 }}>
-          Phone: {order.customer.phone}
+          <strong style={{ fontWeight: 600 }}>Phone:</strong>{" "}
+          {order.customer.phone}
         </Typography>
 
-        {/*Shop Some More BTN:*/}
         <Box sx={{ display: "flex", justifyContent: "center", mt: 3 }}>
-          <Button variant="contained" color="primary">
-            Shop some more
-          </Button>
+          <Link href="/">
+            <Typography
+              variant="button"
+              sx={{
+                display: "inline-block",
+                padding: "8px 16px",
+                backgroundColor: "#040404",
+                color: "#fff",
+                borderRadius: "4px",
+                textAlign: "center",
+                textDecoration: "none",
+                cursor: "pointer",
+                "&:hover": {
+                  background: "#403D3A",
+                },
+              }}
+            >
+              Shop more
+            </Typography>
+          </Link>
         </Box>
       </Paper>
     </Container>
