@@ -1,6 +1,4 @@
-# HIKARI
-
-# 🕯️ HIKARI - a candle E-commerce Web Application
+# HIKARI🕯️ - a candle E-commerce Web Application
 
 This is a full-stack e-commerce application for managing and selling candles. The project includes an **admin panel** for managing products and a **customer-facing store** where users can browse, add products to their cart, and complete purchases.
 
@@ -20,16 +18,21 @@ This is a full-stack e-commerce application for managing and selling candles. Th
 
 ## Assignment description in NextJs
 
-The purpose of the assignment was to create a webbshop using React, NextJS, Typescript and a designsystem (MUI, ChakraUI or Mantine). The project needed to consist of four pages: a start page, a product page, a checkout page and a confirm page and also admin pages to add, delete and edit products.
+This project is a **webshop application** built using **React, Next.js, TypeScript, and Material UI (MUI)**. The assignment required us to build an e-commerce store with the following **mandatory pages**:  
+**Home** – List products  
+**Product Page** – Show product details  
+**Checkout Page** – Handle purchases  
+**Confirmation Page** – Display order details  
+**Admin Panel** – CRUD functionality (Add, Edit, Delete products)
 
 ## 📌 Features
 
-### 📋 **Admin Panel**
+### 📋 **Admin Panel (CRUD)**
 
-- Add new products
-- Edit existing products
-- Delete products
-- View a list of all products
+- **Create:** Add new products
+- **Read:** View a list of all products
+- **Update:** Edit existing products
+- **Delete:** Remove products from the database
 
 ### 🛒 **Shopping Cart & Checkout**
 
@@ -51,12 +54,14 @@ The purpose of the assignment was to create a webbshop using React, NextJS, Type
 
 ## 🌍 Live Demo
 
+🚀 **Coming soon...** _(Deployed on Vercel)_
+
 ## 🚀 Getting Started
 
 ### Clone the Repository
 
 ```bash
-git clone
+git clone https://github.com/plugga-tech/nextjs-webshop-ts-react-akarui.git
 ```
 
 ## Installation
@@ -70,10 +75,6 @@ pnpm install
 # or
 yarn install
 ```
-
-### Install React Router
-
-npm i react-router
 
 ## Available Scripts
 
