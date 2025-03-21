@@ -1,5 +1,6 @@
 "use client";
 import { useCart } from "@/app/providers/cart-provider";
+import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import SupervisorAccountOutlinedIcon from "@mui/icons-material/SupervisorAccountOutlined";
 import {
@@ -9,6 +10,7 @@ import {
   IconButton,
   Link,
   Toolbar,
+  Tooltip,
   Typography,
 } from "@mui/material";
 import { useRouter } from "next/navigation";
@@ -96,6 +98,21 @@ const Header: React.FC = () => {
               justifyContent: "flex-end",
             }}
           >
+            <Tooltip title="About Hikari">
+            <IconButton
+              aria-label="About Hikari"
+              onClick={() => router.push("/about")}
+            >
+              <InfoOutlinedIcon
+                data-cy="admin-link"
+                sx={{
+                  fontSize: { md: "2.5rem", sm: "2rem", xs: "1.8rem" },
+                }}
+              />
+            </IconButton>
+            </Tooltip>
+
+            <Tooltip title="Admin">
             <IconButton
               aria-label="Admin"
               onClick={() => router.push("/admin")}
@@ -107,7 +124,9 @@ const Header: React.FC = () => {
                 }}
               />
             </IconButton>
+            </Tooltip>
 
+            <Tooltip title="Cart">
             <IconButton
               aria-label="Cart"
               data-cy="open-cart-sidebar"
@@ -135,6 +154,7 @@ const Header: React.FC = () => {
                 />
               )}
             </IconButton>
+            </Tooltip>
           </Box>
         </Toolbar>
       </AppBar>

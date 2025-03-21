@@ -1,21 +1,23 @@
 import { Box, Container, Typography } from "@mui/material"
+import HeroSection from "../components/hero/herosection"
 
 export default function AboutHikariSection() {
     return(
+        <>
+         <HeroSection /> 
         <Container maxWidth="lg" sx={{ mt: { md: 2, sm: 1.5, xs: 1 }, mb: 0 }}>
         <Box
         sx={{
             paddingY: { xs: 2, sm: 3 },
             paddingX: { xs: 1, sm: 4 },
-            color: "#000",
         }}
         >
       <Typography
         component="h2"
-        variant="body1"
+        variant="h5"
         sx={{
             color: "#000",
-            fontWeight: "300",
+            fontWeight: "350",
             textAlign: { xs: "center", sm: "left" }, // Centrerad text på små skärmar
             width: "100%", // Säkerställer att den är centrerad korrekt på små skärmar
         }}
@@ -26,13 +28,27 @@ export default function AboutHikariSection() {
 
         Hikari is more than just a source of light, it’s a bridge between tradition and modern living, bringing a sense of serenity and harmony to your space and soul.<br /><br />
 
-        Light your way with the essence of nature - HIKARI.
+       
 
       </Typography>
+      <Typography
+        component="h2"
+        variant="h5"
+        sx={{
+            color: "#000",
+            fontWeight: "390",
+            textAlign: { sm: "right" }, // Centrerad text på små skärmar
+            width: "100%", // Säkerställer att den är centrerad korrekt på små skärmar
+        }}
+      >
+      Light your way with the essence of nature - HIKARI ヒカリ
+
+</Typography>
       </Box>
   
   
 
   </Container>
+  </>
     )
 }
