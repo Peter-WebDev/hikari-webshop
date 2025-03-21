@@ -1,4 +1,5 @@
 import { Container, Typography } from "@mui/material";
+import AboutHikariSection from "./components/about-hikari/about-hikari-section";
 import HeroSection from "./components/hero/herosection";
 import ProductList from "./components/products/product-list";
 
@@ -6,6 +7,7 @@ export default function Home() {
   return (
     <main>
       <HeroSection />
+        <AboutHikariSection />
       <Container>
         <Typography
           component="h2"
