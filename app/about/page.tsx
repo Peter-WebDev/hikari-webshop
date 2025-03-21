@@ -4,7 +4,7 @@ import HeroSection from "../components/hero/herosection"
 export default function AboutHikariSection() {
     return(
         <>
-         <HeroSection /> 
+         <HeroSection page="about" />
         <Container maxWidth="lg" sx={{ mt: { md: 2, sm: 1.5, xs: 1 }, mb: 0 }}>
         <Box
         sx={{
@@ -27,10 +27,8 @@ export default function AboutHikariSection() {
         Made from 100% organic, plant-based wax, every candle reflects our dedication to authenticity and sustainability. Hikari candles capture the essence of craftsmanship and purity, offering a clean, long-lasting burn infused with gentle and natural scents.<br /><br />
 
         Hikari is more than just a source of light, it’s a bridge between tradition and modern living, bringing a sense of serenity and harmony to your space and soul.<br /><br />
-
-       
-
       </Typography>
+
       <Typography
         component="h2"
         variant="h5"
@@ -43,12 +41,9 @@ export default function AboutHikariSection() {
       >
       Light your way with the essence of nature - HIKARI ヒカリ
 
-</Typography>
-      </Box>
-  
-  
-
-  </Container>
-  </>
+      </Typography>
+            </Box>
+      </Container>
+      </>
     )
-}
+    } 
