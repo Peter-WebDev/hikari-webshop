@@ -1,3 +1,4 @@
+import ProductHeroVideo from "@/app/components/hero/product-hero-video";
 import QuantityButton from "@/app/components/quantity/quantityButton";
 import { db } from "@/prisma/db";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
@@ -29,6 +30,7 @@ export default async function ProductPage({
 
   return (
     <main>
+      <ProductHeroVideo videoName={product.title} />
       <Container maxWidth="md" sx={{ mt: { md: 8, sm: 6, xs: 4 }, mb: 25 }}>
         <Box
           component="article"
