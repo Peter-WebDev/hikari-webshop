@@ -5,7 +5,6 @@ import { db } from "@/prisma/db";
 import { Prisma } from "@prisma/client";
 import { customAlphabet, nanoid } from "nanoid/non-secure";
 import { revalidatePath } from "next/cache";
-import { redirect } from "next/navigation";
 import { z } from "zod";
 import { productSchema } from "./utils/validation";
 
@@ -14,26 +13,31 @@ const generateRandomDigits = customAlphabet("0123456789", 15);
 
 //Skapa produkt i databasen
 export async function createProduct(data: any) {
-  const validationResult = productSchema.safeParse(data);
-  if (!validationResult.success) {
-    return { success: false, errors: validationResult.error.format() };
+  try {
+    const validationResult = productSchema.safeParse(data);
+    if (!validationResult.success) {
+      return { success: false, errors: validationResult.error.format() };
+    }
+
+    // Generate a custom numeric article number with prefix "300"
+    const articleNumber = `300${generateRandomDigits()}`;
+
+    // Added articleNumber to the data object
+    // to override with newly generated value
+    // Spread operator to include all properties
+    // from the the existing data object
+    await db.product.create({
+      data: {
+        ...data,
+        articleNumber,
+      },
+    });
+  } catch (error) {
+    console.error(error);
   }
 
-  // Generate a custom numeric article number with prefix "300"
-  const articleNumber = `300${generateRandomDigits()}`;
-
-  // Added articleNumber to the data object
-  // to override with newly generated value
-  // Spread operator to include all properties
-  // from the the existing data object
-  await db.product.create({
-    data: {
-      ...data,
-      articleNumber,
-    },
-  });
-
-  redirect("/admin");
+  revalidatePath("/");
+  // redirect("/admin");
 }
 
 //Uppdatera editerad produkt i databasen
@@ -42,52 +46,45 @@ export async function updateEditedProduct(
   data: z.infer<typeof productSchema>
 ) {
   console.log("ID received:", articleNumber);
-  try {
-    // Fetch the existing product first
-    const existingProduct = await db.product.findUnique({
-      where: { articleNumber },
-    });
 
-    if (!existingProduct) {
-      throw new Error(`Product width ID ${articleNumber} not found`);
-    }
+  // Fetch the existing product first
+  const existingProduct = await db.product.findUnique({
+    where: { articleNumber },
+  });
 
-    // Validate the data
-    const validatedData = productSchema.parse(data);
-
-    // Merge validated data with existing articleNumber
-    // Ensures we don't try to update the articleNumber field
-    const dataToUpdate = {
-      ...validatedData,
-      articleNumber: existingProduct.articleNumber,
-    };
-
-    console.log("Data to update:", dataToUpdate);
-
-    const updatedProduct = await db.product.update({
-      where: { articleNumber },
-      data: dataToUpdate,
-    });
-
-    console.log("Sucessfully updated product:", updatedProduct);
-  } catch (error) {
-    console.error("Error updating product:", error);
-    // Rethrow NEXT_REDIRECT if it's the cause
-    if (error && (error as any).digest === "NEXT_REDIRECT") {
-      throw error;
-    }
-    throw new Error(`Could not update product: ${(error as Error).message}`);
+  if (!existingProduct) {
+    throw new Error(`Product width ID ${articleNumber} not found`);
   }
+
+  // Validate the data
+  const validatedData = productSchema.parse(data);
+
+  // Merge validated data with existing articleNumber
+  // Ensures we don't try to update the articleNumber field
+  const dataToUpdate = {
+    ...validatedData,
+    articleNumber: existingProduct.articleNumber,
+  };
+
+  console.log("Data to update:", dataToUpdate);
+
+  const updatedProduct = await db.product.update({
+    where: { articleNumber },
+    data: dataToUpdate,
+  });
+
+  console.log("Sucessfully updated product:", updatedProduct);
+
   // Redirect to the products list instead of edit page
   revalidatePath("/admin");
-  redirect("/admin");
+  // redirect("/admin");
 }
 
 //Ta bort produkt i databasen
-export async function deleteProduct(articleNumber: string) {
+export async function deleteProduct(id: string) {
   try {
     await db.product.delete({
-      where: { articleNumber },
+      where: { id },
     });
 
     revalidatePath("/admin");
@@ -128,12 +125,12 @@ export async function createOrder(
     });
 
     if (order) {
-       // Return success with order data that can be used client-side
+      // Return success with order data that can be used client-side
       return {
         success: true,
         orderNumber: order.orderNumber,
         orderId: order.id,
-        totalPrice: order.totalPrice
+        totalPrice: order.totalPrice,
       };
     }
 

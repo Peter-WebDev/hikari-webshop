@@ -26,8 +26,8 @@ export default function EditProductForm({ product }: { product: ProductForm & { 
 
   //Uppdatera produkt
   const onSubmit = async (data: ProductForm) => {
-    await updateEditedProduct(product.id, data);
-    reset();
+    await updateEditedProduct(product.articleNumber, data);
+    router.push("/admin")
   };
 
   //Radera produkt

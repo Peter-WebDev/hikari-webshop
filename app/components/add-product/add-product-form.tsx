@@ -4,6 +4,7 @@ import { createProduct } from "@/app/actions";
 import { productSchema } from "@/app/utils/validation";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Box, Button, Container, FormHelperText, Paper, TextField, Typography } from "@mui/material";
+import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
@@ -18,11 +19,13 @@ export default function AddProductForm() {
   } = useForm<Product>({
     resolver: zodResolver(productSchema),
   });
+  const router = useRouter();
 
   const onSubmit = async (data: Product) => {
     console.log("Submitting data", data);
     await createProduct(data);
     reset();
+    router.push("/admin")
   };
 
   return (
