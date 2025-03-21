@@ -89,7 +89,6 @@ export default function AddProductForm() {
             }
           />
           
-
           <TextField
             slotProps={{
               htmlInput: {

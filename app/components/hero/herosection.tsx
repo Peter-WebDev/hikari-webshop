@@ -2,6 +2,10 @@
 import { Box, Typography } from "@mui/material"; // Importera Box från MUI
 import { useEffect, useState } from "react";
 
+interface HeroSectionProps {
+  page?: "home" | "about";
+}
+
 const videos: string[] = [
   "assets/herovideos/aka.mp4",
   "assets/herovideos/blossom.mp4",
@@ -15,7 +19,7 @@ const videos: string[] = [
   "assets/herovideos/wind.mp4",
 ];
 
-const HeroSection = () => {
+const HeroSection = ({ page = "home" }: HeroSectionProps) => {
   const [videoSrc, setVideoSrc] = useState<string>("");
 
   useEffect(() => {
@@ -51,6 +55,7 @@ const HeroSection = () => {
           }}
         />
       )}
+      
       <Box
         sx={{
           position: "absolute",
@@ -63,31 +68,57 @@ const HeroSection = () => {
         }}
       />
 
-      {/* Text längst ner */}
-      <Box
-        sx={{
-          position: "absolute",
-          bottom: 0,
-          width: "100%",
-          display: "flex",
-          paddingBottom: "1rem",
-        }}
-      >
-        <Typography
-          component="h2"
-          variant="h4"
+ {/* Text-rubrik, placeras olika beroende på om man är på about-page eller på övriga sidor */}
+ {page === "about" ? (
+        <Box
           sx={{
-            color: "#fff",
-            paddingLeft: { xs: "0.5rem", sm: "4rem", md: "8.7rem" },
-            fontSize: { xs: "1.5rem", sm: "1.8rem", md: "2.125rem" }, // Anpassa efter behov
-            fontWeight: "300",
-            textAlign: { xs: "center", sm: "left" }, // Centrerad text på små skärmar
-            width: "100%", // Säkerställer att den är centrerad korrekt på små skärmar
+            position: "absolute",
+            bottom: 0,
+            width: "100%",
+            display: "flex",
+            justifyContent: "flex-start",
+            paddingBottom: "1rem",
+            paddingLeft: { xs: "2rem", sm: "4rem", md: "18rem" },
           }}
         >
-          HIKARI - THE ESSENCE OF NATURE
-        </Typography>
-      </Box>
+          <Typography
+            component="h2"
+            variant="h4"
+            sx={{
+              color: "#fff",
+              fontWeight: 300,
+              fontSize: { xs: "1.5rem", sm: "1.8rem", md: "2.125rem" },
+            }}
+          >
+            ABOUT HIKARI
+          </Typography>
+        </Box>
+      ) : (
+        <Box
+          sx={{
+            position: "absolute",
+            bottom: 0,
+            width: "100%",
+            display: "flex",
+            paddingBottom: "1rem",
+          }}
+        >
+          <Typography
+            component="h2"
+            variant="h4"
+            sx={{
+              color: "#fff",
+              paddingLeft: { xs: "0.5rem", sm: "4rem", md: "8.7rem" },
+              fontSize: { xs: "1.5rem", sm: "1.8rem", md: "2.125rem" },
+              fontWeight: 300,
+              textAlign: { xs: "center", sm: "left" },
+              width: "100%",
+            }}
+          >
+            HIKARI - THE ESSENCE OF NATURE
+          </Typography>
+        </Box>
+      )}
     </Box>
   );
 };

@@ -97,6 +97,7 @@ const Sidebar = ({
                 >
                   <Remove fontSize="medium" color="secondary" />
                 </IconButton>
+
                 <Typography
                   component="span"
                   fontSize="medium"
@@ -107,6 +108,7 @@ const Sidebar = ({
                 >
                   {item.quantity}
                 </Typography>
+                
                 <IconButton
                   aria-label="add"
                   sx={{ padding: "0" }}

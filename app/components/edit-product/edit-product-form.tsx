@@ -8,8 +8,6 @@ import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
-
-
 export type ProductForm = z.infer<typeof productSchema>;
 export default function EditProductForm({ product }: { product: ProductForm & { id: string, articleNumber: string } }) {
   const router = useRouter();
@@ -45,8 +43,8 @@ export default function EditProductForm({ product }: { product: ProductForm & { 
           Edit product
         </Typography>
 
-        <Box component="form" data-cy="product-form" onSubmit={handleSubmit(onSubmit)} sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
 
+        <Box component="form" data-cy="product-form" onSubmit={handleSubmit(onSubmit)} sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
           <TextField
             slotProps={{
               htmlInput: {
