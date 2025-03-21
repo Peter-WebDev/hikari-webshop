@@ -3,7 +3,7 @@
 import { deleteProduct, updateEditedProduct } from "@/app/actions";
 import { productSchema } from "@/app/utils/validation";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Box, Button, Container, Paper, TextField, Typography } from "@mui/material";
+import { Box, Button, Container, FormHelperText, Paper, TextField, Typography } from "@mui/material";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
@@ -11,7 +11,7 @@ import { z } from "zod";
 
 
 export type ProductForm = z.infer<typeof productSchema>;
-export default function EditProductForm({ product }: { product: ProductForm & { id: string } }) {
+export default function EditProductForm({ product }: { product: ProductForm & { id: string, articleNumber: string } }) {
   const router = useRouter();
 
   const {
@@ -26,8 +26,8 @@ export default function EditProductForm({ product }: { product: ProductForm & { 
 
   //Uppdatera produkt
   const onSubmit = async (data: ProductForm) => {
-    await updateEditedProduct(product.id, data);
-    reset();
+    await updateEditedProduct(product.articleNumber, data);
+    router.push("/admin")
   };
 
   //Radera produkt
@@ -45,18 +45,88 @@ export default function EditProductForm({ product }: { product: ProductForm & { 
           Edit product
         </Typography>
 
-        <Box component="form" onSubmit={handleSubmit(onSubmit)} sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
+        <Box component="form" data-cy="product-form" onSubmit={handleSubmit(onSubmit)} sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
 
           <TextField
+            slotProps={{
+              htmlInput: {
+                "data-cy": "product-title",
+              },
+            }}
             label="Product Name/title"
             type="text"
+            data-cy="product-title"
             {...register("title")}
             error={!!errors.title}
-            helperText={errors.title?.message}
+            helperText={errors.title ?
+              <FormHelperText component="span" data-cy="product-title-error">
+                {errors.title.message}
+              </FormHelperText> : null
+            }
           />
 
           <TextField
-            label="Title Sign"
+            slotProps={{
+              htmlInput: {
+                "data-cy": "product-price",
+              },
+            }}
+            label="Price"
+            type="number"
+            {...register("price")}
+            error={!!errors.price}
+            helperText={errors.price ?
+              <FormHelperText component="span" data-cy="product-price-error">
+                {errors.price.message}
+              </FormHelperText> : null
+            }
+          />
+
+          <TextField
+            slotProps={{
+              htmlInput: {
+                "data-cy": "product-description",
+              },
+            }}
+            label="Product description"
+            type="text"
+            {...register("description")}
+            error={!!errors.description}
+            helperText={errors.description ?
+              <FormHelperText component="span" data-cy="product-description-error">
+                {errors.description.message}
+              </FormHelperText> : null
+            }
+          />
+
+
+          <TextField
+            slotProps={{
+              htmlInput: {
+                "data-cy": "product-image",
+              },
+            }}
+            label="Image URL"
+            type="text"
+            {...register("image")}
+            error={!!errors.image}
+            helperText={errors.image ?
+              <FormHelperText component="span" data-cy="product-image-error">
+                {errors.image.message}
+              </FormHelperText> : null
+            }
+          />
+
+          <TextField
+            label="Image Dark URL"
+            type="text"
+            {...register("imageDark")}
+            error={!!errors.imageDark}
+            helperText={errors.imageDark?.message}
+          />
+
+          <TextField
+            label="Title sign"
             type="text"
             {...register("titleSign")}
             error={!!errors.titleSign}
@@ -64,8 +134,9 @@ export default function EditProductForm({ product }: { product: ProductForm & { 
           />
 
           <TextField
-            label="Title Sign Color"
+            label="Title sign color"
             type="color"
+            defaultValue="#000000"
             {...register("titleSignColor")}
             error={!!errors.titleSignColor}
             helperText={errors.titleSignColor?.message}
@@ -88,40 +159,6 @@ export default function EditProductForm({ product }: { product: ProductForm & { 
           />
 
           <TextField
-            label="Price"
-            type="number"
-            {...register("price")}
-            error={!!errors.price}
-            helperText={errors.price?.message}
-          />
-
-          <TextField
-            label="Product description"
-            type="text"
-            {...register("description")}
-            multiline
-            rows={3}
-            error={!!errors.description}
-            helperText={errors.description?.message}
-          />
-
-          <TextField
-            label="Image URL"
-            type="text"
-            {...register("image")}
-            error={!!errors.image}
-            helperText={errors.image?.message}
-          />
-
-          <TextField
-            label="Dark Image URL"
-            type="text"
-            {...register("imageDark")}
-            error={!!errors.imageDark}
-            helperText={errors.imageDark?.message}
-          />
-
-          <TextField
             label="Slogan"
             type="text"
             {...register("slogan")}
@@ -130,25 +167,15 @@ export default function EditProductForm({ product }: { product: ProductForm & { 
           />
 
           <TextField
-            label="Note"
+            label="Note of the candle"
             type="text"
             {...register("note")}
-            multiline
-            rows={2}
             error={!!errors.note}
             helperText={errors.note?.message}
           />
 
           <TextField
-            label="Weight"
-            type="text"
-            {...register("weight")}
-            error={!!errors.weight}
-            helperText={errors.weight?.message}
-          />
-
-          <TextField
-            label="Brand"
+            label="Brand name"
             type="text"
             {...register("brand")}
             error={!!errors.brand}
@@ -156,16 +183,24 @@ export default function EditProductForm({ product }: { product: ProductForm & { 
           />
 
           <TextField
-            label="Height"
-            type="text"
+            label="Product weight"
+            type="number"
+            {...register("weight")}
+            error={!!errors.brand}
+            helperText={errors.brand?.message}
+          />
+
+          <TextField
+            label="Product height"
+            type="number"
             {...register("height")}
             error={!!errors.height}
             helperText={errors.height?.message}
           />
 
           <TextField
-            label="Diameter"
-            type="text"
+            label="Product diameter"
+            type="number"
             {...register("diameter")}
             error={!!errors.diameter}
             helperText={errors.diameter?.message}
