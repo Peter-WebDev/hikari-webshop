@@ -18,7 +18,6 @@ const steps = ["Shipping address", "Payment details", "Review your order"];
 
 const CheckoutProduct = () => {
   const { cartItems, updateQuantity, totalPrice, removeFromCart } = useCart();
-
   const shippingFee = 0; // Can be changed
   const totalWithShipping = totalPrice + shippingFee; // Total price is the subtotal
 
