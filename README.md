@@ -54,8 +54,6 @@ This project is a **webshop application** built using **React, Next.js, TypeScri
 
 ## 🌍 Live Demo
 
-🚀 **Coming soon...** _(Deployed on Vercel)_
-
 ## 🚀 Getting Started
 
 ### Clone the Repository

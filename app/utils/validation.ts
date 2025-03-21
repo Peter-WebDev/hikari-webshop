@@ -40,7 +40,7 @@ export const productSchema = z.object({
         const contrast = Math.abs(colorLuminance - bgLuminance);
 
         // Minimum contrast threshold (e.g., 0.3 for moderate contrast, 0.5-0.6 for more stricter contrast)
-        return contrast > 0.4;
+        return contrast > 0.2;
       },
       {
         message: "Color doesn't have enough contrast with the background",

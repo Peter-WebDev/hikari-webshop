@@ -15,14 +15,11 @@ export default async function AdminPage() {
   const products = await db.product.findMany({
     select: {
       id: true,
-      articleNumber: true,
       image: true,
+      articleNumber: true,
       title: true,
       price: true,
     },
-    orderBy: {
-      id: "asc",
-    }
   });
 
   return (
@@ -108,7 +105,7 @@ export default async function AdminPage() {
               <Box sx={{ display: "flex", justifyContent: "flex-end", gap: 1 }}>
                 <Link
                   data-cy="admin-edit-product"
-                  href={`/admin/edit-product/${product.id}`}
+                  href={`/admin/product/${product.articleNumber}`}
                 >
                   <IconButton color="secondary">
                     <EditIcon />

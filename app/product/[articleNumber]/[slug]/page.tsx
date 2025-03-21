@@ -1,3 +1,4 @@
+import ProductHeroVideo from "@/app/components/hero/product-hero-video";
 import QuantityButton from "@/app/components/quantity/quantityButton";
 import { db } from "@/prisma/db";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
@@ -16,12 +17,14 @@ import { notFound } from "next/navigation";
 export default async function ProductPage({
   params,
 }: {
-  params: Promise<{ id: string }>;
+  params: { articleNumber: string };
 }) {
-  const { id } = await params;
+  const { articleNumber } = params;
   const product = await db.product.findUnique({
-    where: { articleNumber: id },
+    where: { articleNumber: articleNumber },
   });
+
+  console.log("Found product:", product);
 
   if (!product) {
     notFound();
@@ -29,6 +32,7 @@ export default async function ProductPage({
 
   return (
     <main>
+      <ProductHeroVideo videoName={product.title} />
       <Container maxWidth="md" sx={{ mt: { md: 8, sm: 6, xs: 4 }, mb: 25 }}>
         <Box
           component="article"

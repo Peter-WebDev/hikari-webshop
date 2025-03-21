@@ -20,7 +20,7 @@ export default async function ProductList() {
     >
       {products.map((product) => (
         <Box
-          key={product.id}
+          key={product.articleNumber}
         >
           <ProductCard product={product} />
         </Box>
