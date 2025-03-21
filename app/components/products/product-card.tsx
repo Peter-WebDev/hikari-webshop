@@ -71,7 +71,7 @@ export default function ProductCard({ product }: { product: Product }) {
                 component="h3"
                 sx={{
                   fontSize: { md: "1.8rem", xs: "1.5rem" },
-                  fontWeight: "600",
+                  fontWeight: "400",
                 }}
               >
                 {product.title}
@@ -81,7 +81,7 @@ export default function ProductCard({ product }: { product: Product }) {
                 sx={{
                   paddingLeft: "0.5rem",
                   fontSize: { md: "1.8rem", xs: "1.5rem" },
-                  fontWeight: "600",
+                  fontWeight: "400",
                   color: product.titleSignColor || "#000",
                 }}
               >
@@ -112,7 +112,7 @@ export default function ProductCard({ product }: { product: Product }) {
             component="p"
             sx={{
               fontSize: { md: "1.3rem", xs: "1.2rem" },
-              fontWeight: "500",
+              fontWeight: "350",
             }}
           >
             {product.titleDescription}

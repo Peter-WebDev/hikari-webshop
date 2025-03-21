@@ -3,7 +3,7 @@
 import { CartItem } from "@/data";
 import { db } from "@/prisma/db";
 import { Prisma } from "@prisma/client";
-import { customAlphabet } from "nanoid/non-secure";
+import { customAlphabet, nanoid } from "nanoid/non-secure";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { z } from "zod";
@@ -102,24 +102,46 @@ export async function createOrder(
   cartItems: CartItem[]
 ) {
   try {
-    await db.order.create({
+    //För att generera ett unikt ordernr
+    const orderNumber = nanoid(10);
+
+    //Beräknar totalpriset baserat på innehållet i kundvagnen
+    const totalPrice = cartItems.reduce(
+      (sum, item) => sum + item.price * item.quantity,
+      0
+    );
+
+    //Skapa ordern i db
+    const order = await db.order.create({
       data: {
-        orderNumber: "1234",
-        totalPrice: 123,
-        customer: {
-          create: customer,
+        orderNumber,
+        totalPrice,
+        customer: { create: customer },
+        orderItems: {
+          create: cartItems.map((item) => ({
+            productId: item.id,
+            quantity: item.quantity,
+            price: item.price,
+          })),
         },
-        // orderItems: { create: cartItems.map((item) => ({
-        //   ""
-        // })) },
       },
     });
 
-    // revalidatePath("/admin");
-    // redirect("/admin");
+    if (order) {
+       // Return success with order data that can be used client-side
+      return {
+        success: true,
+        orderNumber: order.orderNumber,
+        orderId: order.id,
+        totalPrice: order.totalPrice
+      };
+    }
+
+    //Skicka tillbaka ordernumret
+    return { success: false, message: "Order creation failed" };
   } catch (error) {
-    // console.error("Error deleting product:", error);
-    // throw new Error("Could not delete product");
+    console.error("Error creating order:", error);
+    return { success: false, message: "Could not create order" };
   }
 }
 

@@ -1,9 +1,13 @@
 "use client";
 
+import { createOrder } from "@/app/actions";
+import { useCart } from "@/app/providers/cart-provider";
 import {
   Box,
   Button,
+  Checkbox,
   Container,
+  FormControlLabel,
   Paper,
   TextField,
   Typography,
@@ -11,92 +15,95 @@ import {
 import { useRouter } from "next/navigation"; // Importera router
 import { useState } from "react";
 
-// Definiera typ för formData och errors
-interface FormData {
-  firstName: string;
-  lastName: string;
-  address: string;
-  zipCode: number | null;
-  city: string;
-  country: string;
-  email: string;
-  phone: string;
-}
-
-interface Errors {
-  [key: string]: boolean; // Dynamisk indexsignatur för fältnamn
-}
-
 const CheckoutForm = () => {
   const router = useRouter(); // Skapa router-instans
+  const { cartItems, clearCart } = useCart();
 
+  // // Definiera typ för formData och errors
+  interface FormData {
+    name: string;
+    address: string;
+    zipCode: string;
+    city: string;
+    email: string;
+    phone: string;
+  }
+
+  interface Errors {
+    [key: string]: boolean; // Dynamisk indexsignatur för fältnamn
+  }
   // Sätt upp formData och errors med rätt typer
   const [formData, setFormData] = useState<FormData>({
-    firstName: "",
-    lastName: "",
+    name: "",
     address: "",
-    zipCode: null,
+    zipCode: "",
     city: "",
-    country: "",
     email: "",
     phone: "",
   });
 
   const [errors, setErrors] = useState<Errors>({
-    firstName: false,
-    lastName: false,
+    name: false,
     address: false,
     zipCode: false,
     city: false,
-    country: false,
     email: false,
     phone: false,
   });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-
     setFormData({
       ...formData,
-      [name]: name === "zipCode" ? Number(value) : value,
+      [name]: value,
     });
-
     setErrors({ ...errors, [name]: false });
   };
 
-  const handleSubmit = () => {
-    const newErrors: Errors = { ...errors };
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
 
-    // Validera varje fält
+    // Validera formuläret
+    const newErrors: Errors = {};
     Object.keys(formData).forEach((field) => {
-      if (formData.hasOwnProperty(field)) {
-        const value = formData[field as keyof FormData];
-
-        if (typeof value === "string") {
-          if (value.trim() === "") {
-            newErrors[field] = true;
-          } else {
-            newErrors[field] = false;
-          }
-        } else if (typeof value === "number") {
-          if (value === null || isNaN(value)) {
-            newErrors[field] = true;
-          } else {
-            newErrors[field] = false;
-          }
-        } else if (value === null) {
-          newErrors[field] = true;
-        }
+      if (!formData[field as keyof FormData].trim()) {
+        newErrors[field] = true;
       }
     });
 
-    setErrors(newErrors);
+    // Check zipcode
+    if (!/^\d{5}$/.test(formData.zipCode)) {
+      newErrors.zipCode = true;
+    }
 
-    // Om inga fel finns, kan formuläret skickas
-    if (Object.values(newErrors).every((error) => !error)) {
-      console.log("Formulär skickat:", formData);
-      // Navigera till nästa sida, exempelvis /payment
-      router.push("/confirmation[order-number]");
+    // Check email
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+      newErrors.email = true;
+    }
+
+    // Check phone
+    if (!/^\d{10}$|^\d{3}-\d{3}-\d{4}$/.test(formData.phone)) {
+      newErrors.phone = true;
+    }
+
+    setErrors(newErrors);
+    if (Object.keys(newErrors).length > 0) return;
+
+    // Convert zipcode to number
+    const formattedData = {
+      ...formData,
+      zipCode: Number(formData.zipCode.split(" ").join("")),
+    };
+
+    // Create order
+    const response = await createOrder(formattedData, cartItems);
+
+    if (response && response.success) {
+      localStorage.setItem("customerInfo", JSON.stringify(formattedData));
+      clearCart();
+      router.push(`/confirmation/${response.orderNumber}`);
+    } else {
+      alert("Something went wrong while placing your order.");
     }
   };
 
@@ -120,30 +127,18 @@ const CheckoutForm = () => {
               slotProps={{
                 htmlInput: {
                   "data-cy": "customer-name",
-                  autoComplete: "given-name",
+                  autoComplete: "name",
                 },
                 formHelperText: { "data-cy": "customer-name-error" } as any,
               }}
-              label="First name *"
+              label="Fullname *"
               variant="outlined"
               fullWidth
-              name="firstName"
-              value={formData.firstName}
+              name="name"
+              value={formData.name}
               onChange={handleChange}
-              error={errors.firstName}
-              helperText={errors.firstName ? "First name is required." : ""}
-            />
-
-            <TextField
-              autoComplete="family-name"
-              label="Last name *"
-              variant="outlined"
-              fullWidth
-              name="lastName"
-              value={formData.lastName}
-              onChange={handleChange}
-              error={errors.lastName}
-              helperText={errors.lastName ? "Last name is required." : ""}
+              error={errors.name}
+              helperText={errors.name ? "Full name is required." : ""}
             />
 
             <TextField
@@ -165,7 +160,6 @@ const CheckoutForm = () => {
             />
 
             <TextField
-              type="number"
               slotProps={{
                 htmlInput: {
                   "data-cy": "customer-zipcode",
@@ -177,10 +171,10 @@ const CheckoutForm = () => {
               variant="outlined"
               fullWidth
               name="zipCode"
-              value={formData.zipCode ?? ""}
+              value={formData.zipCode}
               onChange={handleChange}
               error={errors.zipCode}
-              helperText={errors.zipCode ? "Zip code is required." : null}
+              helperText={errors.zipCode ? "Zip code is required." : ""}
             />
 
             <TextField
@@ -199,18 +193,6 @@ const CheckoutForm = () => {
               onChange={handleChange}
               error={errors.city}
               helperText={errors.city ? "City is required." : ""}
-            />
-
-            <TextField
-              autoComplete="shipping"
-              label="Country *"
-              variant="outlined"
-              fullWidth
-              name="country"
-              value={formData.country}
-              onChange={handleChange}
-              error={errors.country}
-              helperText={errors.country ? "Country is required." : ""}
             />
 
             <TextField
@@ -246,18 +228,20 @@ const CheckoutForm = () => {
               helperText={errors.phone ? "Phone is required." : ""}
             />
 
+            <FormControlLabel
+              control={<Checkbox color="primary" />}
+              label="Use this address for payment details"
+            />
+
             <Button
-              onClick={(e) => {
-                e.preventDefault();
-                handleSubmit();
-              }}
+              onClick={handleSubmit}
               type="submit"
               variant="contained"
               color="secondary"
               fullWidth
               sx={{ mt: 2 }}
             >
-              Next
+              Place order
             </Button>
           </Box>
         </Paper>

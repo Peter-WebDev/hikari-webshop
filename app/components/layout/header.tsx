@@ -1,8 +1,7 @@
 "use client";
-
 import { useCart } from "@/app/providers/cart-provider";
-import AdminPanelSettingsOutlinedIcon from "@mui/icons-material/AdminPanelSettingsOutlined";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
+import SupervisorAccountOutlinedIcon from "@mui/icons-material/SupervisorAccountOutlined";
 import {
   AppBar,
   Badge,
@@ -38,10 +37,9 @@ const Header: React.FC = () => {
   // Calculates the total amount of all products in the cart
   const totalQuantity = cartItems.reduce((sum, item) => sum + item.quantity, 0);
 
-
   return (
     <>
-      <AppBar position="static" color="primary" sx={{ boxShadow: 2 }}>
+      <AppBar position="sticky" color="primary" sx={{ boxShadow: 2 }}>
         <Toolbar sx={{ display: "flex", justifyContent: "space-between" }}>
           <Box sx={{ flex: 1 }} />
           <Link color="inherit" underline="none" aria-label="Home" href="/">
@@ -53,21 +51,41 @@ const Header: React.FC = () => {
                 alignItems: "center",
               }}
             >
-              <Typography
-                component="h1"
-                variant="h1"
-                sx={{
-                  lineHeight: 1,
-                  display: "flex",
-                  flexDirection: "column",
-                  textAlign: "center",
-                  fontSize: { md: "2rem", sm: "2rem", xs: "1.5rem" },
-                  fontWeight: "300",
-                }}
-              >
-                <span>HIKARI</span>
-                <span>ヒカリ</span>
-              </Typography>
+              <Box>
+                <Typography
+                  component="h1"
+                  variant="h1"
+                  sx={{
+                    lineHeight: 1,
+                    display: "flex",
+                    flexDirection: "column",
+                    mt: "0.5rem",
+                    textAlign: "center",
+                    fontSize: { md: "2.5rem", sm: "2.5rem", xs: "2rem" },
+                    fontWeight: "300",
+                  }}
+                >
+                  HIKARI
+                </Typography>
+                <Box
+                  component="div"
+                  sx={{
+                    padding: 0,
+                    margin: 0,
+                  }}
+                >
+                  <Typography
+                    component="h1"
+                    variant="h5"
+                    align="center"
+                    sx={{
+                      fontSize: { md: "2rem", sm: "2rem", xs: "1.5rem" },
+                    }}
+                  >
+                    ヒカリ
+                  </Typography>
+                </Box>
+              </Box>
             </Box>
           </Link>
 
@@ -83,7 +101,7 @@ const Header: React.FC = () => {
               aria-label="Admin"
               onClick={() => router.push("/admin")}
             >
-              <AdminPanelSettingsOutlinedIcon
+              <SupervisorAccountOutlinedIcon
                 data-cy="admin-link"
                 sx={{
                   fontSize: { md: "2.5rem", sm: "2rem", xs: "1.8rem" },
