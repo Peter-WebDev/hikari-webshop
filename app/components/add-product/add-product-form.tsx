@@ -62,13 +62,17 @@ export default function AddProductForm() {
             type="number"
             {...register("price")}
             error={!!errors.price}
-            helperText={errors.price?.message}
+            helperText={errors.price ?
+              <FormHelperText component="span" data-cy="product-price-error">
+                {errors.price.message}
+              </FormHelperText> : null
+            }
           />
 
           <TextField
             slotProps={{
               htmlInput: {
-                "data-cy": "product-decription",
+                "data-cy": "product-description",
               },
             }}
             label="Product description"

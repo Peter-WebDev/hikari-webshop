@@ -33,26 +33,23 @@ export async function createProduct(data: any) {
     },
   });
 
-  revalidatePath("/admin/product/new");
+  redirect("/admin");
 }
 
 //Uppdatera editerad produkt i databasen
 export async function updateEditedProduct(
-  id: string,
+  articleNumber: string,
   data: z.infer<typeof productSchema>
 ) {
-  console.log("ID received:", id);
+  console.log("ID received:", articleNumber);
   try {
-    console.log("Updating product with ID:", id);
-    console.log("Data to update:", data);
-
     // Fetch the existing product first
     const existingProduct = await db.product.findUnique({
-      where: { id },
+      where: { articleNumber },
     });
 
     if (!existingProduct) {
-      throw new Error(`Product width ID ${id} not found`);
+      throw new Error(`Product width ID ${articleNumber} not found`);
     }
 
     // Validate the data
@@ -68,7 +65,7 @@ export async function updateEditedProduct(
     console.log("Data to update:", dataToUpdate);
 
     const updatedProduct = await db.product.update({
-      where: { id },
+      where: { articleNumber },
       data: dataToUpdate,
     });
 
@@ -87,10 +84,10 @@ export async function updateEditedProduct(
 }
 
 //Ta bort produkt i databasen
-export async function deleteProduct(id: string) {
+export async function deleteProduct(articleNumber: string) {
   try {
     await db.product.delete({
-      where: { id },
+      where: { articleNumber },
     });
 
     revalidatePath("/admin");

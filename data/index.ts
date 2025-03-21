@@ -33,10 +33,14 @@ export const products: Product[] = [
   {
     id: "1",
     articleNumber: "123451",
-    image: "/assets/herovideos/display-images/suna-display.png",
-    imageDark: "/assets/herovideos/display-images/suna-display-darkmode.png",
-    imageProduct: "/assets/herovideos/product-images/suna-lightmode.png",
-    imageProductDark: "/assets/herovideos/product-images/suna-darkmode.png",
+    image:
+      "http://127.0.0.1:5173/assets/herovideos/display-images/suna-display.png",
+    imageDark:
+      "http://127.0.0.1:5173/assets/herovideos/display-images/suna-display-darkmode.png",
+    imageProduct:
+      "http://127.0.0.1:5173/assets/herovideos/product-images/suna-lightmode.png",
+    imageProductDark:
+      "http://127.0.0.1:5173/assets/herovideos/product-images/suna-darkmode.png",
     title: "Suna",
     titleSign: "砂",
     titleSignColor: "#b6b47b",
@@ -55,10 +59,14 @@ export const products: Product[] = [
   {
     id: "2",
     articleNumber: "123452",
-    image: "/assets/herovideos/display-images/aka-display.png",
-    imageDark: "/assets/herovideos/display-images/aka-display-darkmode.png",
-    imageProduct: "/assets/herovideos/product-images/aka-lightmode.png",
-    imageProductDark: "/assets/herovideos/product-images/aka-darkmode.png",
+    image:
+      "http://127.0.0.1:5173/assets/herovideos/display-images/aka-display.png",
+    imageDark:
+      "http://127.0.0.1:5173/assets/herovideos/display-images/aka-display-darkmode.png",
+    imageProduct:
+      "http://127.0.0.1:5173/assets/herovideos/product-images/aka-lightmode.png",
+    imageProductDark:
+      "http://127.0.0.1:5173/assets/herovideos/product-images/aka-darkmode.png",
     title: "Aka",
     titleSign: "赤",
     titleSignColor: "#ff0000",
@@ -77,10 +85,14 @@ export const products: Product[] = [
   {
     id: "3",
     articleNumber: "123453",
-    image: "/assets/herovideos/display-images/kaze-display.png",
-    imageDark: "/assets/herovideos/display-images/kaze-display-darkmode.png",
-    imageProduct: "/assets/herovideos/product-images/kaze-lightmode.png",
-    imageProductDark: "/assets/herovideos/product-images/kaze-darkmode.png",
+    image:
+      "http://127.0.0.1:5173/assets/herovideos/display-images/kaze-display.png",
+    imageDark:
+      "http://127.0.0.1:5173/assets/herovideos/display-images/kaze-display-darkmode.png",
+    imageProduct:
+      "http://127.0.0.1:5173/assets/herovideos/product-images/kaze-lightmode.png",
+    imageProductDark:
+      "http://127.0.0.1:5173/assets/herovideos/product-images/kaze-darkmode.png",
     title: "Kaze",
     titleSign: "風",
     titleSignColor: "#23d7ff",
@@ -99,10 +111,14 @@ export const products: Product[] = [
   {
     id: "4",
     articleNumber: "123454",
-    image: "/assets/herovideos/display-images/kaigan-display.png",
-    imageDark: "/assets/herovideos/display-images/kaigan-display-darkmode.png",
-    imageProduct: "/assets/herovideos/product-images/kaigan-lightmode.png",
-    imageProductDark: "/assets/herovideos/product-images/kaigan-darkmode.png",
+    image:
+      "http://127.0.0.1:5173/assets/herovideos/display-images/kaigan-display.png",
+    imageDark:
+      "http://127.0.0.1:5173/assets/herovideos/display-images/kaigan-display-darkmode.png",
+    imageProduct:
+      "http://127.0.0.1:5173/assets/herovideos/product-images/kaigan-lightmode.png",
+    imageProductDark:
+      "http://127.0.0.1:5173/assets/herovideos/product-images/kaigan-darkmode.png",
     title: "Kaigan",
     titleSign: "海岸",
     titleSignColor: "#1d41ff",
@@ -121,10 +137,14 @@ export const products: Product[] = [
   {
     id: "5",
     articleNumber: "123455",
-    image: "/assets/herovideos/display-images/haru-display.png",
-    imageDark: "/assets/herovideos/display-images/haru-display-darkmode.png",
-    imageProduct: "/assets/herovideos/product-images/haru-lightmode.png",
-    imageProductDark: "/assets/herovideos/product-images/haru-darkmode.png",
+    image:
+      "http://127.0.0.1:5173/assets/herovideos/display-images/haru-display.png",
+    imageDark:
+      "http://127.0.0.1:5173/assets/herovideos/display-images/haru-display-darkmode.png",
+    imageProduct:
+      "http://127.0.0.1:5173/assets/herovideos/product-images/haru-lightmode.png",
+    imageProductDark:
+      "http://127.0.0.1:5173/assets/herovideos/product-images/haru-darkmode.png",
     title: "Haru",
     titleSign: "春",
     titleSignColor: "#ff8900",
@@ -143,10 +163,14 @@ export const products: Product[] = [
   {
     id: "6",
     articleNumber: "123456",
-    image: "/assets/herovideos/display-images/mori-display.png",
-    imageDark: "/assets/herovideos/display-images/mori-display-darkmode.png",
-    imageProduct: "/assets/herovideos/product-images/mori-lightmode.png",
-    imageProductDark: "/assets/herovideos/product-images/mori-darkmode.png",
+    image:
+      "http://127.0.0.1:5173/assets/herovideos/display-images/mori-display.png",
+    imageDark:
+      "http://127.0.0.1:5173/assets/herovideos/display-images/mori-display-darkmode.png",
+    imageProduct:
+      "http://127.0.0.1:5173/assets/herovideos/product-images/mori-lightmode.png",
+    imageProductDark:
+      "http://127.0.0.1:5173/assets/herovideos/product-images/mori-darkmode.png",
     title: "Mori",
     titleSign: "森",
     titleSignColor: "#62895c",
