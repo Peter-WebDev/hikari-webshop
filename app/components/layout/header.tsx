@@ -39,7 +39,7 @@ const Header: React.FC = () => {
 
   return (
     <>
-      <AppBar position="static" color="primary" sx={{ boxShadow: 2 }}>
+      <AppBar position="sticky" color="primary" sx={{ boxShadow: 2 }}>
         <Toolbar sx={{ display: "flex", justifyContent: "space-between" }}>
           <Box sx={{ flex: 1 }} />
           <Link color="inherit" underline="none" aria-label="Home" href="/">
@@ -59,6 +59,7 @@ const Header: React.FC = () => {
                     lineHeight: 1,
                     display: "flex",
                     flexDirection: "column",
+                    mt: "0.5rem",
                     textAlign: "center",
                     fontSize: { md: "2.5rem", sm: "2.5rem", xs: "2rem" },
                     fontWeight: "300",
