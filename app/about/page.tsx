@@ -22,7 +22,7 @@ export default function AboutHikariSection() {
             width: "100%", // Säkerställer att den är centrerad korrekt på små skärmar
         }}
       >
-        Hikari means "light." Inspired by japaneese traditions, each candle is carefully handcrafted using the ancient technique “Hikari o Tsukuru”, which has been passed down for generations.<br /><br />
+        Hikari means &ldquo;light.&rdquo; Inspired by japaneese traditions, each candle is carefully handcrafted using the ancient technique “Hikari o Tsukuru”, which has been passed down for generations.<br /><br />
 
         Made from 100% organic, plant-based wax, every candle reflects our dedication to authenticity and sustainability. Hikari candles capture the essence of craftsmanship and purity, offering a clean, long-lasting burn infused with gentle and natural scents.<br /><br />
 
