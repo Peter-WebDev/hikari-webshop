@@ -17,9 +17,9 @@ import { notFound } from "next/navigation";
 export default async function ProductPage({
   params,
 }: {
-  params: { articleNumber: string };
+  params: Promise<{ articleNumber: string }>;
 }) {
-  const { articleNumber } = params;
+  const { articleNumber } = await params;
   const product = await db.product.findUnique({
     where: { articleNumber: articleNumber },
   });

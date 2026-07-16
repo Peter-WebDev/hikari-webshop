@@ -3,7 +3,7 @@ import { Suspense } from "react";
 import EditProductForm from "../../../components/edit-product/edit-product-form";
 
 // Server component
-export default async function EditProductPage({ params }: { params: { id?: string } }) {
+export default async function EditProductPage({ params }: { params: Promise<{ id?: string }> }) {
   // Await the params to resolve them first
   const resolvedParams = await params;
   const articleNumber = resolvedParams.id;
