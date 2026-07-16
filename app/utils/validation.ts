@@ -46,7 +46,8 @@ export const productSchema = z.object({
         message: "Color doesn't have enough contrast with the background",
       }
     )
-    .optional(),
+    .optional()
+    .nullable(),
   titleDescription: z.string().optional().nullable(),
   titleWithDescription: z.string().optional().nullable(),
   description: z
