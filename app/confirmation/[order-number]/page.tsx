@@ -5,10 +5,11 @@ import Link from "next/link";
 export default async function ConfirmationPage({
   params,
 }: {
-  params: { "order-number": string };
+  params: Promise<{ "order-number": string }>;
 }) {
+  const { "order-number": orderNumber } = await params;
   const order = await db.order.findUnique({
-    where: { orderNumber: params["order-number"] },
+    where: { orderNumber },
     include: { customer: true, orderItems: { include: { product: true } } },
   });
 
