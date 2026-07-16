@@ -1,17 +1,15 @@
 {
-  "name": "react-webshop-ts-template-nextjs",
-  "description": "En inlämningsuppgift där de studerande bygger en kalenderapplikation i javascript.",
-  "author": "Plugga Tech",
+  "name": "hikari-webshop",
+  "description": "En webshop byggd med Next.js, TypeScript, MUI och Prisma.",
+  "author": "Peter-WebDev",
   "license": "ISC",
   "private": true,
   "scripts": {
-    "postinstall": "plugga init && prisma db push",
+    "postinstall": "prisma generate",
     "dev": "next dev --turbopack --port 5173",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "update": "plugga update",
-    "test": "plugga test",
     "push": "prisma db push",
     "seed": "prisma db seed",
     "studio": "prisma studio"
@@ -30,7 +28,7 @@
     "@mui/material": "^6.4.7",
     "@mui/material-nextjs": "^6.4.3",
     "nanoid": "^5.1.4",
-    "next": "15.2.1",
+    "next": "^15.3.3",
     "react": "^19",
     "react-dom": "^19.0.0",
     "react-hook-form": "^7.54.2",
@@ -38,7 +36,6 @@
     "zod": "^3.24.2"
   },
   "devDependencies": {
-    "@plugga-tech/react-webshop-ts": "^1.1.12",
     "@prisma/client": "^6.4.1",
     "@types/node": "^22.13.9",
     "@types/react": "^19.0.10",
@@ -50,10 +47,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/plugga-tech/react-webshop-ts-template-nextjs.git"
+    "url": "git+https://github.com/Peter-WebDev/hikari-webshop.git"
   },
   "bugs": {
-    "url": "https://github.com/plugga-tech/react-webshop-ts-template-nextjs/issues"
+    "url": "https://github.com/Peter-WebDev/hikari-webshop/issues"
   },
-  "homepage": "https://github.com/plugga-tech/react-webshop-ts-template-nextjs#readme"
+  "homepage": "https://github.com/Peter-WebDev/hikari-webshop#readme"
 }
