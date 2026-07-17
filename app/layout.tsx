@@ -1,7 +1,3 @@
-import "@fontsource/jost/300.css";
-import "@fontsource/jost/400.css";
-import "@fontsource/jost/500.css";
-import "@fontsource/jost/700.css";
 import { CssBaseline } from "@mui/material";
 import { AppRouterCacheProvider } from "@mui/material-nextjs/v15-appRouter";
 import { ThemeProvider } from "@mui/material/styles";
@@ -14,7 +10,11 @@ import Header from "./components/layout/header";
 import CartProvider from "./providers/cart-provider";
 import SnackbarProvider from "./providers/snackbar-provider";
 
-const jost = Jost({ subsets: ["latin"] });
+const jost = Jost({
+  subsets: ["latin"],
+  variable: "--font-jost",
+  display: "swap",
+});
 
 /* Beskriv din hemsida för sökmotorerna */
 export const metadata: Metadata = {
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: PropsWithChildren) {
   return (
-    <html lang="en">
+    <html lang="en" className={jost.variable}>
       <body className={jost.className}>
         <CartProvider>
           <SnackbarProvider>

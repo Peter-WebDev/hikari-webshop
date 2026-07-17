@@ -1,8 +1,9 @@
 "use client";
+import { CLOUDINARY_VIDEO_BASE } from "@/app/utils/cloudinary";
 import { Box } from "@mui/material";
 
 const ProductHeroVideo = ({ videoName }: { videoName: string }) => {
-  const videoSrc = `/assets/herovideos/${videoName.toLowerCase()}.mp4`;
+  const videoSrc = `${CLOUDINARY_VIDEO_BASE}/${videoName.toLowerCase()}.mp4`;
 
   return (
     <Box
