@@ -1,4 +1,5 @@
 "use client";
+import { CLOUDINARY_VIDEO_BASE } from "@/app/utils/cloudinary";
 import { Box, Typography } from "@mui/material"; // Importera Box från MUI
 import { useEffect, useState } from "react";
 
@@ -7,16 +8,15 @@ interface HeroSectionProps {
 }
 
 const videos: string[] = [
-  "assets/herovideos/aka.mp4",
-  "assets/herovideos/blossom.mp4",
-  "assets/herovideos/cherry.mp4",
-  "assets/herovideos/haru.mp4",
-  "assets/herovideos/kaigan.mp4",
-  "assets/herovideos/kaze.mp4",
-  "assets/herovideos/mori.mp4",
-  "assets/herovideos/spring.mp4",
-  "assets/herovideos/suna.mp4",
-  "assets/herovideos/wind.mp4",
+  `${CLOUDINARY_VIDEO_BASE}/aka.mp4`,
+  `${CLOUDINARY_VIDEO_BASE}/blossom.mp4`,
+  `${CLOUDINARY_VIDEO_BASE}/cherry.mp4`,
+  `${CLOUDINARY_VIDEO_BASE}/haru.mp4`,
+  `${CLOUDINARY_VIDEO_BASE}/kaigan.mp4`,
+  `${CLOUDINARY_VIDEO_BASE}/kaze.mp4`,
+  `${CLOUDINARY_VIDEO_BASE}/mori.mp4`,
+  `${CLOUDINARY_VIDEO_BASE}/spring.mp4`,
+  `${CLOUDINARY_VIDEO_BASE}/suna.mp4`,
 ];
 
 const HeroSection = ({ page = "home" }: HeroSectionProps) => {
