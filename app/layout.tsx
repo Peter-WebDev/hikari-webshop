@@ -1,4 +1,5 @@
 import { CssBaseline } from "@mui/material";
+import InitColorSchemeScript from "@mui/material/InitColorSchemeScript";
 import { AppRouterCacheProvider } from "@mui/material-nextjs/v15-appRouter";
 import { ThemeProvider } from "@mui/material/styles";
 import { Jost } from "next/font/google";
@@ -24,20 +25,21 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: PropsWithChildren) {
   return (
-    <html lang="en" className={jost.variable}>
+    <html lang="en" className={jost.variable} suppressHydrationWarning>
       <body className={jost.className}>
-        <CartProvider>
-          <SnackbarProvider>
-            <AppRouterCacheProvider>
-              <ThemeProvider theme={theme}>
-                <CssBaseline />
+        <InitColorSchemeScript attribute="data" defaultMode="system" />
+        <AppRouterCacheProvider>
+          <ThemeProvider theme={theme} defaultMode="system">
+            <CssBaseline enableColorScheme />
+            <CartProvider>
+              <SnackbarProvider>
                 <Header />
                 {children}
                 <Footer />
-              </ThemeProvider>
-            </AppRouterCacheProvider>
-          </SnackbarProvider>
-        </CartProvider>
+              </SnackbarProvider>
+            </CartProvider>
+          </ThemeProvider>
+        </AppRouterCacheProvider>
       </body>
     </html>
   );

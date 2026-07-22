@@ -26,7 +26,7 @@ const CheckoutProduct = () => {
       <Container maxWidth="sm">
         <Paper
           elevation={3}
-          sx={{ padding: 3, mt: 6, backgroundColor: "#f7f7f7" }}
+          sx={{ padding: 3, mt: 6 }}
         >
           {/* Checkout-rubriken */}
           <Typography variant="h4" fontWeight="bold" gutterBottom mb="1.5rem">
@@ -41,7 +41,8 @@ const CheckoutProduct = () => {
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "space-between",
-                borderBottom: "1px solid #ddd",
+                borderBottom: "1px solid",
+                borderColor: "divider",
                 paddingBottom: 2,
                 paddingRight: 2,
                 mb: 2,
@@ -80,7 +81,8 @@ const CheckoutProduct = () => {
                     width: 40,
                     textAlign: "center",
                     display: "inline-block",
-                    border: "1px solid #6e6e6e",
+                    border: "1px solid",
+                    borderColor: "text.secondary",
                     borderRadius: "0.2rem",
                   }}
                 >
@@ -98,7 +100,7 @@ const CheckoutProduct = () => {
               {/* Trashbin-knapp-ikon */}
               <IconButton
                 size="small"
-                sx={{ color: "#6e6e6e" }}
+                sx={{ color: "text.secondary" }}
                 onClick={() => removeFromCart(item.id)}
               >
                 <Delete />
@@ -159,7 +161,9 @@ const CheckoutProduct = () => {
           </Box>
 
           {/* Stegvis checkout-navigation 1-2-3 */}
-          <Box sx={{ mt: 2, borderTop: "1px solid #ddd", pt: 4 }}>
+          <Box
+            sx={{ mt: 2, borderTop: "1px solid", borderColor: "divider", pt: 4 }}
+          >
             <Stepper activeStep={0} alternativeLabel>
               {steps.map((label) => (
                 <Step key={label}>

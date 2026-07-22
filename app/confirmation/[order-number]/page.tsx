@@ -29,7 +29,7 @@ export default async function ConfirmationPage({
     >
       <Paper
         elevation={3}
-        sx={{ padding: 3, mt: 4, backgroundColor: "#f7f7f7" }}
+        sx={{ padding: 3, mt: 4 }}
       >
         {/*Titel:*/}
         <Typography
@@ -42,7 +42,7 @@ export default async function ConfirmationPage({
           Thanks for your order {order.customer.name}!
         </Typography>
 
-        <Box sx={{ borderBottom: "1px solid #ccc", my: 2 }}></Box>
+        <Box sx={{ borderBottom: "1px solid", borderColor: "divider", my: 2 }}></Box>
         {/*Order Details:*/}
         <Typography variant="h6" fontWeight="bold" sx={{ mb: 1 }}>
           Your order details:
@@ -69,7 +69,7 @@ export default async function ConfirmationPage({
           {order.totalPrice} SEK
         </Typography>
 
-        <Box sx={{ borderBottom: "1px solid #ccc", my: 2 }}></Box>
+        <Box sx={{ borderBottom: "1px solid", borderColor: "divider", my: 2 }}></Box>
 
         <Typography variant="h6" fontWeight="bold" sx={{ mb: 1 }}>
           Your shipping information:
@@ -107,14 +107,14 @@ export default async function ConfirmationPage({
               sx={{
                 display: "inline-block",
                 padding: "8px 16px",
-                backgroundColor: "#040404",
-                color: "#fff",
+                backgroundColor: "secondary.main",
+                color: "secondary.contrastText",
                 borderRadius: "4px",
                 textAlign: "center",
                 textDecoration: "none",
                 cursor: "pointer",
                 "&:hover": {
-                  background: "#403D3A",
+                  backgroundColor: "secondary.light",
                 },
               }}
             >

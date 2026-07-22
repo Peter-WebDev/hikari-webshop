@@ -2,12 +2,12 @@
 
 import { useCart } from "@/app/providers/cart-provider";
 import { useSnackbar } from "@/app/providers/snackbar-provider";
+import ThemeImage from "@/app/components/theme-image";
 import { Product } from "@/data";
 import LocalMallIcon from "@mui/icons-material/LocalMall";
 import {
   Box,
   CardContent,
-  CardMedia,
   IconButton,
   Link,
   Slide,
@@ -40,10 +40,9 @@ export default function ProductCard({ product }: { product: Product }) {
           },
         }}
       >
-        <CardMedia
-          component="img"
-          image={product.image}
-          alt=""
+        <ThemeImage
+          light={product.image}
+          dark={product.imageDark}
           sx={{
             width: {
               xs: "70%",
@@ -54,7 +53,6 @@ export default function ProductCard({ product }: { product: Product }) {
             objectFit: "contain",
             margin: "0 auto",
             display: "block",
-            paddingTop: "1rem",
           }}
         />
         <CardContent>
@@ -82,7 +80,7 @@ export default function ProductCard({ product }: { product: Product }) {
                   paddingLeft: "0.5rem",
                   fontSize: { md: "1.8rem", xs: "1.5rem" },
                   fontWeight: "400",
-                  color: product.titleSignColor || "#000",
+                  color: product.titleSignColor || "text.primary",
                 }}
               >
                 {product.titleSign}
@@ -103,7 +101,7 @@ export default function ProductCard({ product }: { product: Product }) {
               <LocalMallIcon
                 sx={{
                   fontSize: { md: "2rem", xs: "1.8rem" },
-                  color: "#040404",
+                  color: "secondary.main",
                 }}
               />
             </IconButton>

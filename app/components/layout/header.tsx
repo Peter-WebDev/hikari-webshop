@@ -16,6 +16,7 @@ import {
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import CartDrawer from "./cart-drawer"; // Importera den nya komponenten
+import ThemeToggle from "./theme-toggle";
 
 const Header: React.FC = () => {
   const [openSidebar, setOpenSidebar] = useState(false);
@@ -43,7 +44,9 @@ const Header: React.FC = () => {
     <>
       <AppBar position="sticky" color="primary" sx={{ boxShadow: 2 }}>
         <Toolbar sx={{ display: "flex", justifyContent: "space-between" }}>
-          <Box sx={{ flex: 1 }} />
+          <Box sx={{ flex: 1, display: "flex", justifyContent: "flex-start" }}>
+            <ThemeToggle />
+          </Box>
           <Link color="inherit" underline="none" aria-label="Home" href="/">
             <Box
               sx={{

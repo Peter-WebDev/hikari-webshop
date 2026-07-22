@@ -1,5 +1,6 @@
 import ProductHeroVideo from "@/app/components/hero/product-hero-video";
 import QuantityButton from "@/app/components/quantity/quantityButton";
+import ThemeImage from "@/app/components/theme-image";
 import { db } from "@/prisma/db";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import {
@@ -8,7 +9,6 @@ import {
   AccordionSummary,
   Box,
   Card,
-  CardMedia,
   Container,
   Typography,
 } from "@mui/material";
@@ -47,18 +47,10 @@ export default async function ProductPage({
           }}
           data-cy="product"
         >
-          <Card
-            sx={{
-              border: "none",
-              borderRadius: "0",
-              objectFit: "cover",
-              objectPosition: "center",
-              backgroundColor: "transparent",
-              boxShadow: "none",
-            }}
-          >
-            <CardMedia component="img" image={product.image} alt=""></CardMedia>
-          </Card>
+          <ThemeImage
+            light={product.imageProduct ?? product.image}
+            dark={product.imageProductDark ?? product.imageDark}
+          />
           <Box sx={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
             <Typography
               component="h2"
@@ -75,7 +67,7 @@ export default async function ProductPage({
                 <Typography
                   component="span"
                   sx={{
-                    color: product.titleSignColor || "#000",
+                    color: product.titleSignColor || "text.primary",
                     marginLeft: "0.5rem",
                     fontSize: { md: "3rem", sm: "2rem", xs: "2rem" },
                   }}
@@ -104,7 +96,7 @@ export default async function ProductPage({
             <QuantityButton product={product} />
             <Accordion
               sx={{
-                backgroundColor: "#C1B8AF",
+                backgroundColor: "primary.dark",
                 border: "none",
                 boxShadow: "none",
               }}
@@ -117,16 +109,52 @@ export default async function ProductPage({
               >
                 <Typography component="span">More information</Typography>
               </AccordionSummary>
-              <AccordionDetails sx={{ backgroundColor: "#D6CCC2" }}>
-                Brand: {product.brand}
-                <br />
-                Note: {product.note}
-                <br />
-                Weight: {product.weight}
-                <br />
-                Height: {product.height}
-                <br />
-                Diameter: {product.diameter}
+              <AccordionDetails sx={{ backgroundColor: "primary.light" }}>
+                <Box
+                  component="dl"
+                  sx={{
+                    margin: 0,
+                    display: "grid",
+                    gridTemplateColumns: "auto 1fr",
+                    columnGap: "0.75rem",
+                    rowGap: "0.25rem",
+                  }}
+                >
+                  <Typography component="dt" sx={{ fontWeight: "bold" }}>
+                    Brand
+                  </Typography>
+                  <Typography component="dd" sx={{ margin: 0 }}>
+                    {product.brand}
+                  </Typography>
+
+                  <Typography component="dt" sx={{ fontWeight: "bold" }}>
+                    Note
+                  </Typography>
+                  <Typography component="dd" sx={{ margin: 0 }}>
+                    {product.note}
+                  </Typography>
+
+                  <Typography component="dt" sx={{ fontWeight: "bold" }}>
+                    Weight
+                  </Typography>
+                  <Typography component="dd" sx={{ margin: 0 }}>
+                    {product.weight}
+                  </Typography>
+
+                  <Typography component="dt" sx={{ fontWeight: "bold" }}>
+                    Height
+                  </Typography>
+                  <Typography component="dd" sx={{ margin: 0 }}>
+                    {product.height}
+                  </Typography>
+
+                  <Typography component="dt" sx={{ fontWeight: "bold" }}>
+                    Diameter
+                  </Typography>
+                  <Typography component="dd" sx={{ margin: 0 }}>
+                    {product.diameter}
+                  </Typography>
+                </Box>
               </AccordionDetails>
             </Accordion>
             <Typography component="p">
