@@ -60,7 +60,8 @@ export default async function AdminPage() {
               gridTemplateColumns: "1fr 1fr 2fr 1fr 1fr",
               fontWeight: "bold",
               paddingBottom: 2,
-              borderBottom: "2px solid #ccc",
+              borderBottom: "2px solid",
+              borderColor: "divider",
             }}
           >
             <Typography>Image</Typography>
@@ -79,7 +80,8 @@ export default async function AdminPage() {
                 gridTemplateColumns: "1fr 1fr 2fr 1fr 1fr",
                 alignItems: "center",
                 paddingY: 2,
-                borderBottom: "1px solid #ccc",
+                borderBottom: "1px solid",
+                borderColor: "divider",
               }}
               data-cy="product"
             >

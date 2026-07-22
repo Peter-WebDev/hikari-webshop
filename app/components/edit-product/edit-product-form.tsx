@@ -38,7 +38,7 @@ export default function EditProductForm({ product }: { product: ProductForm & { 
 
   return (
     <Container maxWidth="sm" sx={{ mt: { md: 8, sm: 6, xs: 4 }, mb: 8 }}>
-      <Paper elevation={3} sx={{ padding: 3, mt: 4, backgroundColor: "#f7f7f7" }}>
+      <Paper elevation={3} sx={{ padding: 3, mt: 4 }}>
         <Typography variant="h4" fontWeight="bold" gutterBottom>
           Edit product
         </Typography>

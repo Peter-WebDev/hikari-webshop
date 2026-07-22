@@ -41,7 +41,8 @@ export default function QuantityButton({ product }: { product: Product }) {
         <Typography
           component="span"
           width={45}
-          border="1px solid #000"
+          border={1}
+          borderColor="text.primary"
           borderRadius={1}
           textAlign="center"
           sx={{ fontSize: { sm: "1.3rem", xs: "1.1rem" } }}

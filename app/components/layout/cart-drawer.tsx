@@ -11,13 +11,6 @@ import {
   Typography,
 } from "@mui/material";
 
-interface Product {
-  id: string;
-  title: string;
-  image: string;
-  price: number;
-}
-
 interface SidebarProps {
   openSidebar: boolean;
   toggleSidebar: () => void;
@@ -63,7 +56,8 @@ const Sidebar = ({
                 justifyContent: "space-between",
                 gap: 2,
                 padding: "0.5rem",
-                borderBottom: "1px solid #ddd",
+                borderBottom: "1px solid",
+                borderColor: "divider",
               }}
             >
               <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
@@ -102,7 +96,8 @@ const Sidebar = ({
                   component="span"
                   fontSize="medium"
                   width={30}
-                  border="1px solid #000"
+                  border={1}
+                  borderColor="text.primary"
                   borderRadius={1}
                   textAlign="center"
                 >
@@ -132,7 +127,12 @@ const Sidebar = ({
 
         {/* Subtotal, shipping, and total */}
         <Box
-          sx={{ borderTop: "1px solid #ddd", paddingTop: 2, textAlign: "left" }}
+          sx={{
+            borderTop: "1px solid",
+            borderColor: "divider",
+            paddingTop: 2,
+            textAlign: "left",
+          }}
         >
           <Box
             sx={{

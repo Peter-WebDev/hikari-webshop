@@ -16,7 +16,7 @@ export default function AboutHikariSection() {
         component="h2"
         variant="h5"
         sx={{
-            color: "#000",
+            color: "text.primary",
             fontWeight: "350",
             textAlign: { xs: "center", sm: "left" }, // Centrerad text på små skärmar
             width: "100%", // Säkerställer att den är centrerad korrekt på små skärmar
@@ -33,7 +33,7 @@ export default function AboutHikariSection() {
         component="h2"
         variant="h5"
         sx={{
-            color: "#000",
+            color: "text.primary",
             fontWeight: "390",
             textAlign: { sm: "right" }, // Centrerad text på små skärmar
             width: "100%", // Säkerställer att den är centrerad korrekt på små skärmar
