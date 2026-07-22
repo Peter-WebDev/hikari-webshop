@@ -17,20 +17,19 @@ interface SnackbarContextType {
   ) => void;
 }
 
+interface QueuedSnackbar {
+  id: number;
+  message: string;
+  Transition: (props: SlideProps) => JSX.Element;
+}
+
 const SnackbarContext = createContext({} as SnackbarContextType);
 
+let nextId = 0;
+
 export default function SnackbarProvider({ children }: PropsWithChildren) {
-  // Updates state to show snackbar
-  // Open: if the snackbar is visible, Message: text shown and transition from MUI that has default slide up
-  const [snackbar, setSnackbar] = useState<{
-    open: boolean;
-    message: string;
-    Transition: (props: SlideProps) => JSX.Element;
-  }>({
-    open: false,
-    message: "",
-    Transition: (props) => <Slide {...props} direction="up" />,
-  });
+  // Queue of snackbars currently visible, stacked bottom to top
+  const [queue, setQueue] = useState<QueuedSnackbar[]>([]);
 
   const showSnackbar = (
     message: string,
@@ -38,35 +37,43 @@ export default function SnackbarProvider({ children }: PropsWithChildren) {
       <Slide {...props} direction="up" />
     )
   ) => {
-    setSnackbar({ open: true, message, Transition });
+    const id = nextId++;
+    setQueue((prev) => [...prev, { id, message, Transition }]);
   };
 
-  const handleClose = () => {
-    setSnackbar((prev) => ({ ...prev, open: false }));
+  const handleClose = (id: number, reason?: string) => {
+    // MUI's Snackbar fires onClose with reason "clickaway" on the older,
+    // still-open instances whenever a new Snackbar mounts in the same
+    // portal. Ignore that so only a real timeout/escape closes an entry.
+    if (reason === "clickaway") return;
+    setQueue((prev) => prev.filter((item) => item.id !== id));
   };
 
-  // Snackbar from MUI, placed bottom left and shows for 2sec
+  // Renders one Snackbar per queued message, stacked above each other
   return (
     <SnackbarContext.Provider value={{ showSnackbar }}>
       {children}
-      <Snackbar
-        data-cy="added-to-cart-toast"
-        open={snackbar.open}
-        autoHideDuration={2000}
-        onClose={handleClose}
-        message={snackbar.message}
-        key={snackbar.Transition.name}
-        anchorOrigin={{ vertical: "bottom", horizontal: "left" }}
-        slots={{ transition: snackbar.Transition }}
-        sx={{
-          // Target content in snackbar
-          "& .MuiSnackbarContent-root": {
-            backgroundColor: "#040404",
-            color: "#fff",
-            fontSize: "1.2rem",
-          },
-        }}
-      />
+      {queue.map((item, index) => (
+        <Snackbar
+          key={item.id}
+          data-cy="added-to-cart-toast"
+          open
+          autoHideDuration={5000}
+          onClose={(_event, reason) => handleClose(item.id, reason)}
+          message={item.message}
+          anchorOrigin={{ vertical: "bottom", horizontal: "left" }}
+          slots={{ transition: item.Transition }}
+          sx={{
+            // Stack upward: each older snackbar sits higher than the last
+            bottom: `${index * 56 + 24}px !important`,
+            "& .MuiSnackbarContent-root": {
+              backgroundColor: "secondary.main",
+              color: "secondary.contrastText",
+              fontSize: "1.2rem",
+            },
+          }}
+        />
+      ))}
     </SnackbarContext.Provider>
   );
 }
