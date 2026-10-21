@@ -2,6 +2,8 @@ import { db } from "@/prisma/db";
 import { Suspense } from "react";
 import EditProductForm from "../../../components/edit-product/edit-product-form";
 
+export const dynamic = "force-dynamic";
+
 // Server component
 export default async function EditProductPage({ params }: { params: Promise<{ id?: string }> }) {
   // Await the params to resolve them first

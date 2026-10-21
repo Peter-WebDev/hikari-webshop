@@ -11,6 +11,8 @@ import {
 } from "@mui/material";
 import DeleteProductButton from "../components/product-actions/delete-product-button";
 
+export const dynamic = "force-dynamic";
+
 export default async function AdminPage() {
   const products = await db.product.findMany({
     select: {
