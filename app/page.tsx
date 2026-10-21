@@ -2,6 +2,9 @@ import { Container, Typography } from "@mui/material";
 import HeroSection from "./components/hero/herosection";
 import ProductList from "./components/products/product-list";
 
+// Produktlistan läses från databasen och ska inte förrenderas vid bygget
+export const dynamic = "force-dynamic";
+
 export default function Home() {
   return (
     <main>
