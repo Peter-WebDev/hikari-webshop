@@ -2,7 +2,7 @@
 
 This is a full-stack e-commerce application for managing and selling candles. The project includes an **admin panel** for managing products and a **customer-facing store** where users can browse, add products to their cart, and complete purchases.
 
-The application was originally built as a **school group project by a team of four developers**. This repository is my own continuation of that work, adapted for deployment on Vercel.
+The application was originally built as a **school group project by a team of four developers**, **and some small help from our teacher** . This repository is my own continuation of that work, adapted for deployment on Vercel along with some minor additions.
 
 ## 🚀 Tech Stack
 
