@@ -1,3 +1,4 @@
+import { requireAdmin } from "@/app/utils/admin-guard";
 import { db } from "@/prisma/db";
 import AddIcon from "@mui/icons-material/Add";
 import EditIcon from "@mui/icons-material/Edit";
@@ -9,11 +10,14 @@ import {
   Paper,
   Typography
 } from "@mui/material";
+import LogoutButton from "../components/login/logout-button";
 import DeleteProductButton from "../components/product-actions/delete-product-button";
 
 export const dynamic = "force-dynamic";
 
 export default async function AdminPage() {
+  await requireAdmin();
+
   const products = await db.product.findMany({
     select: {
       id: true,
@@ -43,15 +47,18 @@ export default async function AdminPage() {
           <Typography component="h2" variant="h4" fontWeight="bold">
             Admin
           </Typography>
-          <Link data-cy="admin-add-product" href="/admin/product/new">
-            <Button
-              variant="contained"
-              color="secondary"
-              startIcon={<AddIcon />}
-            >
-              Add product
-            </Button>
-          </Link>
+          <Box sx={{ display: "flex", gap: 1 }}>
+            <Link data-cy="admin-add-product" href="/admin/product/new">
+              <Button
+                variant="contained"
+                color="secondary"
+                startIcon={<AddIcon />}
+              >
+                Add product
+              </Button>
+            </Link>
+            <LogoutButton />
+          </Box>
         </Box>
 
         <Box component={Paper} sx={{ boxShadow: 2, padding: 2 }}>
