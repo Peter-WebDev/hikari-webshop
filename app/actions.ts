@@ -6,6 +6,7 @@ import { Prisma } from "@prisma/client";
 import { customAlphabet, nanoid } from "nanoid/non-secure";
 import { revalidatePath } from "next/cache";
 import { z } from "zod";
+import { assertAdmin } from "./utils/admin-guard";
 import { productSchema } from "./utils/validation";
 
 // Create a custom nanoid generator that only uses numbers. Length set to 15.
@@ -13,6 +14,8 @@ const generateRandomDigits = customAlphabet("0123456789", 15);
 
 //Skapa produkt i databasen
 export async function createProduct(data: any) {
+  await assertAdmin();
+
   try {
     const validationResult = productSchema.safeParse(data);
     if (!validationResult.success) {
@@ -45,6 +48,8 @@ export async function updateEditedProduct(
   articleNumber: string,
   data: z.infer<typeof productSchema>
 ) {
+  await assertAdmin();
+
   console.log("ID received:", articleNumber);
 
   // Fetch the existing product first
@@ -82,6 +87,8 @@ export async function updateEditedProduct(
 
 //Ta bort produkt i databasen
 export async function deleteProduct(id: string) {
+  await assertAdmin();
+
   try {
     await db.product.delete({
       where: { id },
