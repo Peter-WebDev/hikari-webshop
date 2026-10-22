@@ -44,6 +44,16 @@ const theme = createTheme({
     fontFamily: "var(--font-jost)",
   },
   components: {
+    // Header, innehåll och footer: footern hålls i botten även på korta sidor
+    MuiCssBaseline: {
+      styleOverrides: {
+        body: {
+          display: "grid",
+          gridTemplateRows: "auto 1fr auto",
+          minHeight: "100svh",
+        },
+      },
+    },
     MuiTextField: {
       defaultProps: {
         color: "secondary",
